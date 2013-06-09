@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<!-- 
+ 作者:KeJyun
+ 建立日期:2013-06-09
+ 最後修改日期:2013-06-09
+ 聯絡方式:kejyun@gmail.com
+ -->
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Laravel 4 PHP Framework繁體中文教學文件</title>
+<meta name="description" content="Laravel, 優雅的PHP網頁工匠框架(Framework) 再開始享受開發上的樂趣吧">
+<link media="all" type="text/css" rel="stylesheet" href="../../css/style.css">
+<script src="../../js/modernizr-2.6.2.min.js"></script>
+
+<style type="text/css">
+.docs-menu ul li{
+    margin-top: 10px;
+}
+</style>
+</head>
+<body>
+<!-- Header -->
+<header>
+    <div class="container">
+        <a href="http://laravel.com/" title="Laravel PHP Framework" class="logo" target="_blank">&nbsp;</a>
+        <nav class="menu">
+            <ul>
+                <li>
+                    <a href="http://laravel.com/" title="Welcome" target="_blank">Welcome</a>
+                </li>
+                <li>
+                    <a href="http://laravel.com/docs" title="Documentation" target="_blank">Documentation</a>
+                </li>
+                <li class="active">
+                    <a href="../../docs/introduction" title="中文文件">中文文件</a>
+                </li>
+                <li>
+                    <a href="http://laravel.com/api" title="API" target="_blank">API</a>
+                </li>
+                <li>
+                    <a href="https://github.com/laravel/laravel" title="Github" target="_blank">Github</a>
+                </li>
+                <li>
+                    <a href="http://forums.laravel.io/" title="論壇" target="_blank">論壇</a>
+                </li>
+                <li>
+                    <a href="http://twitter.com/laravelphp" title="Twitter" target="_blank">Twitter</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- Header sectoin -->
+<section class="docs-heading">
+    <div class="container">
+        <h2>文件</h2>
+        <div class="sponsor">
+            <span>贊助商 </span>
+            <a href="http://www.cartalyst.com/" title="Cartalyst" target="_blank">
+                <img src="../../img/cartalyst_small.png">
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="docs-content">
+    <div class="container">
+    <nav class="docs-menu">
+        <ul>
+            <li>前言                <ul>
+                    <li><a href="../../docs/introduction">介紹</a></li>
+                    <li><a href="../../docs/quick">快速開始</a></li>
+                    <li><a href="../../docs/contributing">貢獻</a></li>
+                </ul>
+            </li>
+            <li>
+                入門                <ul>
+                    <li><a href="../../docs/installation">安裝</a></li>
+                    <li><a href="../../docs/configuration">設定</a></li>
+                    <li><a href="../../docs/lifecycle">生命週期</a></li>
+                    <li><a href="../../docs/routing">路由</a></li>
+                    <li><a href="../../docs/requests">請求及輸入<br />(Requests &amp; Input)</a></li>
+                    <li><a href="../../docs/responses">視圖及回應<br />(Views &amp; Responses)</a></li>
+                    <li><a href="../../docs/controllers">控制器(Controllers)</a></li>
+                    <li><a href="../../docs/errors">錯誤及記錄</a></li>
+                </ul>
+            </li>
+
+            <li>
+                更多                <ul>
+                <li><a href="../../docs/cache">快取</a></li>
+                <li><a href="../../docs/events">事件</a></li>
+                <li><a href="../../docs/facades">Facades</a></li>
+                <li><a href="../../docs/html">表單及HTML</a></li>
+                <li><a href="../../docs/ioc">IoC容器</a></li>
+                <li><a href="../../docs/localization">在地化</a></li>
+                <li><a href="../../docs/mail">郵件</a></li>
+                <li><a href="../../docs/packages">套件開發</a></li>
+                <li><a href="../../docs/pagination">分頁</a></li>
+                <li><a href="../../docs/queues">佇列</a></li>
+                <li><a href="../../docs/security">安全性</a></li>
+                <li><a href="../../docs/session">Session</a></li>
+                <li><a href="../../docs/templates">樣板</a></li>
+                <li><a href="../../docs/testing">單元測試</a></li>
+                <li><a href="../../docs/validation">驗證</a></li>
+                </ul>
+            </li>
+            <li>
+                資料庫                <ul>
+                    <li><a href="../../docs/database">基本用法</a></li>
+                    <li><a href="../../docs/queries">Query產生器</a></li>
+                    <li><a href="../../docs/eloquent">Eloquent ORM</a></li>
+                    <li><a href="../../docs/schema">Schema產生器</a></li>
+                    <li><a href="../../docs/migrations">Migrations &amp; Seeding</a></li>
+                    <li><a href="../../docs/redis">Redis</a></li>
+                </ul>
+            </li>
+
+            <li>
+                Artisan介面指令                <ul>
+                    <li><a href="../../docs/artisan">概要</a></li>
+                    <li><a href="../../docs/commands">開發</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+
+    <article class="docs-body">
+        <h1>Query產生器</h1>
+
+<ul>
+    <li>
+        <a href="#introduction">介紹</a>
+    </li>
+    <li>
+        <a href="#selects">Selects</a>
+    </li>
+    <li>
+        <a href="#joins">Joins</a>
+    </li>
+    <li>
+        <a href="#advanced-wheres">進階Wheres</a>
+    </li>
+    <li>
+        <a href="#aggregates">Aggregates</a>
+    </li>
+    <li>
+        <a href="#raw-expressions">原始表達式</a>
+    </li>
+    <li>
+        <a href="#inserts">新增</a>
+    </li>
+    <li>
+        <a href="#updates">更新</a>
+    </li>
+    <li>
+        <a href="#deletes">刪除</a>
+    </li>
+    <li>
+        <a href="#unions">聯集</a>
+    </li>
+    <li>
+        <a href="#caching-queries">快取查詢</a>
+    </li>
+</ul>
+
+<p><a name="introduction"></a></p>
+
+<h2>介紹</h2>
+
+<p>
+    The database query builder provides a convenient, fluent interface to creating and running database queries. It can be used to perform most database operations in your application, and works on all supported database systems.
+</p>
+
+<blockquote>
+  <p><strong>Note:</strong> The Laravel query builder uses PDO parameter binding throughout to protect your application against SQL injection attacks. There is no need to clean strings being passed as bindings.</p>
+</blockquote>
+
+<p><a name="selects"></a></p>
+
+<h2>Selects</h2>
+
+<p><strong>Retrieving All Rows From A Table</strong></p>
+
+<pre><code>$users = DB::table('users')-&gt;get();
+
+foreach ($users as $user)
+{
+    var_dump($user-&gt;name);
+}
+</code></pre>
+
+<p><strong>Retrieving A Single Row From A Table</strong></p>
+
+<pre><code>$user = DB::table('users')-&gt;where('name', 'John')-&gt;first();
+
+var_dump($user-&gt;name);
+</code></pre>
+
+<p><strong>Retrieving A Single Column From A Row</strong></p>
+
+<pre><code>$name = DB::table('users')-&gt;where('name', 'John')-&gt;pluck('name');
+</code></pre>
+
+<p><strong>Retrieving A List Of Column Values</strong></p>
+
+<pre><code>$roles = DB::table('roles')-&gt;lists('title');
+</code></pre>
+
+<p>This method will return an array of role titles. You may also specify a custom key column for the returned array:</p>
+
+<pre><code>$roles = DB::table('roles')-&gt;lists('title', 'name');
+</code></pre>
+
+<p><strong>Specifying A Select Clause</strong></p>
+
+<pre><code>$users = DB::table('users')-&gt;select('name', 'email')-&gt;get();
+
+$users = DB::table('users')-&gt;distinct()-&gt;get();
+
+$users = DB::table('users')-&gt;select('name as user_name')-&gt;get();
+</code></pre>
+
+<p><strong>Adding A Select Clause To An Existing Query</strong></p>
+
+<pre><code>$query = DB::table('users')-&gt;select('name');
+
+$users = $query-&gt;addSelect('age')-&gt;get();
+</code></pre>
+
+<p><strong>Using Where Operators</strong></p>
+
+<pre><code>$users = DB::table('users')-&gt;where('votes', '&gt;', 100)-&gt;get();
+</code></pre>
+
+<p><strong>Or Statements</strong></p>
+
+<pre><code>$users = DB::table('users')
+                    -&gt;where('votes', '&gt;', 100)
+                    -&gt;orWhere('name', 'John')
+                    -&gt;get();
+</code></pre>
+
+<p><strong>Using Where Between</strong></p>
+
+<pre><code>$users = DB::table('users')
+                    -&gt;whereBetween('votes', array(1, 100))-&gt;get();
+</code></pre>
+
+<p><strong>Using Where In With An Array</strong></p>
+
+<pre><code>$users = DB::table('users')
+                    -&gt;whereIn('id', array(1, 2, 3))-&gt;get();
+
+$users = DB::table('users')
+                    -&gt;whereNotIn('id', array(1, 2, 3))-&gt;get();
+</code></pre>
+
+<p><strong>Using Where Null To Find Records With Unset Values</strong></p>
+
+<pre><code>$users = DB::table('users')
+                    -&gt;whereNull('updated_at')-&gt;get();
+</code></pre>
+
+<p><strong>Order By, Group By, And Having</strong></p>
+
+<pre><code>$users = DB::table('users')
+                    -&gt;orderBy('name', 'desc')
+                    -&gt;groupBy('count')
+                    -&gt;having('count', '&gt;', 100)
+                    -&gt;get();
+</code></pre>
+
+<p><strong>Offset &amp; Limit</strong></p>
+
+<pre><code>$users = DB::table('users')-&gt;skip(10)-&gt;take(5)-&gt;get();
+</code></pre>
+
+<p><a name="joins"></a></p>
+
+<h2>Joins</h2>
+
+<p>The query builder may also be used to write join statements. Take a look at the following examples:</p>
+
+<p><strong>Basic Join Statement</strong></p>
+
+<pre><code>DB::table('users')
+            -&gt;join('contacts', 'users.id', '=', 'contacts.user_id')
+            -&gt;join('orders', 'users.id', '=', 'orders.user_id')
+            -&gt;select('users.id', 'contacts.phone', 'orders.price');
+</code></pre>
+
+<p>You may also specify more advanced join clauses:</p>
+
+<pre><code>DB::table('users')
+        -&gt;join('contacts', function($join)
+        {
+            $join-&gt;on('users.id', '=', 'contacts.user_id')-&gt;orOn(...);
+        })
+        -&gt;get();
+</code></pre>
+
+<p><a name="advanced-wheres"></a></p>
+
+<h2>進階Wheres</h2>
+
+<p>
+    Sometimes you may need to create more advanced where clauses such as "where exists" or nested parameter groupings. The Laravel query builder can handle these as well:
+</p>
+
+<p><strong>Parameter Grouping</strong></p>
+
+<pre><code>DB::table('users')
+            -&gt;where('name', '=', 'John')
+            -&gt;orWhere(function($query)
+            {
+                $query-&gt;where('votes', '&gt;', 100)
+                      -&gt;where('title', '&lt;&gt;', 'Admin');
+            })
+            -&gt;get();
+</code></pre>
+
+<p>The query above will produce the following SQL:</p>
+
+<pre><code>select * from users where name = 'John' or (votes &gt; 100 and title &lt;&gt; 'Admin')
+</code></pre>
+
+<p><strong>Exists Statements</strong></p>
+
+<pre><code>DB::table('users')
+            -&gt;whereExists(function($query)
+            {
+                $query-&gt;select(DB::raw(1))
+                      -&gt;from('orders')
+                      -&gt;whereRaw('orders.user_id = users.id');
+            })
+            -&gt;get();
+</code></pre>
+
+<p>The query above will produce the following SQL:</p>
+
+<pre><code>select * from users
+where exists (
+    select 1 from orders where orders.user_id = users.id
+)
+</code></pre>
+
+<p><a name="aggregates"></a></p>
+
+<h2>Aggregates</h2>
+
+<p>
+    The query builder also provides a variety of aggregate methods, such as <code>count</code>, <code>max</code>, <code>min</code>, <code>avg</code>, and <code>sum</code>.
+</p>
+
+<p><strong>Using Aggregate Methods</strong></p>
+
+<pre><code>$users = DB::table('users')-&gt;count();
+
+$price = DB::table('orders')-&gt;max('price');
+
+$price = DB::table('orders')-&gt;min('price');
+
+$price = DB::table('orders')-&gt;avg('price');
+
+$total = DB::table('users')-&gt;sum('votes');
+</code></pre>
+
+<p><a name="raw-expressions"></a></p>
+
+<h2>原始表達式</h2>
+
+<p>
+    Sometimes you may need to use a raw expression in a query. These expressions will be injected into the query as strings, so be careful not to create any SQL injection points! To create a raw expression, you may use the <code>DB::raw</code> method:
+</p>
+
+<p><strong>Using A Raw Expression</strong></p>
+
+<pre><code>$users = DB::table('users')
+                     -&gt;select(DB::raw('count(*) as user_count, status'))
+                     -&gt;where('status', '&lt;&gt;', 1)
+                     -&gt;groupBy('status')
+                     -&gt;get();
+</code></pre>
+
+<p><strong>Incrementing or decrementing a value of a column</strong></p>
+
+<pre><code>DB::table('users')-&gt;increment('votes');
+
+DB::table('users')-&gt;decrement('votes');
+</code></pre>
+
+<p><a name="inserts"></a></p>
+
+<h2>新增</h2>
+
+<p><strong>Inserting Records Into A Table</strong></p>
+
+<pre><code>DB::table('users')-&gt;insert(
+    array('email' =&gt; 'john@example.com', 'votes' =&gt; 0)
+);
+</code></pre>
+
+<p>If the table has an auto-incrementing id, use <code>insertGetId</code> to insert a record and retrieve the id:</p>
+
+<p><strong>Inserting Records Into A Table With An Auto-Incrementing ID</strong></p>
+
+<pre><code>$id = DB::table('users')-&gt;insertGetId(
+    array('email' =&gt; 'john@example.com', 'votes' =&gt; 0)
+);
+</code></pre>
+
+<blockquote>
+  <p><strong>Note:</strong> When using PostgreSQL the insertGetId method expects the auto-incrementing column to be named "id".</p>
+</blockquote>
+
+<p><strong>Inserting Multiple Records Into A Table</strong></p>
+
+<pre><code>DB::table('users')-&gt;insert(array(
+    array('email' =&gt; 'taylor@example.com', 'votes' =&gt; 0),
+    array('email' =&gt; 'dayle@example.com', 'votes' =&gt; 0),
+));
+</code></pre>
+
+<p><a name="updates"></a></p>
+
+<h2>更新</h2>
+
+<p><strong>Updating Records In A Table</strong></p>
+
+<pre><code>DB::table('users')
+            -&gt;where('id', 1)
+            -&gt;update(array('votes' =&gt; 1));
+</code></pre>
+
+<p><a name="deletes"></a></p>
+
+<h2>刪除</h2>
+
+<p><strong>Deleting Records In A Table</strong></p>
+
+<pre><code>DB::table('users')-&gt;where('votes', '&lt;', 100)-&gt;delete();
+</code></pre>
+
+<p><strong>Deleting All Records From A Table</strong></p>
+
+<pre><code>DB::table('users')-&gt;delete();
+</code></pre>
+
+<p><strong>Truncating A Table</strong></p>
+
+<pre><code>DB::table('users')-&gt;truncate();
+</code></pre>
+
+<p><a name="unions"></a></p>
+
+<h2>聯集</h2>
+
+<p>The query builder also provides a quick way to "union" two queries together:</p>
+
+<p><strong>Performing A Query Union</strong></p>
+
+<pre><code>$first = DB::table('users')-&gt;whereNull('first_name');
+
+$users = DB::table('users')-&gt;whereNull('last_name')-&gt;union($first)-&gt;get();
+</code></pre>
+
+<p>The <code>unionAll</code> method is also available, and has the same method signature as <code>union</code>.</p>
+
+<p><a name="caching-queries"></a></p>
+
+<h2>快取查詢</h2>
+
+<p>You may easily cache the results of a query using the <code>remember</code> method:</p>
+
+<p><strong>Caching A Query Result</strong></p>
+
+<pre><code>$users = DB::table('users')-&gt;remember(10)-&gt;get();
+</code></pre>
+
+<p>
+    In this example, the results of the query will be cached for ten minutes. While the results are cached, the query will not be run against the database, and the results will be loaded from the default cache driver specified for your application.
+</p>
+    </article>
+    <div class="clearfix"></div>
+    </div>
+</section>
+
+
+
+<footer>
+    <div class="container">
+        <a href="http://laravel.com/" title="Laravel PHP Framework" class="logo" target="_blank">
+            <img src="http://laravel.com/img/footer_logo.png" alt="Laravel PHP Framework">
+        </a>
+        <nav class="menu">
+            <ul>
+                <li>
+                    <a href="http://laravel.com/" title="Welcome" target="_blank">Welcome</a>
+                </li>
+                <li>
+                    <a href="http://laravel.com/docs" title="Documentation" target="_blank">Documentation</a>
+                </li>
+                <li class="active">
+                    <a href="../../docs/introduction" title="中文文件">中文文件</a>
+                </li>
+                <li>
+                    <a href="http://laravel.com/api" title="API" target="_blank">API</a>
+                </li>
+                <li>
+                    <a href="https://github.com/laravel/laravel" title="Github" target="_blank">Github</a>
+                </li>
+                <li>
+                    <a href="http://forums.laravel.io/" title="論壇" target="_blank">論壇</a>
+                </li>
+                <li>
+                    <a href="http://twitter.com/laravelphp" title="Twitter" target="_blank">Twitter</a>
+                </li>
+            </ul>
+        </nav>
+        <p class="copyright">Copyright &copy; 2013 Taylor Otwell. 網站由 <a href="http://casserolelabs.com/" title="Casserole Labs" target="_blank">Casserole Labs</a> 及 <a href="http://daylerees.com" title="Dayle Rees">Dayle Rees</a> 設計，中文翻譯 <a href="http://blog.kejyun.com" target="_blank">KeJyun</a></p>
+    </div>
+</footer>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://laravel.com/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="../../js/plugins.js"></script>
+<script src="../../js/main.min.js"></script>
+</body>
+</html>

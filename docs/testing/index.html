@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<!-- 
+ 作者:KeJyun
+ 建立日期:2013-06-09
+ 最後修改日期:2013-06-09
+ 聯絡方式:kejyun@gmail.com
+ -->
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Laravel 4 PHP Framework繁體中文教學文件</title>
+<meta name="description" content="Laravel, 優雅的PHP網頁工匠框架(Framework) 再開始享受開發上的樂趣吧">
+<link media="all" type="text/css" rel="stylesheet" href="../../css/style.css">
+<script src="../../js/modernizr-2.6.2.min.js"></script>
+
+<style type="text/css">
+.docs-menu ul li{
+    margin-top: 10px;
+}
+</style>
+</head>
+<body>
+<!-- Header -->
+<header>
+    <div class="container">
+        <a href="http://laravel.com/" title="Laravel PHP Framework" class="logo" target="_blank">&nbsp;</a>
+        <nav class="menu">
+            <ul>
+                <li>
+                    <a href="http://laravel.com/" title="Welcome" target="_blank">Welcome</a>
+                </li>
+                <li>
+                    <a href="http://laravel.com/docs" title="Documentation" target="_blank">Documentation</a>
+                </li>
+                <li class="active">
+                    <a href="../../docs/introduction" title="中文文件">中文文件</a>
+                </li>
+                <li>
+                    <a href="http://laravel.com/api" title="API" target="_blank">API</a>
+                </li>
+                <li>
+                    <a href="https://github.com/laravel/laravel" title="Github" target="_blank">Github</a>
+                </li>
+                <li>
+                    <a href="http://forums.laravel.io/" title="論壇" target="_blank">論壇</a>
+                </li>
+                <li>
+                    <a href="http://twitter.com/laravelphp" title="Twitter" target="_blank">Twitter</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- Header sectoin -->
+<section class="docs-heading">
+    <div class="container">
+        <h2>文件</h2>
+        <div class="sponsor">
+            <span>贊助商 </span>
+            <a href="http://www.cartalyst.com/" title="Cartalyst" target="_blank">
+                <img src="../../img/cartalyst_small.png">
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="docs-content">
+    <div class="container">
+    <nav class="docs-menu">
+        <ul>
+            <li>前言                <ul>
+                    <li><a href="../../docs/introduction">介紹</a></li>
+                    <li><a href="../../docs/quick">快速開始</a></li>
+                    <li><a href="../../docs/contributing">貢獻</a></li>
+                </ul>
+            </li>
+            <li>
+                入門                <ul>
+                    <li><a href="../../docs/installation">安裝</a></li>
+                    <li><a href="../../docs/configuration">設定</a></li>
+                    <li><a href="../../docs/lifecycle">生命週期</a></li>
+                    <li><a href="../../docs/routing">路由</a></li>
+                    <li><a href="../../docs/requests">請求及輸入<br />(Requests &amp; Input)</a></li>
+                    <li><a href="../../docs/responses">視圖及回應<br />(Views &amp; Responses)</a></li>
+                    <li><a href="../../docs/controllers">控制器(Controllers)</a></li>
+                    <li><a href="../../docs/errors">錯誤及記錄</a></li>
+                </ul>
+            </li>
+
+            <li>
+                更多                <ul>
+                <li><a href="../../docs/cache">快取</a></li>
+                <li><a href="../../docs/events">事件</a></li>
+                <li><a href="../../docs/facades">Facades</a></li>
+                <li><a href="../../docs/html">表單及HTML</a></li>
+                <li><a href="../../docs/ioc">IoC容器</a></li>
+                <li><a href="../../docs/localization">在地化</a></li>
+                <li><a href="../../docs/mail">郵件</a></li>
+                <li><a href="../../docs/packages">套件開發</a></li>
+                <li><a href="../../docs/pagination">分頁</a></li>
+                <li><a href="../../docs/queues">佇列</a></li>
+                <li><a href="../../docs/security">安全性</a></li>
+                <li><a href="../../docs/session">Session</a></li>
+                <li><a href="../../docs/templates">樣板</a></li>
+                <li><a href="../../docs/testing">單元測試</a></li>
+                <li><a href="../../docs/validation">驗證</a></li>
+                </ul>
+            </li>
+            <li>
+                資料庫                <ul>
+                    <li><a href="../../docs/database">基本用法</a></li>
+                    <li><a href="../../docs/queries">Query產生器</a></li>
+                    <li><a href="../../docs/eloquent">Eloquent ORM</a></li>
+                    <li><a href="../../docs/schema">Schema產生器</a></li>
+                    <li><a href="../../docs/migrations">Migrations &amp; Seeding</a></li>
+                    <li><a href="../../docs/redis">Redis</a></li>
+                </ul>
+            </li>
+
+            <li>
+                Artisan介面指令                <ul>
+                    <li><a href="../../docs/artisan">概要</a></li>
+                    <li><a href="../../docs/commands">開發</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+
+    <article class="docs-body">
+        <h1>單元測試</h1>
+
+<ul>
+    <li>
+        <a href="#introduction">介紹</a>
+    </li>
+    <li>
+        <a href="#defining-and-running-tests">定義並執行測試</a>
+    </li>
+    <li>
+        <a href="#test-environment">測試環境</a>
+    </li>
+    <li>
+        <a href="#calling-routes-from-tests">從測試呼叫路由</a>
+    </li>
+    <li>
+        <a href="#mocking-facades">模擬Facades</a>
+    </li>
+    <li>
+        <a href="#framework-assertions">框架宣告</a>
+    </li>
+    <li>
+        <a href="#helper-methods">輔助方法</a>
+    </li>
+</ul>
+
+<p><a name="introduction"></a></p>
+
+<h2>介紹</h2>
+
+<p>
+    Laravel is built with unit testing in mind. In fact, support for testing with PHPUnit is included out of the box, and a <code>phpunit.xml</code> file is already setup for your application. In addition to PHPUnit, Laravel also utilizes the Symfony HttpKernel, DomCrawler, and BrowserKit components to allow you to inspect and manipulate your views while testing, allowing to simulate a web browser.
+</p>
+
+<p>An example test file is provided in the <code>app/tests</code> directory. After installing a new Laravel application, simply run <code>phpunit</code> on the command line to run your tests.</p>
+
+<p><a name="defining-and-running-tests"></a></p>
+
+<h2>定義並執行測試</h2>
+
+<p>
+    To create a test case, simply create a new test file in the <code>app/tests</code> directory. The test class should extend <code>TestCase</code>. You may then define test methods as you normally would when using PHPUnit.
+</p>
+
+<p><strong>An Example Test Class</strong></p>
+
+<pre><code>class FooTest extends TestCase {
+
+    public function testSomethingIsTrue()
+    {
+        $this-&gt;assertTrue(true);
+    }
+
+}
+</code></pre>
+
+<p>You may run all of the tests for your application by executing the <code>phpunit</code> command from your terminal.</p>
+
+<blockquote>
+  <p><strong>Note:</strong> If you define your own <code>setUp</code> method, be sure to call <code>parent::setUp</code>.</p>
+</blockquote>
+
+<p><a name="test-environment"></a></p>
+
+<h2>測試環境</h2>
+
+<p>
+    When running unit tests, Laravel will automatically set the configuration environment to <code>testing</code>. Also, Laravel includes configuration files for <code>session</code> and <code>cache</code> in the test environment. Both of these drivers are set to <code>array</code> while in the test environment, meaning no session or cache data will be persisted while testing. You are free to create other testing environment configurations as necessary.
+</p>
+
+<p><a name="calling-routes-from-tests"></a></p>
+
+<h2>從測試呼叫路由</h2>
+
+<p>You may easily call one of your routes for a test using the <code>call</code> method:</p>
+
+<p><strong>Calling A Route From A Test</strong></p>
+
+<pre><code>$response = $this-&gt;call('GET', 'user/profile');
+
+$response = $this-&gt;call($method, $uri, $parameters, $files, $server, $content);
+</code></pre>
+
+<p>You may then inspect the <code>Illuminate\Http\Response</code> object:</p>
+
+<pre><code>$this-&gt;assertEquals('Hello World', $response-&gt;getContent());
+</code></pre>
+
+<p>You may also call a controller from a test:</p>
+
+<p><strong>Calling A Controller From A Test</strong></p>
+
+<pre><code>$response = $this-&gt;action('GET', 'HomeController@index');
+
+$response = $this-&gt;action('GET', 'UserController@profile', array('user' =&gt; 1));
+</code></pre>
+
+<p>
+    The <code>getContent</code> method will return the evaluated string contents of the response. If your route returns a <code>View</code>, you may access it using the <code>original</code> property:
+</p>
+
+<pre><code>$view = $response-&gt;original;
+
+$this-&gt;assertEquals('John', $view['name']);
+</code></pre>
+
+<p>To call a HTTPS route, you may use the <code>callSecure</code> method:</p>
+
+<pre><code>$response = $this-&gt;callSecure('GET', 'foo/bar');
+</code></pre>
+
+<h3>DOM Crawler</h3>
+
+<p>You may also call a route and receive a DOM Crawler instance that you may use to inspect the content:</p>
+
+<pre><code>$crawler = $this-&gt;client-&gt;request('GET', '/');
+
+$this-&gt;assertTrue($this-&gt;client-&gt;getResponse()-&gt;isOk());
+
+$this-&gt;assertCount(1, $crawler-&gt;filter('h1:contains("Hello World!")'));
+</code></pre>
+
+<p>
+    For more information on how to use the crawler, refer to its <a href="http://symfony.com/doc/master/components/dom_crawler.html">official documentation</a>.
+</p>
+
+<p><a name="mocking-facades"></a></p>
+
+<h2>模擬Facades</h2>
+
+<p>
+    When testing, you may often want to mock a call to a Laravel static facade. For example, consider the following controller action:
+</p>
+
+<pre><code>public function getIndex()
+{
+    Event::fire('foo', array('name' =&gt; 'Dayle'));
+
+    return 'All done!';
+}
+</code></pre>
+
+<p>
+    We can mock the call to the <code>Event</code> class by using the <code>shouldReceive</code> method on the facade, which will return an instance of a <a href="https://github.com/padraic/mockery">Mockery</a> mock.
+</p>
+
+<p><strong>Mocking A Facade</strong></p>
+
+<pre><code>public function testGetIndex()
+{
+    Event::shouldReceive('fire')-&gt;once()-&gt;with(array('name' =&gt; 'Dayle'));
+
+    $this-&gt;call('GET', '/');
+}
+</code></pre>
+
+<blockquote>
+  <p><strong>Note:</strong> You should not mock the <code>Request</code> facade. Instead, pass the input you desire into the <code>call</code> method when running your test.</p>
+</blockquote>
+
+<p><a name="framework-assertions"></a></p>
+
+<h2>框架宣告</h2>
+
+<p>Laravel ships with several <code>assert</code> methods to make testing a little easier:</p>
+
+<p><strong>Asserting Responses Are OK</strong></p>
+
+<pre><code>public function testMethod()
+{
+    $this-&gt;call('GET', '/');
+
+    $this-&gt;assertResponseOk();
+}
+</code></pre>
+
+<p><strong>Asserting Response Statuses</strong></p>
+
+<pre><code>$this-&gt;assertResponseStatus(403);
+</code></pre>
+
+<p><strong>Asserting Responses Are Redirects</strong></p>
+
+<pre><code>$this-&gt;assertRedirectedTo('foo');
+
+$this-&gt;assertRedirectedToRoute('route.name');
+
+$this-&gt;assertRedirectedToAction('Controller@method');
+</code></pre>
+
+<p><strong>Asserting A View Has Some Data</strong></p>
+
+<pre><code>public function testMethod()
+{
+    $this-&gt;call('GET', '/');
+
+    $this-&gt;assertViewHas('name');
+    $this-&gt;assertViewHas('age', $value);
+}
+</code></pre>
+
+<p><strong>Asserting The Session Has Some Data</strong></p>
+
+<pre><code>public function testMethod()
+{
+    $this-&gt;call('GET', '/');
+
+    $this-&gt;assertSessionHas('name');
+    $this-&gt;assertSessionHas('age', $value);
+}
+</code></pre>
+
+<p><a name="helper-methods"></a></p>
+
+<h2>輔助方法</h2>
+
+<p>The <code>TestCase</code> class contains several helper methods to make testing your application easier.</p>
+
+<p>You may set the currently authenticated user using the <code>be</code> method:</p>
+
+<p><strong>Setting The Currently Authenticated User</strong></p>
+
+<pre><code>$user = new User(array('name' =&gt; 'John'));
+
+$this-&gt;be($user);
+</code></pre>
+
+<p>You may re-seed your database from a test using the <code>seed</code> method:</p>
+
+<p><strong>Re-Seeding Database From Tests</strong></p>
+
+<pre><code>$this-&gt;seed();
+
+$this-&gt;seed($connection);
+</code></pre>
+
+<p>
+    More information on creating seeds may be found in the <a href="/docs/migrations#database-seeding">migrations and seeding</a> section of the documentation.
+</p>
+    </article>
+    <div class="clearfix"></div>
+    </div>
+</section>
+
+
+
+<footer>
+    <div class="container">
+        <a href="http://laravel.com/" title="Laravel PHP Framework" class="logo" target="_blank">
+            <img src="http://laravel.com/img/footer_logo.png" alt="Laravel PHP Framework">
+        </a>
+        <nav class="menu">
+            <ul>
+                <li>
+                    <a href="http://laravel.com/" title="Welcome" target="_blank">Welcome</a>
+                </li>
+                <li>
+                    <a href="http://laravel.com/docs" title="Documentation" target="_blank">Documentation</a>
+                </li>
+                <li class="active">
+                    <a href="../../docs/introduction" title="中文文件">中文文件</a>
+                </li>
+                <li>
+                    <a href="http://laravel.com/api" title="API" target="_blank">API</a>
+                </li>
+                <li>
+                    <a href="https://github.com/laravel/laravel" title="Github" target="_blank">Github</a>
+                </li>
+                <li>
+                    <a href="http://forums.laravel.io/" title="論壇" target="_blank">論壇</a>
+                </li>
+                <li>
+                    <a href="http://twitter.com/laravelphp" title="Twitter" target="_blank">Twitter</a>
+                </li>
+            </ul>
+        </nav>
+        <p class="copyright">Copyright &copy; 2013 Taylor Otwell. 網站由 <a href="http://casserolelabs.com/" title="Casserole Labs" target="_blank">Casserole Labs</a> 及 <a href="http://daylerees.com" title="Dayle Rees">Dayle Rees</a> 設計，中文翻譯 <a href="http://blog.kejyun.com" target="_blank">KeJyun</a></p>
+    </div>
+</footer>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://laravel.com/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="../../js/plugins.js"></script>
+<script src="../../js/main.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<!-- 
+ 作者:KeJyun
+ 建立日期:2013-06-09
+ 最後修改日期:2013-06-09
+ 聯絡方式:kejyun@gmail.com
+ -->
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Laravel 4 PHP Framework繁體中文教學文件</title>
+<meta name="description" content="Laravel, 優雅的PHP網頁工匠框架(Framework) 再開始享受開發上的樂趣吧">
+<link media="all" type="text/css" rel="stylesheet" href="../../css/style.css">
+<script src="../../js/modernizr-2.6.2.min.js"></script>
+
+<style type="text/css">
+.docs-menu ul li{
+    margin-top: 10px;
+}
+</style>
+</head>
+<body>
+<!-- Header -->
+<header>
+    <div class="container">
+        <a href="http://laravel.com/" title="Laravel PHP Framework" class="logo" target="_blank">&nbsp;</a>
+        <nav class="menu">
+            <ul>
+                <li>
+                    <a href="http://laravel.com/" title="Welcome" target="_blank">Welcome</a>
+                </li>
+                <li>
+                    <a href="http://laravel.com/docs" title="Documentation" target="_blank">Documentation</a>
+                </li>
+                <li class="active">
+                    <a href="../../docs/introduction" title="中文文件">中文文件</a>
+                </li>
+                <li>
+                    <a href="http://laravel.com/api" title="API" target="_blank">API</a>
+                </li>
+                <li>
+                    <a href="https://github.com/laravel/laravel" title="Github" target="_blank">Github</a>
+                </li>
+                <li>
+                    <a href="http://forums.laravel.io/" title="論壇" target="_blank">論壇</a>
+                </li>
+                <li>
+                    <a href="http://twitter.com/laravelphp" title="Twitter" target="_blank">Twitter</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- Header sectoin -->
+<section class="docs-heading">
+    <div class="container">
+        <h2>文件</h2>
+        <div class="sponsor">
+            <span>贊助商 </span>
+            <a href="http://www.cartalyst.com/" title="Cartalyst" target="_blank">
+                <img src="../../img/cartalyst_small.png">
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="docs-content">
+    <div class="container">
+    <nav class="docs-menu">
+        <ul>
+            <li>前言                <ul>
+                    <li><a href="../../docs/introduction">介紹</a></li>
+                    <li><a href="../../docs/quick">快速開始</a></li>
+                    <li><a href="../../docs/contributing">貢獻</a></li>
+                </ul>
+            </li>
+            <li>
+                入門                <ul>
+                    <li><a href="../../docs/installation">安裝</a></li>
+                    <li><a href="../../docs/configuration">設定</a></li>
+                    <li><a href="../../docs/lifecycle">生命週期</a></li>
+                    <li><a href="../../docs/routing">路由</a></li>
+                    <li><a href="../../docs/requests">請求及輸入<br />(Requests &amp; Input)</a></li>
+                    <li><a href="../../docs/responses">視圖及回應<br />(Views &amp; Responses)</a></li>
+                    <li><a href="../../docs/controllers">控制器(Controllers)</a></li>
+                    <li><a href="../../docs/errors">錯誤及記錄</a></li>
+                </ul>
+            </li>
+
+            <li>
+                更多                <ul>
+                <li><a href="../../docs/cache">快取</a></li>
+                <li><a href="../../docs/events">事件</a></li>
+                <li><a href="../../docs/facades">Facades</a></li>
+                <li><a href="../../docs/html">表單及HTML</a></li>
+                <li><a href="../../docs/ioc">IoC容器</a></li>
+                <li><a href="../../docs/localization">在地化</a></li>
+                <li><a href="../../docs/mail">郵件</a></li>
+                <li><a href="../../docs/packages">套件開發</a></li>
+                <li><a href="../../docs/pagination">分頁</a></li>
+                <li><a href="../../docs/queues">佇列</a></li>
+                <li><a href="../../docs/security">安全性</a></li>
+                <li><a href="../../docs/session">Session</a></li>
+                <li><a href="../../docs/templates">樣板</a></li>
+                <li><a href="../../docs/testing">單元測試</a></li>
+                <li><a href="../../docs/validation">驗證</a></li>
+                </ul>
+            </li>
+            <li>
+                資料庫                <ul>
+                    <li><a href="../../docs/database">基本用法</a></li>
+                    <li><a href="../../docs/queries">Query產生器</a></li>
+                    <li><a href="../../docs/eloquent">Eloquent ORM</a></li>
+                    <li><a href="../../docs/schema">Schema產生器</a></li>
+                    <li><a href="../../docs/migrations">Migrations &amp; Seeding</a></li>
+                    <li><a href="../../docs/redis">Redis</a></li>
+                </ul>
+            </li>
+
+            <li>
+                Artisan介面指令                <ul>
+                    <li><a href="../../docs/artisan">概要</a></li>
+                    <li><a href="../../docs/commands">開發</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+
+    <article class="docs-body">
+        <h1>事件</h1>
+
+<ul>
+    <li>
+        <a href="#basic-usage">基本使用</a>
+    </li>
+    <li>
+        <a href="#wildcard-listeners">萬用字元傾聽器</a>
+    </li>
+    <li>
+        <a href="#using-classes-as-listeners">使用類別傾聽器</a>
+    </li>
+    <li>
+        <a href="#queued-events">佇列事件</a>
+    </li>
+    <li>
+        <a href="#event-subscribers">事件訂閱</a>
+    </li>
+</ul>
+
+<p><a name="basic-usage"></a></p>
+
+<h2>基本使用</h2>
+
+<p>
+    The Laravel <code>Event</code> class provides a simple observer implementation, allowing you to subscribe and listen for events in your application.
+</p>
+
+<p><strong>Subscribing To An Event</strong></p>
+
+<pre><code>Event::listen('user.login', function($user)
+{
+    $user-&gt;last_login = new DateTime;
+
+    $user-&gt;save();
+});
+</code></pre>
+
+<p><strong>Firing An Event</strong></p>
+
+<pre><code>$event = Event::fire('user.login', array($user));
+</code></pre>
+
+<p>
+    You may also specify a priority when subscribing to events. Listeners with higher priority will be run first, while listeners that have the same priority will be run in order of subscription.
+</p>
+
+<p><strong>Subscribing To Events With Priority</strong></p>
+
+<pre><code>Event::listen('user.login', 'LoginHandler', 10);
+
+Event::listen('user.login', 'OtherHandler', 5);
+</code></pre>
+
+<p>Sometimes, you may wish to stop the propagation of an event to other listeners. You may do so using by returning <code>false</code> from your listener:</p>
+
+<p><strong>Stopping The Propagation Of An Event</strong></p>
+
+<pre><code>Event::listen('user.login', function($event)
+{
+    // Handle the event...
+
+    return false;
+});
+</code></pre>
+
+<p><a name="wildcard-listeners"></a></p>
+
+<h2>萬用字元傾聽器</h2>
+
+<p>When registering an event listener, you may use asterisks to specify wildcard listeners:</p>
+
+<p><strong>Registering Wildcard Event Listeners</strong></p>
+
+<pre><code>Event::listen('foo.*', function($param, $event)
+{
+    // Handle the event...
+});
+</code></pre>
+
+<p>
+    This listener will handle all events that begin with <code>foo.</code>. Note that the full event name is passed as the last argument to the handler.
+</p>
+
+<p><a name="using-classes-as-listeners"></a></p>
+
+<h2>使用類別傾聽器</h2>
+
+<p>
+    In some cases, you may wish to use a class to handle an event rather than a Closure. Class event listeners will be resolved out of the <a href="/docs/ioc">Laravel IoC container</a>, providing you the full power of dependency injection on your listeners.
+</p>
+
+<p><strong>Registering A Class Listener</strong></p>
+
+<pre><code>Event::listen('user.login', 'LoginHandler');
+</code></pre>
+
+<p>By default, the <code>handle</code> method on the <code>LoginHandler</code> class will be called:</p>
+
+<p><strong>Defining An Event Listener Class</strong></p>
+
+<pre><code>class LoginHandler {
+
+    public function handle($data)
+    {
+        //
+    }
+
+}
+</code></pre>
+
+<p>
+    If you do not wish to use the default <code>handle</code> method, you may specify the method that should be subscribed:
+</p>
+
+<p><strong>Specifying Which Method To Subscribe</strong></p>
+
+<pre><code>Event::listen('user.login', 'LoginHandler@onLogin');
+</code></pre>
+
+<p><a name="queued-events"></a></p>
+
+<h2>佇列事件</h2>
+
+<p>
+    Using the <code>queue</code> and <code>flush</code> methods, you may "queue" an event for firing, but not fire it immediately:
+</p>
+
+<p><strong>Registering A Queued Event</strong></p>
+
+<pre><code>Event::queue('foo', array($user));
+</code></pre>
+
+<p><strong>Registering An Event Flusher</strong></p>
+
+<pre><code>Event::flusher('foo', function($user)
+{
+    //
+});
+</code></pre>
+
+<p>Finally, you may run the "flusher" and flush all queued events using the <code>flush</code> method:</p>
+
+<pre><code>Event::flush('foo');
+</code></pre>
+
+<p><a name="event-subscribers"></a></p>
+
+<h2>事件訂閱</h2>
+
+<p>
+    Event subscribers are classes that may subscribe to multiple events from within the class itself. Subscribers should define a <code>subscribe</code> method, which will be passed an event dispatcher instance:
+</p>
+
+<p><strong>Defining An Event Subscriber</strong></p>
+
+<pre><code>class UserEventHandler {
+
+    /**
+     * Handle user login events.
+     */
+    public function onUserLogin($event)
+    {
+        //
+    }
+
+    /**
+     * Handle user logout events.
+     */
+    public function onUserLogout($event)
+    {
+        //
+    }
+
+    /**
+     * Register the listeners for the subscriber.
+     *
+     * @param  Illuminate\Events\Dispatcher  $events
+     * @return array
+     */
+    public function subscribe($events)
+    {
+        $events-&gt;listen('user.login', 'UserEventHandler@onUserLogin');
+
+        $events-&gt;listen('user.logout', 'UserEventHandler@onUserLogout');
+    }
+
+}
+</code></pre>
+
+<p>Once the subscriber has been defined, it may be registered with the <code>Event</code> class.</p>
+
+<p><strong>Registering An Event Subscriber</strong></p>
+
+<pre><code>$subscriber = new UserEventHandler;
+
+Event::subscribe($subscriber);
+</code></pre>
+    </article>
+    <div class="clearfix"></div>
+    </div>
+</section>
+
+
+
+<footer>
+    <div class="container">
+        <a href="http://laravel.com/" title="Laravel PHP Framework" class="logo" target="_blank">
+            <img src="http://laravel.com/img/footer_logo.png" alt="Laravel PHP Framework">
+        </a>
+        <nav class="menu">
+            <ul>
+                <li>
+                    <a href="http://laravel.com/" title="Welcome" target="_blank">Welcome</a>
+                </li>
+                <li>
+                    <a href="http://laravel.com/docs" title="Documentation" target="_blank">Documentation</a>
+                </li>
+                <li class="active">
+                    <a href="../../docs/introduction" title="中文文件">中文文件</a>
+                </li>
+                <li>
+                    <a href="http://laravel.com/api" title="API" target="_blank">API</a>
+                </li>
+                <li>
+                    <a href="https://github.com/laravel/laravel" title="Github" target="_blank">Github</a>
+                </li>
+                <li>
+                    <a href="http://forums.laravel.io/" title="論壇" target="_blank">論壇</a>
+                </li>
+                <li>
+                    <a href="http://twitter.com/laravelphp" title="Twitter" target="_blank">Twitter</a>
+                </li>
+            </ul>
+        </nav>
+        <p class="copyright">Copyright &copy; 2013 Taylor Otwell. 網站由 <a href="http://casserolelabs.com/" title="Casserole Labs" target="_blank">Casserole Labs</a> 及 <a href="http://daylerees.com" title="Dayle Rees">Dayle Rees</a> 設計，中文翻譯 <a href="http://blog.kejyun.com" target="_blank">KeJyun</a></p>
+    </div>
+</footer>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://laravel.com/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="../../js/plugins.js"></script>
+<script src="../../js/main.min.js"></script>
+</body>
+</html>

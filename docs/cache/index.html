@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<!-- 
+ 作者:KeJyun
+ 建立日期:2013-06-09
+ 最後修改日期:2013-06-09
+ 聯絡方式:kejyun@gmail.com
+ -->
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Laravel 4 PHP Framework繁體中文教學文件</title>
+<meta name="description" content="Laravel, 優雅的PHP網頁工匠框架(Framework) 再開始享受開發上的樂趣吧">
+<link media="all" type="text/css" rel="stylesheet" href="../../css/style.css">
+<script src="../../js/modernizr-2.6.2.min.js"></script>
+
+<style type="text/css">
+.docs-menu ul li{
+    margin-top: 10px;
+}
+</style>
+</head>
+<body>
+<!-- Header -->
+<header>
+    <div class="container">
+        <a href="http://laravel.com/" title="Laravel PHP Framework" class="logo" target="_blank">&nbsp;</a>
+        <nav class="menu">
+            <ul>
+                <li>
+                    <a href="http://laravel.com/" title="Welcome" target="_blank">Welcome</a>
+                </li>
+                <li>
+                    <a href="http://laravel.com/docs" title="Documentation" target="_blank">Documentation</a>
+                </li>
+                <li class="active">
+                    <a href="../../docs/introduction" title="中文文件">中文文件</a>
+                </li>
+                <li>
+                    <a href="http://laravel.com/api" title="API" target="_blank">API</a>
+                </li>
+                <li>
+                    <a href="https://github.com/laravel/laravel" title="Github" target="_blank">Github</a>
+                </li>
+                <li>
+                    <a href="http://forums.laravel.io/" title="論壇" target="_blank">論壇</a>
+                </li>
+                <li>
+                    <a href="http://twitter.com/laravelphp" title="Twitter" target="_blank">Twitter</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- Header sectoin -->
+<section class="docs-heading">
+    <div class="container">
+        <h2>文件</h2>
+        <div class="sponsor">
+            <span>贊助商 </span>
+            <a href="http://www.cartalyst.com/" title="Cartalyst" target="_blank">
+                <img src="../../img/cartalyst_small.png">
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="docs-content">
+    <div class="container">
+    <nav class="docs-menu">
+        <ul>
+            <li>前言                <ul>
+                    <li><a href="../../docs/introduction">介紹</a></li>
+                    <li><a href="../../docs/quick">快速開始</a></li>
+                    <li><a href="../../docs/contributing">貢獻</a></li>
+                </ul>
+            </li>
+            <li>
+                入門                <ul>
+                    <li><a href="../../docs/installation">安裝</a></li>
+                    <li><a href="../../docs/configuration">設定</a></li>
+                    <li><a href="../../docs/lifecycle">生命週期</a></li>
+                    <li><a href="../../docs/routing">路由</a></li>
+                    <li><a href="../../docs/requests">請求及輸入<br />(Requests &amp; Input)</a></li>
+                    <li><a href="../../docs/responses">視圖及回應<br />(Views &amp; Responses)</a></li>
+                    <li><a href="../../docs/controllers">控制器(Controllers)</a></li>
+                    <li><a href="../../docs/errors">錯誤及記錄</a></li>
+                </ul>
+            </li>
+
+            <li>
+                更多                <ul>
+                <li><a href="../../docs/cache">快取</a></li>
+                <li><a href="../../docs/events">事件</a></li>
+                <li><a href="../../docs/facades">Facades</a></li>
+                <li><a href="../../docs/html">表單及HTML</a></li>
+                <li><a href="../../docs/ioc">IoC容器</a></li>
+                <li><a href="../../docs/localization">在地化</a></li>
+                <li><a href="../../docs/mail">郵件</a></li>
+                <li><a href="../../docs/packages">套件開發</a></li>
+                <li><a href="../../docs/pagination">分頁</a></li>
+                <li><a href="../../docs/queues">佇列</a></li>
+                <li><a href="../../docs/security">安全性</a></li>
+                <li><a href="../../docs/session">Session</a></li>
+                <li><a href="../../docs/templates">樣板</a></li>
+                <li><a href="../../docs/testing">單元測試</a></li>
+                <li><a href="../../docs/validation">驗證</a></li>
+                </ul>
+            </li>
+            <li>
+                資料庫                <ul>
+                    <li><a href="../../docs/database">基本用法</a></li>
+                    <li><a href="../../docs/queries">Query產生器</a></li>
+                    <li><a href="../../docs/eloquent">Eloquent ORM</a></li>
+                    <li><a href="../../docs/schema">Schema產生器</a></li>
+                    <li><a href="../../docs/migrations">Migrations &amp; Seeding</a></li>
+                    <li><a href="../../docs/redis">Redis</a></li>
+                </ul>
+            </li>
+
+            <li>
+                Artisan介面指令                <ul>
+                    <li><a href="../../docs/artisan">概要</a></li>
+                    <li><a href="../../docs/commands">開發</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+
+    <article class="docs-body">
+        <h1>快取</h1>
+
+<ul>
+	<li>
+		<a href="#configuration">設定</a>
+	</li>
+	<li>
+		<a href="#cache-usage">使用快取</a>
+	</li>
+	<li>
+		<a href="#increments-and-decrements">遞增及遞減</a>
+	</li>
+	<li>
+		<a href="#cache-sections">快取區段</a>
+	</li>
+	<li>
+		<a href="#database-cache">資料庫快取</a>
+	</li>
+</ul>
+
+<p><a name="configuration"></a></p>
+
+<h2>設定</h2>
+
+<p>
+	Laravel provides a unified API for various caching systems. The cache configuration is located at <code>app/config/cache.php</code>. In this file you may specify which cache driver you would like used by default throughout your application. Laravel supports popular caching backends like <a href="http://memcached.org">Memcached</a> and <a href="http://redis.io">Redis</a> out of the box.
+</p>
+
+<p>
+	The cache configuration file also contains various other options, which are documented within the file, so make sure to read over these options. By default, Laravel is configured to use the <code>file</code> cache driver, which stores the serialized, cached objects in the filesystem. For larger applications, it is recommended that you use an in-memory cache such as Memcached or APC.
+</p>
+
+<p><a name="cache-usage"></a></p>
+
+<h2>使用快取</h2>
+
+<p><strong>Storing An Item In The Cache</strong></p>
+
+<pre><code>Cache::put('key', 'value', $minutes);
+</code></pre>
+
+<p><strong>Storing An Item In The Cache If It Doesn't Exist</strong></p>
+
+<pre><code>Cache::add('key', 'value', $minutes);
+</code></pre>
+
+<p><strong>Checking For Existence In Cache</strong></p>
+
+<pre><code>if (Cache::has('key'))
+{
+    //
+}
+</code></pre>
+
+<p><strong>Retrieving An Item From The Cache</strong></p>
+
+<pre><code>$value = Cache::get('key');
+</code></pre>
+
+<p><strong>Retrieving An Item Or Returning A Default Value</strong></p>
+
+<pre><code>$value = Cache::get('key', 'default');
+
+$value = Cache::get('key', function() { return 'default'; });
+</code></pre>
+
+<p><strong>Storing An Item In The Cache Permanently</strong></p>
+
+<pre><code>Cache::forever('key', 'value');
+</code></pre>
+
+<p>
+	Sometimes you may wish to retrieve an item from the cache, but also store a default value if the requested item doesn't exist. You may do this using the <code>Cache::remember</code> method:
+</p>
+
+<pre><code>$value = Cache::remember('users', $minutes, function()
+{
+    return DB::table('users')-&gt;get();
+});
+</code></pre>
+
+<p>You may also combine the <code>remember</code> and <code>forever</code> methods:</p>
+
+<pre><code>$value = Cache::rememberForever('users', function()
+{
+    return DB::table('users')-&gt;get();
+});
+</code></pre>
+
+<p>Note that all items stored in the cache are serialized, so you are free to store any type of data.</p>
+
+<p><strong>Removing An Item From The Cache</strong></p>
+
+<pre><code>Cache::forget('key');
+</code></pre>
+
+<p><a name="increments-and-decrements"></a></p>
+
+<h2>遞增及遞減</h2>
+
+<p>
+	All drivers except <code>file</code> and <code>database</code> support the <code>increment</code> and <code>decrement</code> operations:
+</p>
+
+<p><strong>Incrementing A Value</strong></p>
+
+<pre><code>Cache::increment('key');
+
+Cache::increment('key', $amount);
+</code></pre>
+
+<p><strong>Decrementing A Value</strong></p>
+
+<pre><code>Cache::decrement('key');
+
+Cache::decrement('key', $amount);
+</code></pre>
+
+<p><a name="cache-sections"></a></p>
+
+<h2>快取區段</h2>
+
+<blockquote>
+  <p><strong>Note:</strong> Cache sections are not supported when using the <code>file</code> or <code>database</code> cache drivers.</p>
+</blockquote>
+
+<p>Cache sections allow you to group related items in the cache, and then flush the entire section. To access a section, use the <code>section</code> method:</p>
+
+<p><strong>Accessing A Cache Section</strong></p>
+
+<pre><code>Cache::section('people')-&gt;put('John', $john);
+
+Cache::section('people')-&gt;put('Anne', $anne);
+</code></pre>
+
+<p>
+	You may also access cached items from the section, as well as use the other cache methods such as <code>increment</code> and <code>decrement</code>:
+</p>
+
+<p><strong>Accessing Items In A Cache Section</strong></p>
+
+<pre><code>$anne = Cache::section('people')-&gt;get('Anne');
+</code></pre>
+
+<p>Then you may flush all items in the section:</p>
+
+<pre><code>Cache::section('people')-&gt;flush();
+</code></pre>
+
+<p><a name="database-cache"></a></p>
+
+<h2>資料庫快取</h2>
+
+<p>
+	When using the <code>database</code> cache driver, you will need to setup a table to contain the cache items. Below is an example <code>Schema</code> declaration for the table:
+</p>
+
+<pre><code>Schema::create('cache', function($table)
+{
+    $table-&gt;string('key')-&gt;unique();
+    $table-&gt;text('value');
+    $table-&gt;integer('expiration');
+});
+</code></pre>
+    </article>
+    <div class="clearfix"></div>
+    </div>
+</section>
+
+
+
+<footer>
+    <div class="container">
+        <a href="http://laravel.com/" title="Laravel PHP Framework" class="logo" target="_blank">
+            <img src="http://laravel.com/img/footer_logo.png" alt="Laravel PHP Framework">
+        </a>
+        <nav class="menu">
+            <ul>
+                <li>
+                    <a href="http://laravel.com/" title="Welcome" target="_blank">Welcome</a>
+                </li>
+                <li>
+                    <a href="http://laravel.com/docs" title="Documentation" target="_blank">Documentation</a>
+                </li>
+                <li class="active">
+                    <a href="../../docs/introduction" title="中文文件">中文文件</a>
+                </li>
+                <li>
+                    <a href="http://laravel.com/api" title="API" target="_blank">API</a>
+                </li>
+                <li>
+                    <a href="https://github.com/laravel/laravel" title="Github" target="_blank">Github</a>
+                </li>
+                <li>
+                    <a href="http://forums.laravel.io/" title="論壇" target="_blank">論壇</a>
+                </li>
+                <li>
+                    <a href="http://twitter.com/laravelphp" title="Twitter" target="_blank">Twitter</a>
+                </li>
+            </ul>
+        </nav>
+        <p class="copyright">Copyright &copy; 2013 Taylor Otwell. 網站由 <a href="http://casserolelabs.com/" title="Casserole Labs" target="_blank">Casserole Labs</a> 及 <a href="http://daylerees.com" title="Dayle Rees">Dayle Rees</a> 設計，中文翻譯 <a href="http://blog.kejyun.com" target="_blank">KeJyun</a></p>
+    </div>
+</footer>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://laravel.com/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="../../js/plugins.js"></script>
+<script src="../../js/main.min.js"></script>
+</body>
+</html>

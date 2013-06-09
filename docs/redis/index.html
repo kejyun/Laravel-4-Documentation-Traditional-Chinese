@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<!-- 
+ 作者:KeJyun
+ 建立日期:2013-06-09
+ 最後修改日期:2013-06-09
+ 聯絡方式:kejyun@gmail.com
+ -->
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Laravel 4 PHP Framework繁體中文教學文件</title>
+<meta name="description" content="Laravel, 優雅的PHP網頁工匠框架(Framework) 再開始享受開發上的樂趣吧">
+<link media="all" type="text/css" rel="stylesheet" href="../../css/style.css">
+<script src="../../js/modernizr-2.6.2.min.js"></script>
+
+<style type="text/css">
+.docs-menu ul li{
+    margin-top: 10px;
+}
+</style>
+</head>
+<body>
+<!-- Header -->
+<header>
+    <div class="container">
+        <a href="http://laravel.com/" title="Laravel PHP Framework" class="logo" target="_blank">&nbsp;</a>
+        <nav class="menu">
+            <ul>
+                <li>
+                    <a href="http://laravel.com/" title="Welcome" target="_blank">Welcome</a>
+                </li>
+                <li>
+                    <a href="http://laravel.com/docs" title="Documentation" target="_blank">Documentation</a>
+                </li>
+                <li class="active">
+                    <a href="../../docs/introduction" title="中文文件">中文文件</a>
+                </li>
+                <li>
+                    <a href="http://laravel.com/api" title="API" target="_blank">API</a>
+                </li>
+                <li>
+                    <a href="https://github.com/laravel/laravel" title="Github" target="_blank">Github</a>
+                </li>
+                <li>
+                    <a href="http://forums.laravel.io/" title="論壇" target="_blank">論壇</a>
+                </li>
+                <li>
+                    <a href="http://twitter.com/laravelphp" title="Twitter" target="_blank">Twitter</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- Header sectoin -->
+<section class="docs-heading">
+    <div class="container">
+        <h2>文件</h2>
+        <div class="sponsor">
+            <span>贊助商 </span>
+            <a href="http://www.cartalyst.com/" title="Cartalyst" target="_blank">
+                <img src="../../img/cartalyst_small.png">
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="docs-content">
+    <div class="container">
+    <nav class="docs-menu">
+        <ul>
+            <li>前言                <ul>
+                    <li><a href="../../docs/introduction">介紹</a></li>
+                    <li><a href="../../docs/quick">快速開始</a></li>
+                    <li><a href="../../docs/contributing">貢獻</a></li>
+                </ul>
+            </li>
+            <li>
+                入門                <ul>
+                    <li><a href="../../docs/installation">安裝</a></li>
+                    <li><a href="../../docs/configuration">設定</a></li>
+                    <li><a href="../../docs/lifecycle">生命週期</a></li>
+                    <li><a href="../../docs/routing">路由</a></li>
+                    <li><a href="../../docs/requests">請求及輸入<br />(Requests &amp; Input)</a></li>
+                    <li><a href="../../docs/responses">視圖及回應<br />(Views &amp; Responses)</a></li>
+                    <li><a href="../../docs/controllers">控制器(Controllers)</a></li>
+                    <li><a href="../../docs/errors">錯誤及記錄</a></li>
+                </ul>
+            </li>
+
+            <li>
+                更多                <ul>
+                <li><a href="../../docs/cache">快取</a></li>
+                <li><a href="../../docs/events">事件</a></li>
+                <li><a href="../../docs/facades">Facades</a></li>
+                <li><a href="../../docs/html">表單及HTML</a></li>
+                <li><a href="../../docs/ioc">IoC容器</a></li>
+                <li><a href="../../docs/localization">在地化</a></li>
+                <li><a href="../../docs/mail">郵件</a></li>
+                <li><a href="../../docs/packages">套件開發</a></li>
+                <li><a href="../../docs/pagination">分頁</a></li>
+                <li><a href="../../docs/queues">佇列</a></li>
+                <li><a href="../../docs/security">安全性</a></li>
+                <li><a href="../../docs/session">Session</a></li>
+                <li><a href="../../docs/templates">樣板</a></li>
+                <li><a href="../../docs/testing">單元測試</a></li>
+                <li><a href="../../docs/validation">驗證</a></li>
+                </ul>
+            </li>
+            <li>
+                資料庫                <ul>
+                    <li><a href="../../docs/database">基本用法</a></li>
+                    <li><a href="../../docs/queries">Query產生器</a></li>
+                    <li><a href="../../docs/eloquent">Eloquent ORM</a></li>
+                    <li><a href="../../docs/schema">Schema產生器</a></li>
+                    <li><a href="../../docs/migrations">Migrations &amp; Seeding</a></li>
+                    <li><a href="../../docs/redis">Redis</a></li>
+                </ul>
+            </li>
+
+            <li>
+                Artisan介面指令                <ul>
+                    <li><a href="../../docs/artisan">概要</a></li>
+                    <li><a href="../../docs/commands">開發</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+
+    <article class="docs-body">
+        <h1>Redis</h1>
+
+<ul>
+	<li>
+		<a href="#introduction">介紹</a>
+	</li>
+	<li>
+		<a href="#configuration">設置</a>
+	</li>
+	<li>
+		<a href="#usage">使用</a>
+	</li>
+	<li>
+		<a href="#pipelining">管線化</a>
+	</li>
+</ul>
+
+<p><a name="introduction"></a></p>
+
+<h2>介紹</h2>
+
+<p><a href="http://redis.io">Redis</a> is an open source, advanced key-value store. It is often referred to as a data structure server since keys can contain <a href="http://redis.io/topics/data-types#strings">strings</a>, <a href="http://redis.io/topics/data-types#hashes">hashes</a>, <a href="http://redis.io/topics/data-types#lists">lists</a>, <a href="http://redis.io/topics/data-types#sets">sets</a>, and <a href="http://redis.io/topics/data-types#sorted-sets">sorted sets</a>.</p>
+
+<blockquote>
+  <p><strong>Note:</strong> If you have the Redis PHP extension installed via PECL, you will need to rename the alias for Redis in your <code>app/config/app.php</code> file.</p>
+</blockquote>
+
+<p><a name="configuration"></a></p>
+
+<h2>設置</h2>
+
+<p>The Redis configuration for your application is stored in the <strong>app/config/database.php</strong> file. Within this file, you will see a <strong>redis</strong> array containing the Redis servers used by your application:</p>
+
+<pre><code>'redis' =&gt; array(
+
+    'cluster' =&gt; true,
+
+    'default' =&gt; array('host' =&gt; '127.0.0.1', 'port' =&gt; 6379),
+
+),
+</code></pre>
+
+<p>The default server configuration should suffice for development. However, you are free to modify this array based on your environment. Simply give each Redis server a name, and specify the host and port used by the server.</p>
+
+<p>The <code>cluster</code> option will tell the Laravel Redis client to perform client-side sharding across your Redis nodes, allowing you to pool nodes and create a large amount of available RAM. However, note that client-side sharding does not handle failover; therefore, is primarily suited for cached data that is available from another primary data store.</p>
+
+<p><a name="usage"></a></p>
+
+<h2>使用</h2>
+
+<p>You may get a Redis instance by calling the <code>Redis::connection</code> method:</p>
+
+<pre><code>$redis = Redis::connection();
+</code></pre>
+
+<p>This will give you an instance of the default Redis server. If you are not using server clustering, you may pass the server name to the <code>connection</code> method to get a specific server as defined in your Redis configuration:</p>
+
+<pre><code>$redis = Redis::connection('other');
+</code></pre>
+
+<p>Once you have an instance of the Redis client, we may issue any of the <a href="http://redis.io/commands">Redis commands</a> to the instance. Laravel uses magic methods to pass the commands to the Redis server:</p>
+
+<pre><code>$redis-&gt;set('name', 'Taylor');
+
+$name = $redis-&gt;get('name');
+
+$values = $redis-&gt;lrange('names', 5, 10);
+</code></pre>
+
+<p>Notice the arguments to the command are simply passed into the magic method. Of course, you are not required to use the magic methods, you may also pass commands to the server using the <code>command</code> method:</p>
+
+<pre><code>$values = $redis-&gt;command('lrange', array(5, 10));
+</code></pre>
+
+<p>When you are simply executing commands against the default connection, just use static magic methods on the <code>Redis</code> class:</p>
+
+<pre><code>Redis::set('name', 'Taylor');
+
+$name = Redis::get('name');
+
+$values = Redis::lrange('names', 5, 10);
+</code></pre>
+
+<blockquote>
+  <p><strong>Note:</strong> Redis <a href="/docs/cache">cache</a> and <a href="/docs/session">session</a> drivers are included with Laravel.</p>
+</blockquote>
+
+<p><a name="pipelining"></a></p>
+
+<h2>管線化</h2>
+
+<p>Pipelining should be used when you need to send many commands to the server in one operation. To get started, use the <code>pipeline</code> command:</p>
+
+<p><strong>Piping Many Commands To Your Servers</strong></p>
+
+<pre><code>Redis::pipeline(function($pipe)
+{
+    for ($i = 0; $i &lt; 1000; $i++)
+    {
+        $pipe-&gt;set("key:$i", $i);
+    }
+});
+</code></pre>
+    </article>
+    <div class="clearfix"></div>
+    </div>
+</section>
+
+
+
+<footer>
+    <div class="container">
+        <a href="http://laravel.com/" title="Laravel PHP Framework" class="logo" target="_blank">
+            <img src="http://laravel.com/img/footer_logo.png" alt="Laravel PHP Framework">
+        </a>
+        <nav class="menu">
+            <ul>
+                <li>
+                    <a href="http://laravel.com/" title="Welcome" target="_blank">Welcome</a>
+                </li>
+                <li>
+                    <a href="http://laravel.com/docs" title="Documentation" target="_blank">Documentation</a>
+                </li>
+                <li class="active">
+                    <a href="../../docs/introduction" title="中文文件">中文文件</a>
+                </li>
+                <li>
+                    <a href="http://laravel.com/api" title="API" target="_blank">API</a>
+                </li>
+                <li>
+                    <a href="https://github.com/laravel/laravel" title="Github" target="_blank">Github</a>
+                </li>
+                <li>
+                    <a href="http://forums.laravel.io/" title="論壇" target="_blank">論壇</a>
+                </li>
+                <li>
+                    <a href="http://twitter.com/laravelphp" title="Twitter" target="_blank">Twitter</a>
+                </li>
+            </ul>
+        </nav>
+        <p class="copyright">Copyright &copy; 2013 Taylor Otwell. 網站由 <a href="http://casserolelabs.com/" title="Casserole Labs" target="_blank">Casserole Labs</a> 及 <a href="http://daylerees.com" title="Dayle Rees">Dayle Rees</a> 設計，中文翻譯 <a href="http://blog.kejyun.com" target="_blank">KeJyun</a></p>
+    </div>
+</footer>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://laravel.com/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="../../js/plugins.js"></script>
+<script src="../../js/main.min.js"></script>
+</body>
+</html>

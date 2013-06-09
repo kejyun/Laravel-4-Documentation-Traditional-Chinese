@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<!-- 
+ 作者:KeJyun
+ 建立日期:2013-06-09
+ 最後修改日期:2013-06-09
+ 聯絡方式:kejyun@gmail.com
+ -->
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Laravel 4 PHP Framework繁體中文教學文件</title>
+<meta name="description" content="Laravel, 優雅的PHP網頁工匠框架(Framework) 再開始享受開發上的樂趣吧">
+<link media="all" type="text/css" rel="stylesheet" href="../../css/style.css">
+<script src="../../js/modernizr-2.6.2.min.js"></script>
+
+<style type="text/css">
+.docs-menu ul li{
+    margin-top: 10px;
+}
+</style>
+</head>
+<body>
+<!-- Header -->
+<header>
+    <div class="container">
+        <a href="http://laravel.com/" title="Laravel PHP Framework" class="logo" target="_blank">&nbsp;</a>
+        <nav class="menu">
+            <ul>
+                <li>
+                    <a href="http://laravel.com/" title="Welcome" target="_blank">Welcome</a>
+                </li>
+                <li>
+                    <a href="http://laravel.com/docs" title="Documentation" target="_blank">Documentation</a>
+                </li>
+                <li class="active">
+                    <a href="../../docs/introduction" title="中文文件">中文文件</a>
+                </li>
+                <li>
+                    <a href="http://laravel.com/api" title="API" target="_blank">API</a>
+                </li>
+                <li>
+                    <a href="https://github.com/laravel/laravel" title="Github" target="_blank">Github</a>
+                </li>
+                <li>
+                    <a href="http://forums.laravel.io/" title="論壇" target="_blank">論壇</a>
+                </li>
+                <li>
+                    <a href="http://twitter.com/laravelphp" title="Twitter" target="_blank">Twitter</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- Header sectoin -->
+<section class="docs-heading">
+    <div class="container">
+        <h2>文件</h2>
+        <div class="sponsor">
+            <span>贊助商 </span>
+            <a href="http://www.cartalyst.com/" title="Cartalyst" target="_blank">
+                <img src="../../img/cartalyst_small.png">
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="docs-content">
+    <div class="container">
+    <nav class="docs-menu">
+        <ul>
+            <li>前言                <ul>
+                    <li><a href="../../docs/introduction">介紹</a></li>
+                    <li><a href="../../docs/quick">快速開始</a></li>
+                    <li><a href="../../docs/contributing">貢獻</a></li>
+                </ul>
+            </li>
+            <li>
+                入門                <ul>
+                    <li><a href="../../docs/installation">安裝</a></li>
+                    <li><a href="../../docs/configuration">設定</a></li>
+                    <li><a href="../../docs/lifecycle">生命週期</a></li>
+                    <li><a href="../../docs/routing">路由</a></li>
+                    <li><a href="../../docs/requests">請求及輸入<br />(Requests &amp; Input)</a></li>
+                    <li><a href="../../docs/responses">視圖及回應<br />(Views &amp; Responses)</a></li>
+                    <li><a href="../../docs/controllers">控制器(Controllers)</a></li>
+                    <li><a href="../../docs/errors">錯誤及記錄</a></li>
+                </ul>
+            </li>
+
+            <li>
+                更多                <ul>
+                <li><a href="../../docs/cache">快取</a></li>
+                <li><a href="../../docs/events">事件</a></li>
+                <li><a href="../../docs/facades">Facades</a></li>
+                <li><a href="../../docs/html">表單及HTML</a></li>
+                <li><a href="../../docs/ioc">IoC容器</a></li>
+                <li><a href="../../docs/localization">在地化</a></li>
+                <li><a href="../../docs/mail">郵件</a></li>
+                <li><a href="../../docs/packages">套件開發</a></li>
+                <li><a href="../../docs/pagination">分頁</a></li>
+                <li><a href="../../docs/queues">佇列</a></li>
+                <li><a href="../../docs/security">安全性</a></li>
+                <li><a href="../../docs/session">Session</a></li>
+                <li><a href="../../docs/templates">樣板</a></li>
+                <li><a href="../../docs/testing">單元測試</a></li>
+                <li><a href="../../docs/validation">驗證</a></li>
+                </ul>
+            </li>
+            <li>
+                資料庫                <ul>
+                    <li><a href="../../docs/database">基本用法</a></li>
+                    <li><a href="../../docs/queries">Query產生器</a></li>
+                    <li><a href="../../docs/eloquent">Eloquent ORM</a></li>
+                    <li><a href="../../docs/schema">Schema產生器</a></li>
+                    <li><a href="../../docs/migrations">Migrations &amp; Seeding</a></li>
+                    <li><a href="../../docs/redis">Redis</a></li>
+                </ul>
+            </li>
+
+            <li>
+                Artisan介面指令                <ul>
+                    <li><a href="../../docs/artisan">概要</a></li>
+                    <li><a href="../../docs/commands">開發</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+
+    <article class="docs-body">
+        <h1>介紹</h1>
+
+<ul>
+    <li>
+        <a href="#laravel-philosophy">Laravel 哲學</a>
+    </li>
+    <li>
+        <a href="#learning-laravel">學習 Laravel</a>
+    </li>
+    <li>
+        <a href="#development-team">開發團隊</a>
+    </li>
+    <li>
+        <a href="#framework-sponsors">贊助商</a>
+    </li>
+</ul>
+
+<p><a name="laravel-philosophy"></a></p>
+
+<h2>Laravel 哲學</h2>
+
+<p>
+    Laravel 是網頁應用程式的框架，使用優雅的語意。我們認為開發必須是愉快的，這樣創意的體驗才能真正地被實現。Laravel 嘗試著除去開發專案時，常遇到的的痛苦，像身分驗證(authentication)、路由(routing)、session及快取(cache)。
+</p>
+
+<p>
+    Laravel的目標在於使開發者在沒有犧牲應用程式功能為前提，讓開發過程是愉悅的。快樂的開發者能夠做出最好的程式，為了這個目標，我們試圖去整合我們看過其他網頁框架中最佳的優點，包括其他語言開的網頁框架，像是 Ruby on Rails 、 ASP.NET MVC 及 Sinatra。
+</p>
+
+<p>
+    Laravel 是容易入門的，但卻是功能強大，提供健壯網頁應用程式強大的工具，一個極好的反轉控制容器(IoC)，語意表達式的 Migration 系統，支援緊密整合的單元測試，給你需要的工具去，建造你工作上的任何網頁應用程式。
+</p>
+
+<p><a name="learning-laravel"></a></p>
+
+<h2>學習 Laravel</h2>
+
+<p>
+    學習 Laravel 其中一個最佳的方法是閱讀整份說明文件，這份文件詳細說明 Laravel 框架各方面的功能，及如何將 Laravel 實作應用在你的網頁應用程式。
+</p>
+
+<p>
+    除了本份文件，您不妨可以看看一些 <a href="http://wiki.laravel.io/Books">Laravel相關書籍</a> ，這個社群撰寫的書籍，可以做為學習 Laravel 網頁程式框架的一個不錯的補充說明資訊。
+</p>
+
+<ul>
+    <li><a href="https://leanpub.com/codebright" target="_blank">Code Bright</a> 作者 Dayle Rees</li>
+    <li><a href="https://leanpub.com/laravel-testing-decoded" target="_blank">Laravel Testing Decoded</a> 作者 Jeffrey Way</li>
+</ul>
+
+<p><a name="development-team"></a></p>
+
+<h2>開發團隊</h2>
+
+<p>
+    Laravel是由<a href="https://github.com/taylorotwell" target="_blank">Taylor Otwell</a>建立的，其他對 Laravel 有貢獻的傑出的社群成員包含 <a href="https://github.com/daylerees" target="_blank">Dayle Rees</a>, <a href="https://github.com/ShawnMcCool" target="_blank">Shawn McCool</a>、<a href="https://github.com/JeffreyWay" target="_blank">Jeffrey Way</a>、<a href="https://github.com/jasonlewis" target="_blank">Jason Lewis</a>、<a href="https://github.com/bencorlett" target="_blank">Ben Corlett</a>、<a href="https://github.com/franzliedke" target="_blank">Franz Liedke</a>、<a href="https://github.com/driesvints" target="_blank">Dries Vints</a>、<a href="https://github.com/crynobone" target="_blank">Mior Muhammed Zaki</a> 及 <a href="https://github.com/philsturgeon" target="_blank">Phil Sturgeon</a>
+</p>
+
+<p><a name="framework-sponsors"></a></p>
+
+<h2>贊助商</h2>
+
+<p>
+    以下的組織有對發展 Laravel 網頁框架，做資金上的的支援:
+</p>
+
+<ul>
+    <li><a href="http://userscape.com" target="_blank">UserScape</a></li>
+    <li><a href="http://cartalyst.com" target="_blank">Cartalyst</a></li>
+    <li><a href="http://ellidavis.com" target="_blank">Elli Davis - Toronto Realtor</a></li>
+    <li><a href="http://jaybanks.ca/vancouver-lofts-condos" target="_blank">Jay Banks - Vancouver Lofts &amp; Condos</a></li>
+    <li><a href="http://juliekinnear.com/toronoto-mls-listings" target="_blank">Julie Kinnear - Toronto MLS</a></li>
+    <li><a href="http://jamiesarner.com" target="_blank">Jamie Sarner - Toronto Real Estate</a></li>
+</ul>
+    </article>
+    <div class="clearfix"></div>
+    </div>
+</section>
+
+
+
+<footer>
+    <div class="container">
+        <a href="http://laravel.com/" title="Laravel PHP Framework" class="logo" target="_blank">
+            <img src="http://laravel.com/img/footer_logo.png" alt="Laravel PHP Framework">
+        </a>
+        <nav class="menu">
+            <ul>
+                <li>
+                    <a href="http://laravel.com/" title="Welcome" target="_blank">Welcome</a>
+                </li>
+                <li>
+                    <a href="http://laravel.com/docs" title="Documentation" target="_blank">Documentation</a>
+                </li>
+                <li class="active">
+                    <a href="../../docs/introduction" title="中文文件">中文文件</a>
+                </li>
+                <li>
+                    <a href="http://laravel.com/api" title="API" target="_blank">API</a>
+                </li>
+                <li>
+                    <a href="https://github.com/laravel/laravel" title="Github" target="_blank">Github</a>
+                </li>
+                <li>
+                    <a href="http://forums.laravel.io/" title="論壇" target="_blank">論壇</a>
+                </li>
+                <li>
+                    <a href="http://twitter.com/laravelphp" title="Twitter" target="_blank">Twitter</a>
+                </li>
+            </ul>
+        </nav>
+        <p class="copyright">Copyright &copy; 2013 Taylor Otwell. 網站由 <a href="http://casserolelabs.com/" title="Casserole Labs" target="_blank">Casserole Labs</a> 及 <a href="http://daylerees.com" title="Dayle Rees">Dayle Rees</a> 設計，中文翻譯 <a href="http://blog.kejyun.com" target="_blank">KeJyun</a></p>
+    </div>
+</footer>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://laravel.com/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="../../js/plugins.js"></script>
+<script src="../../js/main.min.js"></script>
+</body>
+</html>

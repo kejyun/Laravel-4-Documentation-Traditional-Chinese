@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<!-- 
+ 作者:KeJyun
+ 建立日期:2013-06-09
+ 最後修改日期:2013-06-09
+ 聯絡方式:kejyun@gmail.com
+ -->
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Laravel 4 PHP Framework繁體中文教學文件</title>
+<meta name="description" content="Laravel, 優雅的PHP網頁工匠框架(Framework) 再開始享受開發上的樂趣吧">
+<link media="all" type="text/css" rel="stylesheet" href="../../css/style.css">
+<script src="../../js/modernizr-2.6.2.min.js"></script>
+
+<style type="text/css">
+.docs-menu ul li{
+    margin-top: 10px;
+}
+</style>
+</head>
+<body>
+<!-- Header -->
+<header>
+    <div class="container">
+        <a href="http://laravel.com/" title="Laravel PHP Framework" class="logo" target="_blank">&nbsp;</a>
+        <nav class="menu">
+            <ul>
+                <li>
+                    <a href="http://laravel.com/" title="Welcome" target="_blank">Welcome</a>
+                </li>
+                <li>
+                    <a href="http://laravel.com/docs" title="Documentation" target="_blank">Documentation</a>
+                </li>
+                <li class="active">
+                    <a href="../../docs/introduction" title="中文文件">中文文件</a>
+                </li>
+                <li>
+                    <a href="http://laravel.com/api" title="API" target="_blank">API</a>
+                </li>
+                <li>
+                    <a href="https://github.com/laravel/laravel" title="Github" target="_blank">Github</a>
+                </li>
+                <li>
+                    <a href="http://forums.laravel.io/" title="論壇" target="_blank">論壇</a>
+                </li>
+                <li>
+                    <a href="http://twitter.com/laravelphp" title="Twitter" target="_blank">Twitter</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- Header sectoin -->
+<section class="docs-heading">
+    <div class="container">
+        <h2>文件</h2>
+        <div class="sponsor">
+            <span>贊助商 </span>
+            <a href="http://www.cartalyst.com/" title="Cartalyst" target="_blank">
+                <img src="../../img/cartalyst_small.png">
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="docs-content">
+    <div class="container">
+    <nav class="docs-menu">
+        <ul>
+            <li>前言                <ul>
+                    <li><a href="../../docs/introduction">介紹</a></li>
+                    <li><a href="../../docs/quick">快速開始</a></li>
+                    <li><a href="../../docs/contributing">貢獻</a></li>
+                </ul>
+            </li>
+            <li>
+                入門                <ul>
+                    <li><a href="../../docs/installation">安裝</a></li>
+                    <li><a href="../../docs/configuration">設定</a></li>
+                    <li><a href="../../docs/lifecycle">生命週期</a></li>
+                    <li><a href="../../docs/routing">路由</a></li>
+                    <li><a href="../../docs/requests">請求及輸入<br />(Requests &amp; Input)</a></li>
+                    <li><a href="../../docs/responses">視圖及回應<br />(Views &amp; Responses)</a></li>
+                    <li><a href="../../docs/controllers">控制器(Controllers)</a></li>
+                    <li><a href="../../docs/errors">錯誤及記錄</a></li>
+                </ul>
+            </li>
+
+            <li>
+                更多                <ul>
+                <li><a href="../../docs/cache">快取</a></li>
+                <li><a href="../../docs/events">事件</a></li>
+                <li><a href="../../docs/facades">Facades</a></li>
+                <li><a href="../../docs/html">表單及HTML</a></li>
+                <li><a href="../../docs/ioc">IoC容器</a></li>
+                <li><a href="../../docs/localization">在地化</a></li>
+                <li><a href="../../docs/mail">郵件</a></li>
+                <li><a href="../../docs/packages">套件開發</a></li>
+                <li><a href="../../docs/pagination">分頁</a></li>
+                <li><a href="../../docs/queues">佇列</a></li>
+                <li><a href="../../docs/security">安全性</a></li>
+                <li><a href="../../docs/session">Session</a></li>
+                <li><a href="../../docs/templates">樣板</a></li>
+                <li><a href="../../docs/testing">單元測試</a></li>
+                <li><a href="../../docs/validation">驗證</a></li>
+                </ul>
+            </li>
+            <li>
+                資料庫                <ul>
+                    <li><a href="../../docs/database">基本用法</a></li>
+                    <li><a href="../../docs/queries">Query產生器</a></li>
+                    <li><a href="../../docs/eloquent">Eloquent ORM</a></li>
+                    <li><a href="../../docs/schema">Schema產生器</a></li>
+                    <li><a href="../../docs/migrations">Migrations &amp; Seeding</a></li>
+                    <li><a href="../../docs/redis">Redis</a></li>
+                </ul>
+            </li>
+
+            <li>
+                Artisan介面指令                <ul>
+                    <li><a href="../../docs/artisan">概要</a></li>
+                    <li><a href="../../docs/commands">開發</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+
+    <article class="docs-body">
+        <h1>表單及HTML</h1>
+
+<ul>
+  <li>
+    <a href="#opening-a-form">開啟一個表單</a>
+  </li>
+  <li>
+    <a href="#csrf-protection">CSRF保護</a>
+  </li>
+  <li>
+    <a href="#form-model-binding">標單模組綁定</a>
+  </li>
+  <li>
+    <a href="#labels">Labels</a>
+  </li>
+  <li>
+    <a href="#text">Text, Text Area, Password 及 Hidden Fields</a>
+  </li>
+  <li><a href="#checkboxes-and-radio-buttons">Checkboxes 及 Radio Buttons</a>
+  </li>
+  <li>
+    <a href="#file-input">檔案</a>
+  </li>
+  <li>
+    <a href="#drop-down-lists">下拉式選單</a>
+  </li>
+  <li>
+    <a href="#buttons">按鈕</a>
+  </li>
+  <li>
+    <a href="#custom-macros">自訂巨集</a>
+  </li>
+</ul>
+
+<p><a name="opening-a-form"></a></p>
+
+<h2>開啟一個表單</h2>
+
+<p><strong>Opening A Form</strong></p>
+
+<pre><code>{{ Form::open(array('url' =&gt; 'foo/bar')) }}
+    //
+{{ Form::close() }})
+</code></pre>
+
+<p>By default, a <code>POST</code> method will be assumed; however, you are free to specify another method:</p>
+
+<pre><code>echo Form::open(array('url' =&gt; 'foo/bar', 'method' =&gt; 'put'))
+</code></pre>
+
+<blockquote>
+  <p><strong>Note:</strong> Since HTML forms only support <code>POST</code>, <code>PUT</code> and <code>DELETE</code> methods will be spoofed by automatically adding a <code>_method</code> hidden field to your form.</p>
+</blockquote>
+
+<p>You may also open forms that point to named routes or controller actions:</p>
+
+<pre><code>echo Form::open(array('route' =&gt; 'route.name'))
+
+echo Form::open(array('action' =&gt; 'Controller@method'))
+</code></pre>
+
+<p>If your form is going to accept file uploads, add a <code>files</code> option to your array:</p>
+
+<pre><code>echo Form::open(array('url' =&gt; 'foo/bar', 'files' =&gt; true))
+</code></pre>
+
+<p><a name="csrf-protection"></a></p>
+
+<h2>CSRF保護</h2>
+
+<p>Laravel provides an easy method of protecting your application from cross-site request forgeries. First, a random token is placed in your user's session. Don't sweat it, this is done automatically. The CSRF token will be added to your forms as a hidden field automatically. However, if you wish to generate the HTML for the hidden field, you may use the <code>token</code> method:</p>
+
+<p><strong>Adding The CSRF Token To A Form</strong></p>
+
+<pre><code>echo Form::token();
+</code></pre>
+
+<p><strong>Attaching The CSRF Filter To A Route</strong></p>
+
+<pre><code>Route::post('profile', array('before' =&gt; 'csrf', function()
+{
+    //
+}));
+</code></pre>
+
+<p><a name="form-model-binding"></a></p>
+
+<h2>標單模組綁定</h2>
+
+<p>Often, you will want to populate a form based on the contents of a model. To do so, use the <code>Form::model</code> method:</p>
+
+<p><strong>Opening A Model Form</strong></p>
+
+<pre><code>echo Form::model($user, array('route' =&gt; array('user.update', $user-&gt;id)))
+</code></pre>
+
+<p>Now, when you generate a form element, like a text input, the model's value matching the field's name will automatically be set as the field value. So, for example, for a text input named <code>email</code>, the user model's <code>email</code> attribute would be set as the value. However, there's more! If there is an item in the Session flash data matching the input name, that will take precedence over the model's value. So, the priority looks like this:</p>
+
+<ol>
+<li>Session Flash Data (Old Input)</li>
+<li>Explicitly Passed Value</li>
+<li>Model Attribute Data</li>
+</ol>
+
+<p>This allows you to quickly build forms that not only bind to model values, but easily re-populate if there is a validation error on the server!</p>
+
+<blockquote>
+  <p><strong>Note:</strong> When using <code>Form::model</code>, be sure to close your form with <code>Form::close</code>!</p>
+</blockquote>
+
+<p><a name="labels"></a></p>
+
+<h2>Labels</h2>
+
+<p><strong>Generating A Label Element</strong></p>
+
+<pre><code>echo Form::label('email', 'E-Mail Address');
+</code></pre>
+
+<p><strong>Specifying Extra HTML Attributes</strong></p>
+
+<pre><code>echo Form::label('email', 'E-Mail Address', array('class' =&gt; 'awesome'));
+</code></pre>
+
+<blockquote>
+  <p><strong>Note:</strong> After creating a label, any form element you create with a name matching the label name will automatically receive an ID matching the label name as well.</p>
+</blockquote>
+
+<p><a name="text"></a></p>
+
+<h2>Text, Text Area, Password 及 Hidden Fields</h2>
+
+<p><strong>Generating A Text Input</strong></p>
+
+<pre><code>echo Form::text('username');
+</code></pre>
+
+<p><strong>Specifying A Default Value</strong></p>
+
+<pre><code>echo Form::text('email', 'example@gmail.com');
+</code></pre>
+
+<blockquote>
+  <p><strong>Note:</strong> The <em>hidden</em> and <em>textarea</em> methods have the same signature as the <em>text</em> method.</p>
+</blockquote>
+
+<p><strong>Generating A Password Input</strong></p>
+
+<pre><code>echo Form::password('password');
+</code></pre>
+
+<p><a name="checkboxes-and-radio-buttons"></a></p>
+
+<h2>Checkboxes 及 Radio Buttons</h2>
+
+<p><strong>Generating A Checkbox Or Radio Input</strong></p>
+
+<pre><code>echo Form::checkbox('name', 'value');
+
+echo Form::radio('name', 'value');
+</code></pre>
+
+<p><strong>Generating A Checkbox Or Radio Input That Is Checked</strong></p>
+
+<pre><code>echo Form::checkbox('name', 'value', true);
+
+echo Form::radio('name', 'value', true);
+</code></pre>
+
+<p><a name="file-input"></a></p>
+
+<h2>檔案</h2>
+
+<p><strong>Generating A File Input</strong></p>
+
+<pre><code>echo Form::file('image');
+</code></pre>
+
+<p><a name="drop-down-lists"></a></p>
+
+<h2>下拉式選單</h2>
+
+<p><strong>Generating A Drop-Down List</strong></p>
+
+<pre><code>echo Form::select('size', array('L' =&gt; 'Large', 'S' =&gt; 'Small'));
+</code></pre>
+
+<p><strong>Generating A Drop-Down List With Selected Default</strong></p>
+
+<pre><code>echo Form::select('size', array('L' =&gt; 'Large', 'S' =&gt; 'Small'), 'S');
+</code></pre>
+
+<p><strong>Generating A Grouped List</strong></p>
+
+<pre><code>echo Form::select('animal', array(
+    'Cats' =&gt; array('leopard' =&gt; 'Leopard'),
+    'Dogs' =&gt; array('spaniel' =&gt; 'Spaniel'),
+));
+</code></pre>
+
+<p><a name="buttons"></a></p>
+
+<h2>按鈕</h2>
+
+<p><strong>Generating A Submit Button</strong></p>
+
+<pre><code>echo Form::submit('Click Me!');
+</code></pre>
+
+<blockquote>
+  <p><strong>Note:</strong> Need to create a button element? Try the <em>button</em> method. It has the same signature as <em>submit</em>.</p>
+</blockquote>
+
+<p><a name="custom-macros"></a></p>
+
+<h2>自訂巨集</h2>
+
+<p>It's easy to define your own custom Form class helpers called "macros". Here's how it works. First, simply register the macro with a given name and a Closure:</p>
+
+<p><strong>Registering A Form Macro</strong></p>
+
+<pre><code>Form::macro('myField', function()
+{
+    return '&lt;input type="awesome"&gt;';
+});
+</code></pre>
+
+<p>Now you can call your macro using its name:</p>
+
+<p><strong>Calling A Custom Form Macro</strong></p>
+
+<pre><code>echo Form::myField();
+</code></pre>
+    </article>
+    <div class="clearfix"></div>
+    </div>
+</section>
+
+
+
+<footer>
+    <div class="container">
+        <a href="http://laravel.com/" title="Laravel PHP Framework" class="logo" target="_blank">
+            <img src="http://laravel.com/img/footer_logo.png" alt="Laravel PHP Framework">
+        </a>
+        <nav class="menu">
+            <ul>
+                <li>
+                    <a href="http://laravel.com/" title="Welcome" target="_blank">Welcome</a>
+                </li>
+                <li>
+                    <a href="http://laravel.com/docs" title="Documentation" target="_blank">Documentation</a>
+                </li>
+                <li class="active">
+                    <a href="../../docs/introduction" title="中文文件">中文文件</a>
+                </li>
+                <li>
+                    <a href="http://laravel.com/api" title="API" target="_blank">API</a>
+                </li>
+                <li>
+                    <a href="https://github.com/laravel/laravel" title="Github" target="_blank">Github</a>
+                </li>
+                <li>
+                    <a href="http://forums.laravel.io/" title="論壇" target="_blank">論壇</a>
+                </li>
+                <li>
+                    <a href="http://twitter.com/laravelphp" title="Twitter" target="_blank">Twitter</a>
+                </li>
+            </ul>
+        </nav>
+        <p class="copyright">Copyright &copy; 2013 Taylor Otwell. 網站由 <a href="http://casserolelabs.com/" title="Casserole Labs" target="_blank">Casserole Labs</a> 及 <a href="http://daylerees.com" title="Dayle Rees">Dayle Rees</a> 設計，中文翻譯 <a href="http://blog.kejyun.com" target="_blank">KeJyun</a></p>
+    </div>
+</footer>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://laravel.com/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="../../js/plugins.js"></script>
+<script src="../../js/main.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<!-- 
+ 作者:KeJyun
+ 建立日期:2013-06-09
+ 最後修改日期:2013-06-09
+ 聯絡方式:kejyun@gmail.com
+ -->
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Laravel 4 PHP Framework繁體中文教學文件</title>
+<meta name="description" content="Laravel, 優雅的PHP網頁工匠框架(Framework) 再開始享受開發上的樂趣吧">
+<link media="all" type="text/css" rel="stylesheet" href="../../css/style.css">
+<script src="../../js/modernizr-2.6.2.min.js"></script>
+
+<style type="text/css">
+.docs-menu ul li{
+    margin-top: 10px;
+}
+</style>
+</head>
+<body>
+<!-- Header -->
+<header>
+    <div class="container">
+        <a href="http://laravel.com/" title="Laravel PHP Framework" class="logo" target="_blank">&nbsp;</a>
+        <nav class="menu">
+            <ul>
+                <li>
+                    <a href="http://laravel.com/" title="Welcome" target="_blank">Welcome</a>
+                </li>
+                <li>
+                    <a href="http://laravel.com/docs" title="Documentation" target="_blank">Documentation</a>
+                </li>
+                <li class="active">
+                    <a href="../../docs/introduction" title="中文文件">中文文件</a>
+                </li>
+                <li>
+                    <a href="http://laravel.com/api" title="API" target="_blank">API</a>
+                </li>
+                <li>
+                    <a href="https://github.com/laravel/laravel" title="Github" target="_blank">Github</a>
+                </li>
+                <li>
+                    <a href="http://forums.laravel.io/" title="論壇" target="_blank">論壇</a>
+                </li>
+                <li>
+                    <a href="http://twitter.com/laravelphp" title="Twitter" target="_blank">Twitter</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- Header sectoin -->
+<section class="docs-heading">
+    <div class="container">
+        <h2>文件</h2>
+        <div class="sponsor">
+            <span>贊助商 </span>
+            <a href="http://www.cartalyst.com/" title="Cartalyst" target="_blank">
+                <img src="../../img/cartalyst_small.png">
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="docs-content">
+    <div class="container">
+    <nav class="docs-menu">
+        <ul>
+            <li>前言                <ul>
+                    <li><a href="../../docs/introduction">介紹</a></li>
+                    <li><a href="../../docs/quick">快速開始</a></li>
+                    <li><a href="../../docs/contributing">貢獻</a></li>
+                </ul>
+            </li>
+            <li>
+                入門                <ul>
+                    <li><a href="../../docs/installation">安裝</a></li>
+                    <li><a href="../../docs/configuration">設定</a></li>
+                    <li><a href="../../docs/lifecycle">生命週期</a></li>
+                    <li><a href="../../docs/routing">路由</a></li>
+                    <li><a href="../../docs/requests">請求及輸入<br />(Requests &amp; Input)</a></li>
+                    <li><a href="../../docs/responses">視圖及回應<br />(Views &amp; Responses)</a></li>
+                    <li><a href="../../docs/controllers">控制器(Controllers)</a></li>
+                    <li><a href="../../docs/errors">錯誤及記錄</a></li>
+                </ul>
+            </li>
+
+            <li>
+                更多                <ul>
+                <li><a href="../../docs/cache">快取</a></li>
+                <li><a href="../../docs/events">事件</a></li>
+                <li><a href="../../docs/facades">Facades</a></li>
+                <li><a href="../../docs/html">表單及HTML</a></li>
+                <li><a href="../../docs/ioc">IoC容器</a></li>
+                <li><a href="../../docs/localization">在地化</a></li>
+                <li><a href="../../docs/mail">郵件</a></li>
+                <li><a href="../../docs/packages">套件開發</a></li>
+                <li><a href="../../docs/pagination">分頁</a></li>
+                <li><a href="../../docs/queues">佇列</a></li>
+                <li><a href="../../docs/security">安全性</a></li>
+                <li><a href="../../docs/session">Session</a></li>
+                <li><a href="../../docs/templates">樣板</a></li>
+                <li><a href="../../docs/testing">單元測試</a></li>
+                <li><a href="../../docs/validation">驗證</a></li>
+                </ul>
+            </li>
+            <li>
+                資料庫                <ul>
+                    <li><a href="../../docs/database">基本用法</a></li>
+                    <li><a href="../../docs/queries">Query產生器</a></li>
+                    <li><a href="../../docs/eloquent">Eloquent ORM</a></li>
+                    <li><a href="../../docs/schema">Schema產生器</a></li>
+                    <li><a href="../../docs/migrations">Migrations &amp; Seeding</a></li>
+                    <li><a href="../../docs/redis">Redis</a></li>
+                </ul>
+            </li>
+
+            <li>
+                Artisan介面指令                <ul>
+                    <li><a href="../../docs/artisan">概要</a></li>
+                    <li><a href="../../docs/commands">開發</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+
+    <article class="docs-body">
+        <h1>基本用法</h1>
+
+<ul>
+	<li>
+		<a href="#configuration">設置</a>
+	</li>
+	<li>
+		<a href="#running-queries">執行查詢</a>
+	</li>
+	<li>
+		<a href="#db-transactions">資料庫交易</a>
+	</li>
+	<li>
+		<a href="#accessing-connections">存取連線</a>
+	</li>
+	<li>
+		<a href="#query-logging">查詢紀錄</a>
+	</li>
+</ul>
+
+<p><a name="configuration"></a></p>
+
+<h2>設置</h2>
+
+<p>
+	Laravel makes connecting with dbs and running queries extremely simple. The db configuration file is <code>app/config/db.php</code>. In this file you may define all of your db connections, as well as specify which connection should be used by default. Examples for all of the supported db systems are provided in this file.
+</p>
+
+<p>Currently Laravel supports four db systems: MySQL, Postgres, SQLite, and SQL Server.</p>
+
+<p><a name="running-queries"></a></p>
+
+<h2>執行查詢</h2>
+
+<p>Once you have configured your db connection, you may run queries using the <code>DB</code> class.</p>
+
+<p><strong>Running A Select Query</strong></p>
+
+<pre><code>$results = DB::select('select * from users where id = ?', array(1));
+</code></pre>
+
+<p>The <code>select</code> method will always return an <code>array</code> of results.</p>
+
+<p><strong>Running An Insert Statement</strong></p>
+
+<pre><code>DB::insert('insert into users (id, name) values (?, ?)', array(1, 'Dayle'));
+</code></pre>
+
+<p><strong>Running An Update Statement</strong></p>
+
+<pre><code>DB::update('update users set votes = 100 where name = ?', array('John'));
+</code></pre>
+
+<p><strong>Running A Delete Statement</strong></p>
+
+<pre><code>DB::delete('delete from users');
+</code></pre>
+
+<blockquote>
+  <p><strong>Note:</strong> The <code>update</code> and <code>delete</code> statements return the number of rows affected by the operation.</p>
+</blockquote>
+
+<p><strong>Running A General Statement</strong></p>
+
+<pre><code>DB::statement('drop table users');
+</code></pre>
+
+<p>You may listen for query events using the <code>DB::listen</code> method:</p>
+
+<p><strong>Listening For Query Events</strong></p>
+
+<pre><code>DB::listen(function($sql, $bindings, $time)
+{
+    //
+});
+</code></pre>
+
+<p><a name="db-transactions"></a></p>
+
+<h2>資料庫交易</h2>
+
+<p>To run a set of operations within a db transaction, you may use the <code>transaction</code> method:</p>
+
+<pre><code>DB::transaction(function()
+{
+    DB::table('users')-&gt;update(array('votes' =&gt; 1));
+
+    DB::table('posts')-&gt;delete();
+});
+</code></pre>
+
+<p><a name="accessing-connections"></a></p>
+
+<h2>存取連線</h2>
+
+<p>When using multiple connections, you may access them via the <code>DB::connection</code> method:</p>
+
+<pre><code>$users = DB::connection('foo')-&gt;select(...);
+</code></pre>
+
+<p>You may also access the raw, underlying PDO instance:</p>
+
+<pre><code>$pdo = DB::connection()-&gt;getPdo();
+</code></pre>
+
+<p>Sometimes you may need to reconnect to a given db:</p>
+
+<pre><code>DB::reconnect('foo');
+</code></pre>
+
+<p><a name="query-logging"></a></p>
+
+<h2>查詢紀錄</h2>
+
+<p>
+	By default, Laravel keeps a log in memory of all queries that have been run for the current request. However, in some cases, such as when inserting a large number of rows, this can cause the application to use excess memory. To disable the log, you may use the <code>disableQueryLog</code> method:
+</p>
+
+<pre><code>DB::connection()-&gt;disableQueryLog();
+</code></pre>
+    </article>
+    <div class="clearfix"></div>
+    </div>
+</section>
+
+
+
+<footer>
+    <div class="container">
+        <a href="http://laravel.com/" title="Laravel PHP Framework" class="logo" target="_blank">
+            <img src="http://laravel.com/img/footer_logo.png" alt="Laravel PHP Framework">
+        </a>
+        <nav class="menu">
+            <ul>
+                <li>
+                    <a href="http://laravel.com/" title="Welcome" target="_blank">Welcome</a>
+                </li>
+                <li>
+                    <a href="http://laravel.com/docs" title="Documentation" target="_blank">Documentation</a>
+                </li>
+                <li class="active">
+                    <a href="../../docs/introduction" title="中文文件">中文文件</a>
+                </li>
+                <li>
+                    <a href="http://laravel.com/api" title="API" target="_blank">API</a>
+                </li>
+                <li>
+                    <a href="https://github.com/laravel/laravel" title="Github" target="_blank">Github</a>
+                </li>
+                <li>
+                    <a href="http://forums.laravel.io/" title="論壇" target="_blank">論壇</a>
+                </li>
+                <li>
+                    <a href="http://twitter.com/laravelphp" title="Twitter" target="_blank">Twitter</a>
+                </li>
+            </ul>
+        </nav>
+        <p class="copyright">Copyright &copy; 2013 Taylor Otwell. 網站由 <a href="http://casserolelabs.com/" title="Casserole Labs" target="_blank">Casserole Labs</a> 及 <a href="http://daylerees.com" title="Dayle Rees">Dayle Rees</a> 設計，中文翻譯 <a href="http://blog.kejyun.com" target="_blank">KeJyun</a></p>
+    </div>
+</footer>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://laravel.com/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="../../js/plugins.js"></script>
+<script src="../../js/main.min.js"></script>
+</body>
+</html>

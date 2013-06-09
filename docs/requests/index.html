@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<!-- 
+ 作者:KeJyun
+ 建立日期:2013-06-09
+ 最後修改日期:2013-06-09
+ 聯絡方式:kejyun@gmail.com
+ -->
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Laravel 4 PHP Framework繁體中文教學文件</title>
+<meta name="description" content="Laravel, 優雅的PHP網頁工匠框架(Framework) 再開始享受開發上的樂趣吧">
+<link media="all" type="text/css" rel="stylesheet" href="../../css/style.css">
+<script src="../../js/modernizr-2.6.2.min.js"></script>
+
+<style type="text/css">
+.docs-menu ul li{
+    margin-top: 10px;
+}
+</style>
+</head>
+<body>
+<!-- Header -->
+<header>
+    <div class="container">
+        <a href="http://laravel.com/" title="Laravel PHP Framework" class="logo" target="_blank">&nbsp;</a>
+        <nav class="menu">
+            <ul>
+                <li>
+                    <a href="http://laravel.com/" title="Welcome" target="_blank">Welcome</a>
+                </li>
+                <li>
+                    <a href="http://laravel.com/docs" title="Documentation" target="_blank">Documentation</a>
+                </li>
+                <li class="active">
+                    <a href="../../docs/introduction" title="中文文件">中文文件</a>
+                </li>
+                <li>
+                    <a href="http://laravel.com/api" title="API" target="_blank">API</a>
+                </li>
+                <li>
+                    <a href="https://github.com/laravel/laravel" title="Github" target="_blank">Github</a>
+                </li>
+                <li>
+                    <a href="http://forums.laravel.io/" title="論壇" target="_blank">論壇</a>
+                </li>
+                <li>
+                    <a href="http://twitter.com/laravelphp" title="Twitter" target="_blank">Twitter</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- Header sectoin -->
+<section class="docs-heading">
+    <div class="container">
+        <h2>文件</h2>
+        <div class="sponsor">
+            <span>贊助商 </span>
+            <a href="http://www.cartalyst.com/" title="Cartalyst" target="_blank">
+                <img src="../../img/cartalyst_small.png">
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="docs-content">
+    <div class="container">
+    <nav class="docs-menu">
+        <ul>
+            <li>前言                <ul>
+                    <li><a href="../../docs/introduction">介紹</a></li>
+                    <li><a href="../../docs/quick">快速開始</a></li>
+                    <li><a href="../../docs/contributing">貢獻</a></li>
+                </ul>
+            </li>
+            <li>
+                入門                <ul>
+                    <li><a href="../../docs/installation">安裝</a></li>
+                    <li><a href="../../docs/configuration">設定</a></li>
+                    <li><a href="../../docs/lifecycle">生命週期</a></li>
+                    <li><a href="../../docs/routing">路由</a></li>
+                    <li><a href="../../docs/requests">請求及輸入<br />(Requests &amp; Input)</a></li>
+                    <li><a href="../../docs/responses">視圖及回應<br />(Views &amp; Responses)</a></li>
+                    <li><a href="../../docs/controllers">控制器(Controllers)</a></li>
+                    <li><a href="../../docs/errors">錯誤及記錄</a></li>
+                </ul>
+            </li>
+
+            <li>
+                更多                <ul>
+                <li><a href="../../docs/cache">快取</a></li>
+                <li><a href="../../docs/events">事件</a></li>
+                <li><a href="../../docs/facades">Facades</a></li>
+                <li><a href="../../docs/html">表單及HTML</a></li>
+                <li><a href="../../docs/ioc">IoC容器</a></li>
+                <li><a href="../../docs/localization">在地化</a></li>
+                <li><a href="../../docs/mail">郵件</a></li>
+                <li><a href="../../docs/packages">套件開發</a></li>
+                <li><a href="../../docs/pagination">分頁</a></li>
+                <li><a href="../../docs/queues">佇列</a></li>
+                <li><a href="../../docs/security">安全性</a></li>
+                <li><a href="../../docs/session">Session</a></li>
+                <li><a href="../../docs/templates">樣板</a></li>
+                <li><a href="../../docs/testing">單元測試</a></li>
+                <li><a href="../../docs/validation">驗證</a></li>
+                </ul>
+            </li>
+            <li>
+                資料庫                <ul>
+                    <li><a href="../../docs/database">基本用法</a></li>
+                    <li><a href="../../docs/queries">Query產生器</a></li>
+                    <li><a href="../../docs/eloquent">Eloquent ORM</a></li>
+                    <li><a href="../../docs/schema">Schema產生器</a></li>
+                    <li><a href="../../docs/migrations">Migrations &amp; Seeding</a></li>
+                    <li><a href="../../docs/redis">Redis</a></li>
+                </ul>
+            </li>
+
+            <li>
+                Artisan介面指令                <ul>
+                    <li><a href="../../docs/artisan">概要</a></li>
+                    <li><a href="../../docs/commands">開發</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+
+    <article class="docs-body">
+        <h1>請求及輸入<br />(Requests &amp; Input)</h1>
+
+<ul>
+	<li>
+		<a href="#basic-input">基本輸入資訊</a>
+	</li>
+	<li>
+		<a href="#cookies">Cookies</a>
+	</li>
+	<li>
+		<a href="#old-input">舊輸入資訊</a>
+	</li>
+	<li>
+		<a href="#files">檔案</a>
+	</li>
+	<li>
+		<a href="#request-information">請求資訊</a>
+	</li>
+</ul>
+
+<p><a name="basic-input"></a></p>
+
+<h2>基本輸入資訊</h2>
+
+<p>
+	You may access all user input with a few simple methods. You do not need to worry about the HTTP verb used for the request, as input is accessed in the same way for all verbs.
+</p>
+
+<p><strong>Retrieving An Input Value</strong></p>
+
+<pre><code>$name = Input::get('name');
+</code></pre>
+
+<p><strong>Retrieving A Default Value If The Input Value Is Absent</strong></p>
+
+<pre><code>$name = Input::get('name', 'Sally');
+</code></pre>
+
+<p><strong>Determining If An Input Value Is Present</strong></p>
+
+<pre><code>if (Input::has('name'))
+{
+    //
+}
+</code></pre>
+
+<p><strong>Getting All Input For The Request</strong></p>
+
+<pre><code>$input = Input::all();
+</code></pre>
+
+<p><strong>Getting Only Some Of The Request Input</strong></p>
+
+<pre><code>$input = Input::only('username', 'password');
+
+$input = Input::except('credit_card');
+</code></pre>
+
+<p>
+	Some JavaScript libraries such as Backbone may send input to the application as JSON. You may access this data via <code>Input::get</code> like normal.
+</p>
+
+<p><a name="cookies"></a></p>
+
+<h2>Cookies</h2>
+
+<p>
+	All cookies created by the Laravel framework are encrypted and signed with an authentication code, meaning they will be considered invalid if they have been changed by the client.
+</p>
+
+<p><strong>Retrieving A Cookie Value</strong></p>
+
+<pre><code>$value = Cookie::get('name');
+</code></pre>
+
+<p><strong>Attaching A New Cookie To A Response</strong></p>
+
+<pre><code>$response = Response::make('Hello World');
+
+$response-&gt;withCookie(Cookie::make('name', 'value', $minutes));
+</code></pre>
+
+<p><strong>Creating A Cookie That Lasts Forever</strong></p>
+
+<pre><code>$cookie = Cookie::forever('name', 'value');
+</code></pre>
+
+<p><a name="old-input"></a></p>
+
+<h2>舊輸入資訊</h2>
+
+<p>
+	You may need to keep input from one request until the next request. For example, you may need to re-populate a form after checking it for validation errors.
+</p>
+
+<p><strong>Flashing Input To The Session</strong></p>
+
+<pre><code>Input::flash();
+</code></pre>
+
+<p><strong>Flashing Only Some Input To The Session</strong></p>
+
+<pre><code>Input::flashOnly('username', 'email');
+
+Input::flashExcept('password');
+</code></pre>
+
+<p>
+	Since you often will want to flash input in association with a redirect to the previous page, you may easily chain input flashing onto a redirect.
+</p>
+
+<pre><code>return Redirect::to('form')-&gt;withInput();
+
+return Redirect::to('form')-&gt;withInput(Input::except('password'));
+</code></pre>
+
+<blockquote>
+  <p><strong>Note:</strong> You may flash other data across requests using the <a href="/docs/session">Session</a> class.</p>
+</blockquote>
+
+<p><strong>Retrieving Old Data</strong></p>
+
+<pre><code>Input::old('username');
+</code></pre>
+
+<p><a name="files"></a></p>
+
+<h2>檔案</h2>
+
+<p><strong>Retrieving An Uploaded File</strong></p>
+
+<pre><code>$file = Input::file('photo');
+</code></pre>
+
+<p><strong>Determining If A File Was Uploaded</strong></p>
+
+<pre><code>if (Input::hasFile('photo'))
+{
+    //
+}
+</code></pre>
+
+<p>
+	The object returned by the <code>file</code> method is an instance of the <code>Symfony\Component\HttpFoundation\File\UploadedFile</code> class, which extends the PHP <code>SplFileInfo</code> class and provides a variety of methods for interacting with the file.
+</p>
+
+<p><strong>Moving An Uploaded File</strong></p>
+
+<pre><code>Input::file('photo')-&gt;move($destinationPath);
+
+Input::file('photo')-&gt;move($destinationPath, $fileName);
+</code></pre>
+
+<p><strong>Retrieving The Path To An Uploaded File</strong></p>
+
+<pre><code>$path = Input::file('photo')-&gt;getRealPath();
+</code></pre>
+
+<p><strong>Retrieving The Size Of An Uploaded File</strong></p>
+
+<pre><code>$size = Input::file('photo')-&gt;getSize();
+</code></pre>
+
+<p><strong>Retrieving The MIME Type Of An Uploaded File</strong></p>
+
+<pre><code>$mime = Input::file('photo')-&gt;getMimeType();
+</code></pre>
+
+<p><a name="request-information"></a></p>
+
+<h2>請求資訊</h2>
+
+<p>
+	The <code>Request</code> class provides many methods for examining the HTTP request for your application and extends the <code>Symfony\Component\HttpFoundation\Request</code> class. Here are some of the highlights.
+</p>
+
+<p><strong>Retrieving The Request URI</strong></p>
+
+<pre><code>$uri = Request::path();
+</code></pre>
+
+<p><strong>Determining If The Request Path Matches A Pattern</strong></p>
+
+<pre><code>if (Request::is('admin/*'))
+{
+    //
+}
+</code></pre>
+
+<p><strong>Get The Request URL</strong></p>
+
+<pre><code>$url = Request::url();
+</code></pre>
+
+<p><strong>Retrieve A Request URI Segment</strong></p>
+
+<pre><code>$segment = Request::segment(1);
+</code></pre>
+
+<p><strong>Retrieving A Request Header</strong></p>
+
+<pre><code>$value = Request::header('Content-Type');
+</code></pre>
+
+<p><strong>Retrieving Values From $_SERVER</strong></p>
+
+<pre><code>$value = Request::server('PATH_INFO');
+</code></pre>
+
+<p><strong>Determine If The Request Is Using AJAX</strong></p>
+
+<pre><code>if (Request::ajax())
+{
+    //
+}
+</code></pre>
+
+<p><strong>Determining If The Request Is Over HTTPS</strong></p>
+
+<pre><code>if (Request::secure())
+{
+    //
+}
+</code></pre>
+    </article>
+    <div class="clearfix"></div>
+    </div>
+</section>
+
+
+
+<footer>
+    <div class="container">
+        <a href="http://laravel.com/" title="Laravel PHP Framework" class="logo" target="_blank">
+            <img src="http://laravel.com/img/footer_logo.png" alt="Laravel PHP Framework">
+        </a>
+        <nav class="menu">
+            <ul>
+                <li>
+                    <a href="http://laravel.com/" title="Welcome" target="_blank">Welcome</a>
+                </li>
+                <li>
+                    <a href="http://laravel.com/docs" title="Documentation" target="_blank">Documentation</a>
+                </li>
+                <li class="active">
+                    <a href="../../docs/introduction" title="中文文件">中文文件</a>
+                </li>
+                <li>
+                    <a href="http://laravel.com/api" title="API" target="_blank">API</a>
+                </li>
+                <li>
+                    <a href="https://github.com/laravel/laravel" title="Github" target="_blank">Github</a>
+                </li>
+                <li>
+                    <a href="http://forums.laravel.io/" title="論壇" target="_blank">論壇</a>
+                </li>
+                <li>
+                    <a href="http://twitter.com/laravelphp" title="Twitter" target="_blank">Twitter</a>
+                </li>
+            </ul>
+        </nav>
+        <p class="copyright">Copyright &copy; 2013 Taylor Otwell. 網站由 <a href="http://casserolelabs.com/" title="Casserole Labs" target="_blank">Casserole Labs</a> 及 <a href="http://daylerees.com" title="Dayle Rees">Dayle Rees</a> 設計，中文翻譯 <a href="http://blog.kejyun.com" target="_blank">KeJyun</a></p>
+    </div>
+</footer>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://laravel.com/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="../../js/plugins.js"></script>
+<script src="../../js/main.min.js"></script>
+</body>
+</html>

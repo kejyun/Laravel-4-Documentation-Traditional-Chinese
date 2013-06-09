@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<!-- 
+ 作者:KeJyun
+ 建立日期:2013-06-09
+ 最後修改日期:2013-06-09
+ 聯絡方式:kejyun@gmail.com
+ -->
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Laravel 4 PHP Framework繁體中文教學文件</title>
+<meta name="description" content="Laravel, 優雅的PHP網頁工匠框架(Framework) 再開始享受開發上的樂趣吧">
+<link media="all" type="text/css" rel="stylesheet" href="../../css/style.css">
+<script src="../../js/modernizr-2.6.2.min.js"></script>
+
+<style type="text/css">
+.docs-menu ul li{
+    margin-top: 10px;
+}
+</style>
+</head>
+<body>
+<!-- Header -->
+<header>
+    <div class="container">
+        <a href="http://laravel.com/" title="Laravel PHP Framework" class="logo" target="_blank">&nbsp;</a>
+        <nav class="menu">
+            <ul>
+                <li>
+                    <a href="http://laravel.com/" title="Welcome" target="_blank">Welcome</a>
+                </li>
+                <li>
+                    <a href="http://laravel.com/docs" title="Documentation" target="_blank">Documentation</a>
+                </li>
+                <li class="active">
+                    <a href="../../docs/introduction" title="中文文件">中文文件</a>
+                </li>
+                <li>
+                    <a href="http://laravel.com/api" title="API" target="_blank">API</a>
+                </li>
+                <li>
+                    <a href="https://github.com/laravel/laravel" title="Github" target="_blank">Github</a>
+                </li>
+                <li>
+                    <a href="http://forums.laravel.io/" title="論壇" target="_blank">論壇</a>
+                </li>
+                <li>
+                    <a href="http://twitter.com/laravelphp" title="Twitter" target="_blank">Twitter</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- Header sectoin -->
+<section class="docs-heading">
+    <div class="container">
+        <h2>文件</h2>
+        <div class="sponsor">
+            <span>贊助商 </span>
+            <a href="http://www.cartalyst.com/" title="Cartalyst" target="_blank">
+                <img src="../../img/cartalyst_small.png">
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="docs-content">
+    <div class="container">
+    <nav class="docs-menu">
+        <ul>
+            <li>前言                <ul>
+                    <li><a href="../../docs/introduction">介紹</a></li>
+                    <li><a href="../../docs/quick">快速開始</a></li>
+                    <li><a href="../../docs/contributing">貢獻</a></li>
+                </ul>
+            </li>
+            <li>
+                入門                <ul>
+                    <li><a href="../../docs/installation">安裝</a></li>
+                    <li><a href="../../docs/configuration">設定</a></li>
+                    <li><a href="../../docs/lifecycle">生命週期</a></li>
+                    <li><a href="../../docs/routing">路由</a></li>
+                    <li><a href="../../docs/requests">請求及輸入<br />(Requests &amp; Input)</a></li>
+                    <li><a href="../../docs/responses">視圖及回應<br />(Views &amp; Responses)</a></li>
+                    <li><a href="../../docs/controllers">控制器(Controllers)</a></li>
+                    <li><a href="../../docs/errors">錯誤及記錄</a></li>
+                </ul>
+            </li>
+
+            <li>
+                更多                <ul>
+                <li><a href="../../docs/cache">快取</a></li>
+                <li><a href="../../docs/events">事件</a></li>
+                <li><a href="../../docs/facades">Facades</a></li>
+                <li><a href="../../docs/html">表單及HTML</a></li>
+                <li><a href="../../docs/ioc">IoC容器</a></li>
+                <li><a href="../../docs/localization">在地化</a></li>
+                <li><a href="../../docs/mail">郵件</a></li>
+                <li><a href="../../docs/packages">套件開發</a></li>
+                <li><a href="../../docs/pagination">分頁</a></li>
+                <li><a href="../../docs/queues">佇列</a></li>
+                <li><a href="../../docs/security">安全性</a></li>
+                <li><a href="../../docs/session">Session</a></li>
+                <li><a href="../../docs/templates">樣板</a></li>
+                <li><a href="../../docs/testing">單元測試</a></li>
+                <li><a href="../../docs/validation">驗證</a></li>
+                </ul>
+            </li>
+            <li>
+                資料庫                <ul>
+                    <li><a href="../../docs/database">基本用法</a></li>
+                    <li><a href="../../docs/queries">Query產生器</a></li>
+                    <li><a href="../../docs/eloquent">Eloquent ORM</a></li>
+                    <li><a href="../../docs/schema">Schema產生器</a></li>
+                    <li><a href="../../docs/migrations">Migrations &amp; Seeding</a></li>
+                    <li><a href="../../docs/redis">Redis</a></li>
+                </ul>
+            </li>
+
+            <li>
+                Artisan介面指令                <ul>
+                    <li><a href="../../docs/artisan">概要</a></li>
+                    <li><a href="../../docs/commands">開發</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+
+    <article class="docs-body">
+        <h1>控制器(Controllers)</h1>
+
+<ul>
+  <li>
+    <a href="#basic-controllers">基本控制器</a>
+  </li>
+  <li>
+    <a href="#controller-filters">控制器過濾</a>
+  </li>
+  <li>
+    <a href="#restful-controllers">RESTful控制器</a>
+  </li>
+  <li>
+    <a href="#resource-controllers">資源控制器</a>
+  </li>
+  <li>
+    <a href="#handling-missing-methods">處理不存在的方法</a>
+  </li>
+</ul>
+
+<p><a name="basic-controllers"></a></p>
+
+<h2>基本控制器</h2>
+
+<p>
+  Instead of defining all of your route-level logic in a single <code>routes.php</code> file, you may wish to organize this behavior using Controller classes. Controllers can group related route logic into a class, as well as take advantage of more advanced framework features such as automatic <a href="/docs/ioc">dependency injection</a>.
+</p>
+
+<p>
+  Controllers are typically stored in the <code>app/controllers</code> directory, and this directory is registered in the <code>classmap</code> option of your <code>composer.json</code> file by default.
+</p>
+
+<p>Here is an example of a basic controller class:</p>
+
+<pre><code>class UserController extends BaseController {
+
+    /**
+     * Show the profile for the given user.
+     */
+    public function showProfile($id)
+    {
+        $user = User::find($id);
+
+        return View::make('user.profile', array('user' =&gt; $user));
+    }
+
+}
+</code></pre>
+
+<p>
+  All controllers should extend the <code>BaseController</code> class. The <code>BaseController</code> is also stored in the <code>app/controllers</code> directory, and may be used as a place to put shared controller logic. The <code>BaseController</code> extends the framework's <code>Controller</code> class. Now, We can route to this controller action like so:
+</p>
+
+<pre><code>Route::get('user/{id}', 'UserController@showProfile');
+</code></pre>
+
+<p>If you choose to nest or organize your controller using PHP namespaces, simply use the fully qualified class name when defining the route:</p>
+
+<pre><code>Route::get('foo', 'Namespace\FooController@method');
+</code></pre>
+
+<p>You may also specify names on controller routes:</p>
+
+<pre><code>Route::get('foo', array('uses' =&gt; 'FooController@method',
+                                        'as' =&gt; 'name'));
+</code></pre>
+
+<p>To generate a URL to a controller action, you may use the <code>URL::action</code> method:</p>
+
+<pre><code>$url = URL::action('FooController@method');
+</code></pre>
+
+<p>You may access the name of the controller action being run using the <code>currentRouteAction</code> method:</p>
+
+<pre><code>$action = Route::currentRouteAction();
+</code></pre>
+
+<p><a name="controller-filters"></a></p>
+
+<h2>控制器過濾</h2>
+
+<p><a href="/docs/routing#route-filters">Filters</a> may be specified on controller routes similar to "regular" routes:</p>
+
+<pre><code>Route::get('profile', array('before' =&gt; 'auth',
+            'uses' =&gt; 'UserController@showProfile'));
+</code></pre>
+
+<p>However, you may also specify filters from within your controller:</p>
+
+<pre><code>class UserController extends BaseController {
+
+    /**
+     * Instantiate a new UserController instance.
+     */
+    public function __construct()
+    {
+        $this-&gt;beforeFilter('auth');
+
+        $this-&gt;beforeFilter('csrf', array('on' =&gt; 'post'));
+
+        $this-&gt;afterFilter('log', array('only' =&gt;
+                            array('fooAction', 'barAction')));
+    }
+
+}
+</code></pre>
+
+<p>You may also specify controller filters inline using a Closure:</p>
+
+<pre><code>class UserController extends BaseController {
+
+    /**
+     * Instantiate a new UserController instance.
+     */
+    public function __construct()
+    {
+        $this-&gt;beforeFilter(function()
+        {
+            //
+        });
+    }
+
+}
+</code></pre>
+
+<p><a name="restful-controllers"></a></p>
+
+<h2>RESTful控制器</h2>
+
+<p>
+  Laravel allows you to easily define a single route to handle every action in a controller using simple, REST naming conventions. First, define the route using the <code>Route::controller</code> method:
+</p>
+
+<p><strong>Defining A RESTful Controller</strong></p>
+
+<pre><code>Route::controller('users', 'UserController');
+</code></pre>
+
+<p>
+  The <code>controller</code> method accepts two arguments. The first is the base URI the controller handles, while the second is the class name of the controller. Next, just add methods to your controller, prefixed with the HTTP verb they respond to:
+</p>
+
+<pre><code>class UserController extends BaseController {
+
+    public function getIndex()
+    {
+        //
+    }
+
+    public function postProfile()
+    {
+        //
+    }
+
+}
+</code></pre>
+
+<p>The <code>index</code> methods will respond to the root URI handled by the controller, which, in this case, is <code>users</code>.</p>
+
+<p>
+  If your controller action contains multiple words, you may access the action using "dash" syntax in the URI. For example, the following controller action on our <code>UserController</code> would respond to the <code>users/admin-profile</code> URI:
+</p>
+
+<pre><code>public function getAdminProfile() {}
+</code></pre>
+
+<p><a name="resource-controllers"></a></p>
+
+<h2>資源控制器</h2>
+
+<p>
+  Resource controllers make it easier to build RESTful controllers around resources. For example, you may wish to create a controller that manages "photos" stored by your application. Using the <code>controller:make</code> command via the Artisan CLI and the <code>Route::resource</code> method, we can quickly create such a controller.
+</p>
+
+<p>To create the controller via the command line, execute the following command:</p>
+
+<pre><code>php artisan controller:make PhotoController
+</code></pre>
+
+<p>Now we can register a resourceful route to the controller:</p>
+
+<pre><code>Route::resource('photo', 'PhotoController');
+</code></pre>
+
+<p>
+  This single route declaration creates multiple routes to handle a variety of RESTful actions on the photo resource. Likewise, the generated controller will already have stubbed methods for each of these actions with notes informing you which URIs and verbs they handle.
+</p>
+
+<p><strong>Actions Handled By Resource Controller</strong></p>
+
+<table>
+<thead>
+<tr>
+  <th>Verb</th>
+  <th>Path</th>
+  <th>Action</th>
+  <th>Route Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>GET</td>
+  <td>/resource</td>
+  <td>index</td>
+  <td>resource.index</td>
+</tr>
+<tr>
+  <td>GET</td>
+  <td>/resource/create</td>
+  <td>create</td>
+  <td>resource.create</td>
+</tr>
+<tr>
+  <td>POST</td>
+  <td>/resource</td>
+  <td>store</td>
+  <td>resource.store</td>
+</tr>
+<tr>
+  <td>GET</td>
+  <td>/resource/{id}</td>
+  <td>show</td>
+  <td>resource.show</td>
+</tr>
+<tr>
+  <td>GET</td>
+  <td>/resource/{id}/edit</td>
+  <td>edit</td>
+  <td>resource.edit</td>
+</tr>
+<tr>
+  <td>PUT/PATCH</td>
+  <td>/resource/{id}</td>
+  <td>update</td>
+  <td>resource.update</td>
+</tr>
+<tr>
+  <td>DELETE</td>
+  <td>/resource/{id}</td>
+  <td>destroy</td>
+  <td>resource.destroy</td>
+</tr>
+</tbody>
+</table>
+
+<p>Sometimes you may only need to handle a subset of the resource actions:</p>
+
+<pre><code>php artisan controller:make PhotoController --only=index,show
+
+php artisan controller:make PhotoController --except=index
+</code></pre>
+
+<p>And, you may also specify a subset of actions to handle on the route:</p>
+
+<pre><code>Route::resource('photo', 'PhotoController',
+                array('only' =&gt; array('index', 'show')));
+</code></pre>
+
+<p><a name="handling-missing-methods"></a></p>
+
+<h2>處理不存在的方法</h2>
+
+<p>
+  A catch-all method may be defined which will be called when no other matching method is found on a given controller. The method should be named <code>missingMethod</code>, and receives the parameter array for the request as its only argument:
+</p>
+
+<p><strong>Defining A Catch-All Method</strong></p>
+
+<pre><code>public function missingMethod($parameters)
+{
+    //
+}
+</code></pre>
+    </article>
+    <div class="clearfix"></div>
+    </div>
+</section>
+
+
+
+<footer>
+    <div class="container">
+        <a href="http://laravel.com/" title="Laravel PHP Framework" class="logo" target="_blank">
+            <img src="http://laravel.com/img/footer_logo.png" alt="Laravel PHP Framework">
+        </a>
+        <nav class="menu">
+            <ul>
+                <li>
+                    <a href="http://laravel.com/" title="Welcome" target="_blank">Welcome</a>
+                </li>
+                <li>
+                    <a href="http://laravel.com/docs" title="Documentation" target="_blank">Documentation</a>
+                </li>
+                <li class="active">
+                    <a href="../../docs/introduction" title="中文文件">中文文件</a>
+                </li>
+                <li>
+                    <a href="http://laravel.com/api" title="API" target="_blank">API</a>
+                </li>
+                <li>
+                    <a href="https://github.com/laravel/laravel" title="Github" target="_blank">Github</a>
+                </li>
+                <li>
+                    <a href="http://forums.laravel.io/" title="論壇" target="_blank">論壇</a>
+                </li>
+                <li>
+                    <a href="http://twitter.com/laravelphp" title="Twitter" target="_blank">Twitter</a>
+                </li>
+            </ul>
+        </nav>
+        <p class="copyright">Copyright &copy; 2013 Taylor Otwell. 網站由 <a href="http://casserolelabs.com/" title="Casserole Labs" target="_blank">Casserole Labs</a> 及 <a href="http://daylerees.com" title="Dayle Rees">Dayle Rees</a> 設計，中文翻譯 <a href="http://blog.kejyun.com" target="_blank">KeJyun</a></p>
+    </div>
+</footer>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://laravel.com/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="../../js/plugins.js"></script>
+<script src="../../js/main.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<!-- 
+ 作者:KeJyun
+ 建立日期:2013-06-09
+ 最後修改日期:2013-06-09
+ 聯絡方式:kejyun@gmail.com
+ -->
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Laravel 4 PHP Framework繁體中文教學文件</title>
+<meta name="description" content="Laravel, 優雅的PHP網頁工匠框架(Framework) 再開始享受開發上的樂趣吧">
+<link media="all" type="text/css" rel="stylesheet" href="../../css/style.css">
+<script src="../../js/modernizr-2.6.2.min.js"></script>
+
+<style type="text/css">
+.docs-menu ul li{
+    margin-top: 10px;
+}
+</style>
+</head>
+<body>
+<!-- Header -->
+<header>
+    <div class="container">
+        <a href="http://laravel.com/" title="Laravel PHP Framework" class="logo" target="_blank">&nbsp;</a>
+        <nav class="menu">
+            <ul>
+                <li>
+                    <a href="http://laravel.com/" title="Welcome" target="_blank">Welcome</a>
+                </li>
+                <li>
+                    <a href="http://laravel.com/docs" title="Documentation" target="_blank">Documentation</a>
+                </li>
+                <li class="active">
+                    <a href="../../docs/introduction" title="中文文件">中文文件</a>
+                </li>
+                <li>
+                    <a href="http://laravel.com/api" title="API" target="_blank">API</a>
+                </li>
+                <li>
+                    <a href="https://github.com/laravel/laravel" title="Github" target="_blank">Github</a>
+                </li>
+                <li>
+                    <a href="http://forums.laravel.io/" title="論壇" target="_blank">論壇</a>
+                </li>
+                <li>
+                    <a href="http://twitter.com/laravelphp" title="Twitter" target="_blank">Twitter</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- Header sectoin -->
+<section class="docs-heading">
+    <div class="container">
+        <h2>文件</h2>
+        <div class="sponsor">
+            <span>贊助商 </span>
+            <a href="http://www.cartalyst.com/" title="Cartalyst" target="_blank">
+                <img src="../../img/cartalyst_small.png">
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="docs-content">
+    <div class="container">
+    <nav class="docs-menu">
+        <ul>
+            <li>前言                <ul>
+                    <li><a href="../../docs/introduction">介紹</a></li>
+                    <li><a href="../../docs/quick">快速開始</a></li>
+                    <li><a href="../../docs/contributing">貢獻</a></li>
+                </ul>
+            </li>
+            <li>
+                入門                <ul>
+                    <li><a href="../../docs/installation">安裝</a></li>
+                    <li><a href="../../docs/configuration">設定</a></li>
+                    <li><a href="../../docs/lifecycle">生命週期</a></li>
+                    <li><a href="../../docs/routing">路由</a></li>
+                    <li><a href="../../docs/requests">請求及輸入<br />(Requests &amp; Input)</a></li>
+                    <li><a href="../../docs/responses">視圖及回應<br />(Views &amp; Responses)</a></li>
+                    <li><a href="../../docs/controllers">控制器(Controllers)</a></li>
+                    <li><a href="../../docs/errors">錯誤及記錄</a></li>
+                </ul>
+            </li>
+
+            <li>
+                更多                <ul>
+                <li><a href="../../docs/cache">快取</a></li>
+                <li><a href="../../docs/events">事件</a></li>
+                <li><a href="../../docs/facades">Facades</a></li>
+                <li><a href="../../docs/html">表單及HTML</a></li>
+                <li><a href="../../docs/ioc">IoC容器</a></li>
+                <li><a href="../../docs/localization">在地化</a></li>
+                <li><a href="../../docs/mail">郵件</a></li>
+                <li><a href="../../docs/packages">套件開發</a></li>
+                <li><a href="../../docs/pagination">分頁</a></li>
+                <li><a href="../../docs/queues">佇列</a></li>
+                <li><a href="../../docs/security">安全性</a></li>
+                <li><a href="../../docs/session">Session</a></li>
+                <li><a href="../../docs/templates">樣板</a></li>
+                <li><a href="../../docs/testing">單元測試</a></li>
+                <li><a href="../../docs/validation">驗證</a></li>
+                </ul>
+            </li>
+            <li>
+                資料庫                <ul>
+                    <li><a href="../../docs/database">基本用法</a></li>
+                    <li><a href="../../docs/queries">Query產生器</a></li>
+                    <li><a href="../../docs/eloquent">Eloquent ORM</a></li>
+                    <li><a href="../../docs/schema">Schema產生器</a></li>
+                    <li><a href="../../docs/migrations">Migrations &amp; Seeding</a></li>
+                    <li><a href="../../docs/redis">Redis</a></li>
+                </ul>
+            </li>
+
+            <li>
+                Artisan介面指令                <ul>
+                    <li><a href="../../docs/artisan">概要</a></li>
+                    <li><a href="../../docs/commands">開發</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+
+    <article class="docs-body">
+        <h1>視圖及回應<br />(Views &amp; Responses)</h1>
+
+<ul>
+    <li>
+        <a href="#basic-responses">基本回應</a>
+    </li>
+    <li>
+        <a href="#redirects">重導</a>
+    </li>
+    <li>
+        <a href="#views">視圖</a>
+    </li>
+    <li>
+        <a href="#view-composers">視圖Composers</a>
+    </li>
+    <li>
+        <a href="#special-responses">特殊回應</a>
+    </li>
+</ul>
+
+<p><a name="basic-responses"></a></p>
+
+<h2>基本回應</h2>
+
+<p><strong>Returning Strings From Routes</strong></p>
+
+<pre><code>Route::get('/', function()
+{
+    return 'Hello World';
+});
+</code></pre>
+
+<p><strong>Creating Custom Responses</strong></p>
+
+<p>
+    A <code>Response</code> instance inherits from the <code>Symfony\Component\HttpFoundation\Response</code> class, providing a variety of methods for building HTTP responses.
+</p>
+
+<pre><code>$response = Response::make($contents, $statusCode);
+
+$response-&gt;header('Content-Type', $value);
+
+return $response;
+</code></pre>
+
+<p><strong>Attaching Cookies To Responses</strong></p>
+
+<pre><code>$cookie = Cookie::make('name', 'value');
+
+return Response::make($content)-&gt;withCookie($cookie);
+</code></pre>
+
+<p><a name="redirects"></a></p>
+
+<h2>重導</h2>
+
+<p><strong>Returning A Redirect</strong></p>
+
+<pre><code>return Redirect::to('user/login');
+</code></pre>
+
+<p><strong>Returning A Redirect To A Named Route</strong></p>
+
+<pre><code>return Redirect::route('login');
+</code></pre>
+
+<p><strong>Returning A Redirect To A Named Route With Parameters</strong></p>
+
+<pre><code>return Redirect::route('profile', array(1));
+</code></pre>
+
+<p><strong>Returning A Redirect To A Named Route Using Named Parameters</strong></p>
+
+<pre><code>return Redirect::route('profile', array('user' =&gt; 1));
+</code></pre>
+
+<p><strong>Returning A Redirect To A Controller Action</strong></p>
+
+<pre><code>return Redirect::action('HomeController@index');
+</code></pre>
+
+<p><strong>Returning A Redirect To A Controller Action With Parameters</strong></p>
+
+<pre><code>return Redirect::action('UserController@profile', array(1));
+</code></pre>
+
+<p><strong>Returning A Redirect To A Controller Action Using Named Parameters</strong></p>
+
+<pre><code>return Redirect::action('UserController@profile', array('user' =&gt; 1));
+</code></pre>
+
+<p><a name="views"></a></p>
+
+<h2>視圖</h2>
+
+<p>
+    Views typically contain the HTML of your application and provide a convenient way of separating your controller and domain logic from your presentation logic. Views are stored in the <code>app/views</code> directory.
+</p>
+
+<p>A simple view could look something like this:</p>
+
+<pre><code>&lt;!-- View stored in app/views/greeting.php --&gt;
+
+&lt;html&gt;
+    &lt;body&gt;
+        &lt;h1&gt;Hello, &lt;?php echo $name; ?&gt;&lt;/h1&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>This view may be returned to the browser like so:</p>
+
+<pre><code>Route::get('/', function()
+{
+    return View::make('greeting', array('name' =&gt; 'Taylor'));
+});
+</code></pre>
+
+<p>
+    The second argument passed to <code>View::make</code> is an array of data that should be made available to the view.
+</p>
+
+<p><strong>Passing Data To Views</strong></p>
+
+<pre><code>$view = View::make('greeting', $data);
+
+$view = View::make('greeting')-&gt;with('name', 'Steve');
+</code></pre>
+
+<p>
+    In the example above the variable <code>$name</code> would be accessible from the view, and would contain <code>Steve</code>.
+</p>
+
+<p>You may also share a piece of data across all views:</p>
+
+<pre><code>View::share('name', 'Steve');
+</code></pre>
+
+<p><strong>Passing A Sub-View To A View</strong></p>
+
+<p>
+    Sometimes you may wish to pass a view into another view. For example, given a sub-view stored at <code>app/views/child/view.php</code>, we could pass it to another view like so:
+</p>
+
+<pre><code>$view = View::make('greeting')-&gt;nest('child', 'child.view');
+
+$view = View::make('greeting')-&gt;nest('child', 'child.view', $data);
+</code></pre>
+
+<p>The sub-view can then be rendered from the parent view:</p>
+
+<pre><code>&lt;html&gt;
+    &lt;body&gt;
+        &lt;h1&gt;Hello!&lt;/h1&gt;
+        &lt;?php echo $child; ?&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p><a name="view-composers"></a></p>
+
+<h2>視圖Composers</h2>
+
+<p>
+    View composers are callbacks or class methods that are called when a view is created. If you have data that you want bound to a given view each time that view is created throughout your application, a view composer can organize that code into a single location. Therefore, view composers may function like "view models" or "presenters".
+</p>
+
+<p><strong>Defining A View Composer</strong></p>
+
+<pre><code>View::composer('profile', function($view)
+{
+    $view-&gt;with('count', User::count());
+});
+</code></pre>
+
+<p>Now each time the <code>profile</code> view is created, the <code>count</code> data will be bound to the view.</p>
+
+<p>You may also attach a view composer to multiple views at once:</p>
+
+<pre><code>View::composer(array('profile','dashboard'), function($view)
+{
+    $view-&gt;with('count', User::count());
+});
+</code></pre>
+
+<p>
+    If you would rather use a class based composer, which will provide the benefits of being resolved through the application <a href="/docs/ioc">IoC Container</a>, you may do so:
+</p>
+
+<pre><code>View::composer('profile', 'ProfileComposer');
+</code></pre>
+
+<p>A view composer class should be defined like so:</p>
+
+<pre><code>class ProfileComposer {
+
+    public function compose($view)
+    {
+        $view-&gt;with('count', User::count());
+    }
+
+}
+</code></pre>
+
+<p>
+    Note that there is no convention on where composer classes may be stored. You are free to store them anywhere as long as they can be autoloaded using the directives in your <code>composer.json</code> file.
+</p>
+
+<p><a name="special-responses"></a></p>
+
+<h2>特殊回應</h2>
+
+<p><strong>Creating A JSON Response</strong></p>
+
+<pre><code>return Response::json(array('name' =&gt; 'Steve', 'state' =&gt; 'CA'));
+</code></pre>
+
+<p><strong>Creating A JSONP Response</strong></p>
+
+<pre><code>return Response::json(array('name' =&gt; 'Steve', 'state' =&gt; 'CA'))-&gt;setCallback(Input::get('callback'));
+</code></pre>
+
+<p><strong>Creating A File Download Response</strong></p>
+
+<pre><code>return Response::download($pathToFile);
+
+return Response::download($pathToFile, $name, $headers);
+</code></pre>
+    </article>
+    <div class="clearfix"></div>
+    </div>
+</section>
+
+
+
+<footer>
+    <div class="container">
+        <a href="http://laravel.com/" title="Laravel PHP Framework" class="logo" target="_blank">
+            <img src="http://laravel.com/img/footer_logo.png" alt="Laravel PHP Framework">
+        </a>
+        <nav class="menu">
+            <ul>
+                <li>
+                    <a href="http://laravel.com/" title="Welcome" target="_blank">Welcome</a>
+                </li>
+                <li>
+                    <a href="http://laravel.com/docs" title="Documentation" target="_blank">Documentation</a>
+                </li>
+                <li class="active">
+                    <a href="../../docs/introduction" title="中文文件">中文文件</a>
+                </li>
+                <li>
+                    <a href="http://laravel.com/api" title="API" target="_blank">API</a>
+                </li>
+                <li>
+                    <a href="https://github.com/laravel/laravel" title="Github" target="_blank">Github</a>
+                </li>
+                <li>
+                    <a href="http://forums.laravel.io/" title="論壇" target="_blank">論壇</a>
+                </li>
+                <li>
+                    <a href="http://twitter.com/laravelphp" title="Twitter" target="_blank">Twitter</a>
+                </li>
+            </ul>
+        </nav>
+        <p class="copyright">Copyright &copy; 2013 Taylor Otwell. 網站由 <a href="http://casserolelabs.com/" title="Casserole Labs" target="_blank">Casserole Labs</a> 及 <a href="http://daylerees.com" title="Dayle Rees">Dayle Rees</a> 設計，中文翻譯 <a href="http://blog.kejyun.com" target="_blank">KeJyun</a></p>
+    </div>
+</footer>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://laravel.com/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="../../js/plugins.js"></script>
+<script src="../../js/main.min.js"></script>
+</body>
+</html>

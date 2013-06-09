@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<!-- 
+ 作者:KeJyun
+ 建立日期:2013-06-09
+ 最後修改日期:2013-06-09
+ 聯絡方式:kejyun@gmail.com
+ -->
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Laravel 4 PHP Framework繁體中文教學文件</title>
+<meta name="description" content="Laravel, 優雅的PHP網頁工匠框架(Framework) 再開始享受開發上的樂趣吧">
+<link media="all" type="text/css" rel="stylesheet" href="../../css/style.css">
+<script src="../../js/modernizr-2.6.2.min.js"></script>
+
+<style type="text/css">
+.docs-menu ul li{
+    margin-top: 10px;
+}
+</style>
+</head>
+<body>
+<!-- Header -->
+<header>
+    <div class="container">
+        <a href="http://laravel.com/" title="Laravel PHP Framework" class="logo" target="_blank">&nbsp;</a>
+        <nav class="menu">
+            <ul>
+                <li>
+                    <a href="http://laravel.com/" title="Welcome" target="_blank">Welcome</a>
+                </li>
+                <li>
+                    <a href="http://laravel.com/docs" title="Documentation" target="_blank">Documentation</a>
+                </li>
+                <li class="active">
+                    <a href="../../docs/introduction" title="中文文件">中文文件</a>
+                </li>
+                <li>
+                    <a href="http://laravel.com/api" title="API" target="_blank">API</a>
+                </li>
+                <li>
+                    <a href="https://github.com/laravel/laravel" title="Github" target="_blank">Github</a>
+                </li>
+                <li>
+                    <a href="http://forums.laravel.io/" title="論壇" target="_blank">論壇</a>
+                </li>
+                <li>
+                    <a href="http://twitter.com/laravelphp" title="Twitter" target="_blank">Twitter</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- Header sectoin -->
+<section class="docs-heading">
+    <div class="container">
+        <h2>文件</h2>
+        <div class="sponsor">
+            <span>贊助商 </span>
+            <a href="http://www.cartalyst.com/" title="Cartalyst" target="_blank">
+                <img src="../../img/cartalyst_small.png">
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="docs-content">
+    <div class="container">
+    <nav class="docs-menu">
+        <ul>
+            <li>前言                <ul>
+                    <li><a href="../../docs/introduction">介紹</a></li>
+                    <li><a href="../../docs/quick">快速開始</a></li>
+                    <li><a href="../../docs/contributing">貢獻</a></li>
+                </ul>
+            </li>
+            <li>
+                入門                <ul>
+                    <li><a href="../../docs/installation">安裝</a></li>
+                    <li><a href="../../docs/configuration">設定</a></li>
+                    <li><a href="../../docs/lifecycle">生命週期</a></li>
+                    <li><a href="../../docs/routing">路由</a></li>
+                    <li><a href="../../docs/requests">請求及輸入<br />(Requests &amp; Input)</a></li>
+                    <li><a href="../../docs/responses">視圖及回應<br />(Views &amp; Responses)</a></li>
+                    <li><a href="../../docs/controllers">控制器(Controllers)</a></li>
+                    <li><a href="../../docs/errors">錯誤及記錄</a></li>
+                </ul>
+            </li>
+
+            <li>
+                更多                <ul>
+                <li><a href="../../docs/cache">快取</a></li>
+                <li><a href="../../docs/events">事件</a></li>
+                <li><a href="../../docs/facades">Facades</a></li>
+                <li><a href="../../docs/html">表單及HTML</a></li>
+                <li><a href="../../docs/ioc">IoC容器</a></li>
+                <li><a href="../../docs/localization">在地化</a></li>
+                <li><a href="../../docs/mail">郵件</a></li>
+                <li><a href="../../docs/packages">套件開發</a></li>
+                <li><a href="../../docs/pagination">分頁</a></li>
+                <li><a href="../../docs/queues">佇列</a></li>
+                <li><a href="../../docs/security">安全性</a></li>
+                <li><a href="../../docs/session">Session</a></li>
+                <li><a href="../../docs/templates">樣板</a></li>
+                <li><a href="../../docs/testing">單元測試</a></li>
+                <li><a href="../../docs/validation">驗證</a></li>
+                </ul>
+            </li>
+            <li>
+                資料庫                <ul>
+                    <li><a href="../../docs/database">基本用法</a></li>
+                    <li><a href="../../docs/queries">Query產生器</a></li>
+                    <li><a href="../../docs/eloquent">Eloquent ORM</a></li>
+                    <li><a href="../../docs/schema">Schema產生器</a></li>
+                    <li><a href="../../docs/migrations">Migrations &amp; Seeding</a></li>
+                    <li><a href="../../docs/redis">Redis</a></li>
+                </ul>
+            </li>
+
+            <li>
+                Artisan介面指令                <ul>
+                    <li><a href="../../docs/artisan">概要</a></li>
+                    <li><a href="../../docs/commands">開發</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+
+    <article class="docs-body">
+        <h1>Migrations &amp; Seeding</h1>
+
+<ul>
+    <li>
+        <a href="#introduction">介紹</a>
+    </li>
+    <li>
+        <a href="#creating-migrations">建立 Migrations</a>
+    </li>
+    <li>
+        <a href="#running-migrations">執行 Migrations</a>
+    </li>
+    <li>
+        <a href="#rolling-back-migrations">復原 Migrations</a>
+    </li>
+    <li>
+        <a href="#database-seeding">資料庫 Seeding</a>
+    </li>
+</ul>
+
+<p><a name="introduction"></a></p>
+
+<h2>介紹</h2>
+
+<p>
+    Migrations are a type of version control for your database. They allow a team to modify the database schema and stay up to date on the current schema state. Migrations are typically paired with the <a href="/docs/schema">Schema Builder</a> to easily manage your application's scheme.
+</p>
+
+<p><a name="creating-migrations"></a></p>
+
+<h2>建立 Migrations</h2>
+
+<p>To create a migration, you may use the <code>migrate:make</code> command on the Artisan CLI:</p>
+
+<p><strong>Creating A Migration</strong></p>
+
+<pre><code>php artisan migrate:make create_users_table
+</code></pre>
+
+<p>
+    The migration will be placed in your <code>app/database/migrations</code> folder, and will contain a timestamp which allows the framework to determine the order of the migrations.
+</p>
+
+<p>
+    You may also specify a <code>--path</code> option when creating the migration. The path should be relative to the root directory of your installation:
+</p>
+
+<pre><code>php artisan migrate:make foo --path=app/migrations
+</code></pre>
+
+<p>
+    The <code>--table</code> and <code>--create</code> options may also be used to indicate the name of the table, and whether the migration will be creating a new table:
+</p>
+
+<pre><code>php artisan migrate:make create_users_table --table=users --create
+</code></pre>
+
+<p><a name="running-migrations"></a></p>
+
+<h2>執行 Migrations</h2>
+
+<p><strong>Running All Outstanding Migrations</strong></p>
+
+<pre><code>php artisan migrate
+</code></pre>
+
+<p><strong>Running All Outstanding Migrations For A Path</strong></p>
+
+<pre><code>php artisan migrate --path=app/foo/migrations
+</code></pre>
+
+<p><strong>Running All Outstanding Migrations For A Package</strong></p>
+
+<pre><code>php artisan migrate --package=vendor/package
+</code></pre>
+
+<blockquote>
+  <p><strong>Note:</strong> If you receive a "class not found" error when running migrations, try running the <code>composer update</code> command.</p>
+</blockquote>
+
+<p><a name="rolling-back-migrations"></a></p>
+
+<h2>復原 Migrations</h2>
+
+<p><strong>Rollback The Last Migration Operation</strong></p>
+
+<pre><code>php artisan migrate:rollback
+</code></pre>
+
+<p><strong>Rollback all migrations</strong></p>
+
+<pre><code>php artisan migrate:reset
+</code></pre>
+
+<p><strong>Rollback all migrations and run them all again</strong></p>
+
+<pre><code>php artisan migrate:refresh
+
+php artisan migrate:refresh --seed
+</code></pre>
+
+<p><a name="database-seeding"></a></p>
+
+<h2>資料庫 Seeding</h2>
+
+<p>
+    Laravel also includes a simple way to seed your database with test data using seed classes. All seed classes are stored in <code>app/database/seeds</code>. Seed classes may have any name you wish, but probably should follow some sensible convention, such as <code>UserTableSeeder</code>, etc. By default, a <code>DatabaseSeeder</code> class is defined for you. From this class, you may use the <code>call</code> method to run other seed classes, allowing you to control the seeding order.
+</p>
+
+<p><strong>Example Database Seed Class</strong></p>
+
+<pre><code>class DatabaseSeeder extends Seeder {
+
+    public function run()
+    {
+        $this-&gt;call('UserTableSeeder');
+
+        $this-&gt;command-&gt;info('User table seeded!');
+    }
+
+}
+
+class UserTableSeeder extends Seeder {
+
+    public function run()
+    {
+        DB::table('users')-&gt;delete();
+
+        User::create(array('email' =&gt; 'foo@bar.com'));
+    }
+
+}
+</code></pre>
+
+<p>To seed your database, you may use the <code>db:seed</code> command on the Artisan CLI:</p>
+
+<pre><code>php artisan db:seed
+</code></pre>
+
+<p>
+    You may also seed your database using the <code>migrate:refresh</code> command, which will also rollback and re-run all of your migrations:
+</p>
+
+<pre><code>php artisan migrate:refresh --seed
+</code></pre>
+    </article>
+    <div class="clearfix"></div>
+    </div>
+</section>
+
+
+
+<footer>
+    <div class="container">
+        <a href="http://laravel.com/" title="Laravel PHP Framework" class="logo" target="_blank">
+            <img src="http://laravel.com/img/footer_logo.png" alt="Laravel PHP Framework">
+        </a>
+        <nav class="menu">
+            <ul>
+                <li>
+                    <a href="http://laravel.com/" title="Welcome" target="_blank">Welcome</a>
+                </li>
+                <li>
+                    <a href="http://laravel.com/docs" title="Documentation" target="_blank">Documentation</a>
+                </li>
+                <li class="active">
+                    <a href="../../docs/introduction" title="中文文件">中文文件</a>
+                </li>
+                <li>
+                    <a href="http://laravel.com/api" title="API" target="_blank">API</a>
+                </li>
+                <li>
+                    <a href="https://github.com/laravel/laravel" title="Github" target="_blank">Github</a>
+                </li>
+                <li>
+                    <a href="http://forums.laravel.io/" title="論壇" target="_blank">論壇</a>
+                </li>
+                <li>
+                    <a href="http://twitter.com/laravelphp" title="Twitter" target="_blank">Twitter</a>
+                </li>
+            </ul>
+        </nav>
+        <p class="copyright">Copyright &copy; 2013 Taylor Otwell. 網站由 <a href="http://casserolelabs.com/" title="Casserole Labs" target="_blank">Casserole Labs</a> 及 <a href="http://daylerees.com" title="Dayle Rees">Dayle Rees</a> 設計，中文翻譯 <a href="http://blog.kejyun.com" target="_blank">KeJyun</a></p>
+    </div>
+</footer>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://laravel.com/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="../../js/plugins.js"></script>
+<script src="../../js/main.min.js"></script>
+</body>
+</html>

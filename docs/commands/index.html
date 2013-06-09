@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<!-- 
+ 作者:KeJyun
+ 建立日期:2013-06-09
+ 最後修改日期:2013-06-09
+ 聯絡方式:kejyun@gmail.com
+ -->
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Laravel 4 PHP Framework繁體中文教學文件</title>
+<meta name="description" content="Laravel, 優雅的PHP網頁工匠框架(Framework) 再開始享受開發上的樂趣吧">
+<link media="all" type="text/css" rel="stylesheet" href="../../css/style.css">
+<script src="../../js/modernizr-2.6.2.min.js"></script>
+
+<style type="text/css">
+.docs-menu ul li{
+    margin-top: 10px;
+}
+</style>
+</head>
+<body>
+<!-- Header -->
+<header>
+    <div class="container">
+        <a href="http://laravel.com/" title="Laravel PHP Framework" class="logo" target="_blank">&nbsp;</a>
+        <nav class="menu">
+            <ul>
+                <li>
+                    <a href="http://laravel.com/" title="Welcome" target="_blank">Welcome</a>
+                </li>
+                <li>
+                    <a href="http://laravel.com/docs" title="Documentation" target="_blank">Documentation</a>
+                </li>
+                <li class="active">
+                    <a href="../../docs/introduction" title="中文文件">中文文件</a>
+                </li>
+                <li>
+                    <a href="http://laravel.com/api" title="API" target="_blank">API</a>
+                </li>
+                <li>
+                    <a href="https://github.com/laravel/laravel" title="Github" target="_blank">Github</a>
+                </li>
+                <li>
+                    <a href="http://forums.laravel.io/" title="論壇" target="_blank">論壇</a>
+                </li>
+                <li>
+                    <a href="http://twitter.com/laravelphp" title="Twitter" target="_blank">Twitter</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- Header sectoin -->
+<section class="docs-heading">
+    <div class="container">
+        <h2>文件</h2>
+        <div class="sponsor">
+            <span>贊助商 </span>
+            <a href="http://www.cartalyst.com/" title="Cartalyst" target="_blank">
+                <img src="../../img/cartalyst_small.png">
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="docs-content">
+    <div class="container">
+    <nav class="docs-menu">
+        <ul>
+            <li>前言                <ul>
+                    <li><a href="../../docs/introduction">介紹</a></li>
+                    <li><a href="../../docs/quick">快速開始</a></li>
+                    <li><a href="../../docs/contributing">貢獻</a></li>
+                </ul>
+            </li>
+            <li>
+                入門                <ul>
+                    <li><a href="../../docs/installation">安裝</a></li>
+                    <li><a href="../../docs/configuration">設定</a></li>
+                    <li><a href="../../docs/lifecycle">生命週期</a></li>
+                    <li><a href="../../docs/routing">路由</a></li>
+                    <li><a href="../../docs/requests">請求及輸入<br />(Requests &amp; Input)</a></li>
+                    <li><a href="../../docs/responses">視圖及回應<br />(Views &amp; Responses)</a></li>
+                    <li><a href="../../docs/controllers">控制器(Controllers)</a></li>
+                    <li><a href="../../docs/errors">錯誤及記錄</a></li>
+                </ul>
+            </li>
+
+            <li>
+                更多                <ul>
+                <li><a href="../../docs/cache">快取</a></li>
+                <li><a href="../../docs/events">事件</a></li>
+                <li><a href="../../docs/facades">Facades</a></li>
+                <li><a href="../../docs/html">表單及HTML</a></li>
+                <li><a href="../../docs/ioc">IoC容器</a></li>
+                <li><a href="../../docs/localization">在地化</a></li>
+                <li><a href="../../docs/mail">郵件</a></li>
+                <li><a href="../../docs/packages">套件開發</a></li>
+                <li><a href="../../docs/pagination">分頁</a></li>
+                <li><a href="../../docs/queues">佇列</a></li>
+                <li><a href="../../docs/security">安全性</a></li>
+                <li><a href="../../docs/session">Session</a></li>
+                <li><a href="../../docs/templates">樣板</a></li>
+                <li><a href="../../docs/testing">單元測試</a></li>
+                <li><a href="../../docs/validation">驗證</a></li>
+                </ul>
+            </li>
+            <li>
+                資料庫                <ul>
+                    <li><a href="../../docs/database">基本用法</a></li>
+                    <li><a href="../../docs/queries">Query產生器</a></li>
+                    <li><a href="../../docs/eloquent">Eloquent ORM</a></li>
+                    <li><a href="../../docs/schema">Schema產生器</a></li>
+                    <li><a href="../../docs/migrations">Migrations &amp; Seeding</a></li>
+                    <li><a href="../../docs/redis">Redis</a></li>
+                </ul>
+            </li>
+
+            <li>
+                Artisan介面指令                <ul>
+                    <li><a href="../../docs/artisan">概要</a></li>
+                    <li><a href="../../docs/commands">開發</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+
+    <article class="docs-body">
+        <h1>開發</h1>
+
+<ul>
+    <li>
+        <a href="#introduction">介紹</a>
+    </li>
+    <li>
+        <a href="#building-a-command">建立指令</a>
+    </li>
+    <li>
+        <a href="#registering-commands">註冊指令</a>
+    </li>
+    <li>
+        <a href="#calling-other-commands">呼叫其他指令</a>
+    </li>
+</ul>
+
+<p><a name="introduction"></a></p>
+
+<h2>介紹</h2>
+
+<p>
+    In addition to the commands provided with Artisan, you may also build your own custom commands for working with your application. You may store your custom commands in the <code>app/commands</code> directory; however, you are free to choose your own storage location as long as your commands can be autoloaded based on your <code>composer.json</code> settings.
+</p>
+
+<p><a name="building-a-command"></a></p>
+
+<h2>建立指令</h2>
+
+<h3>Generating The Class</h3>
+
+<p>
+    To create a new command, you may use the <code>command:make</code> Artisan command, which will generate a command stub to help you get started:
+</p>
+
+<p><strong>Generate A New Command Class</strong></p>
+
+<pre><code>php artisan command:make FooCommand
+</code></pre>
+
+<p>
+    By default, generated commands will be stored in the <code>app/commands</code> directory; however, you may specify custom path or namespace:
+</p>
+
+<pre><code>php artisan command:make FooCommand --path="app/classes" --namespace="Classes"
+</code></pre>
+
+<h3>Writing The Command</h3>
+
+<p>
+    Once your command is generated, you should fill out the <code>name</code> and <code>description</code> properties of the class, which will be used when displaying your command on the <code>list</code> screen.
+</p>
+
+<p>
+    The <code>fire</code> method will be called when your command is executed. You may place any command logic in this method.
+</p>
+
+<h3>Arguments &amp; Options</h3>
+
+<p>
+    The <code>getArguments</code> and <code>getOptions</code> methods are where you may define any arguments or options your command receives. Both of these methods return an array of commands, which are described by a list of array options.
+</p>
+
+<p>When defining <code>arguments</code>, the array definition values represent the following:</p>
+
+<pre><code>array($name, $mode, $description, $defaultValue)
+</code></pre>
+
+<p>
+    The argument <code>mode</code> may be any of the following: <code>InputArgument::REQUIRED</code> or <code>InputArgument::OPTIONAL</code>.
+</p>
+
+<p>When defining <code>options</code>, the array definition values represent the following:</p>
+
+<pre><code>array($name, $shortcut, $mode, $description, $defaultValue)
+</code></pre>
+
+<p>
+    For options, the argument <code>mode</code> may be: <code>InputOption::VALUE_REQUIRED</code>, <code>InputOption::VALUE_OPTIONAL</code>, <code>InputOption::VALUE_IS_ARRAY</code>, <code>InputOption::VALUE_NONE</code>.
+</p>
+
+<p>
+    The <code>VALUE_IS_ARRAY</code> mode indicates that the switch may be used multiple times when calling the command:
+</p>
+
+<pre><code>php artisan foo --option=bar --option=baz
+</code></pre>
+
+<p>The <code>VALUE_NONE</code> option indicates that the option is simply used as a "switch":</p>
+
+<pre><code>php artisan foo --option
+</code></pre>
+
+<h3>Retrieving Input</h3>
+
+<p>
+    While your command is executing, you will obviously need to access the values for the arguments and options accepted by your application. To do so, you may use the <code>argument</code> and <code>option</code> methods:
+</p>
+
+<p><strong>Retrieving The Value Of A Command Argument</strong></p>
+
+<pre><code>$value = $this-&gt;argument('name');
+</code></pre>
+
+<p><strong>Retrieving All Arguments</strong></p>
+
+<pre><code>$arguments = $this-&gt;argument();
+</code></pre>
+
+<p><strong>Retrieving The Value Of A Command Option</strong></p>
+
+<pre><code>$value = $this-&gt;option('name');
+</code></pre>
+
+<p><strong>Retrieving All Options</strong></p>
+
+<pre><code>$options = $this-&gt;option();
+</code></pre>
+
+<h3>Writing Output</h3>
+
+<p>
+    To send output to the console, you may use the <code>info</code>, <code>comment</code>, <code>question</code> and <code>error</code> methods. Each of these methods will use the appropriate ANSI colors for their purpose.
+</p>
+
+<p><strong>Sending Information To The Console</strong></p>
+
+<pre><code>$this-&gt;info('Display this on the screen');
+</code></pre>
+
+<p><strong>Sending An Error Message To The Console</strong></p>
+
+<pre><code>$this-&gt;error('Something went wrong!');
+</code></pre>
+
+<h3>Asking Questions</h3>
+
+<p>You may also use the <code>ask</code> and <code>confirm</code> methods to prompt the user for input:</p>
+
+<p><strong>Asking The User For Input</strong></p>
+
+<pre><code>$name = $this-&gt;ask('What is your name?');
+</code></pre>
+
+<p><strong>Asking The User For Secret Input</strong></p>
+
+<pre><code>$password = $this-&gt;secret('What is the password?');
+</code></pre>
+
+<p><strong>Asking The User For Confirmation</strong></p>
+
+<pre><code>if ($this-&gt;confirm('Do you wish to continue? [yes|no]'))
+{
+    //
+}
+</code></pre>
+
+<p>
+    You may also specify a default value to the <code>confirm</code> method, which should be <code>true</code> or <code>false</code>:
+</p>
+
+<pre><code>$this-&gt;confirm($question, true);
+</code></pre>
+
+<p><a name="registering-commands"></a></p>
+
+<h2>註冊指令</h2>
+
+<p>
+    Once your command is finished, you need to register it with Artisan so it will be available for use. This is typically done in the <code>app/start/artisan.php</code> file. Within this file, you may use the <code>Artisan::add</code> method to register the command:
+</p>
+
+<p><strong>Registering An Artisan Command</strong></p>
+
+<pre><code>Artisan::add(new CustomCommand);
+</code></pre>
+
+<p>
+    If your command is registered in the application <a href="/docs/ioc">IoC container</a>, you may use the <code>Artisan::resolve</code> method to make it available to Artisan:
+</p>
+
+<p><strong>Registering A Command That Is In The IoC Container</strong></p>
+
+<pre><code>Artisan::resolve('binding.name');
+</code></pre>
+
+<p><a name="calling-other-commands"></a></p>
+
+<h2>呼叫其他指令</h2>
+
+<p>
+    Sometimes you may wish to call other commands from your command. You may do so using the <code>call</code> method:
+</p>
+
+<p><strong>Calling Another Command</strong></p>
+
+<pre><code>$this-&gt;call('command.name', array('argument' =&gt; 'foo', '--option' =&gt; 'bar'));
+</code></pre>
+    </article>
+    <div class="clearfix"></div>
+    </div>
+</section>
+
+
+
+<footer>
+    <div class="container">
+        <a href="http://laravel.com/" title="Laravel PHP Framework" class="logo" target="_blank">
+            <img src="http://laravel.com/img/footer_logo.png" alt="Laravel PHP Framework">
+        </a>
+        <nav class="menu">
+            <ul>
+                <li>
+                    <a href="http://laravel.com/" title="Welcome" target="_blank">Welcome</a>
+                </li>
+                <li>
+                    <a href="http://laravel.com/docs" title="Documentation" target="_blank">Documentation</a>
+                </li>
+                <li class="active">
+                    <a href="../../docs/introduction" title="中文文件">中文文件</a>
+                </li>
+                <li>
+                    <a href="http://laravel.com/api" title="API" target="_blank">API</a>
+                </li>
+                <li>
+                    <a href="https://github.com/laravel/laravel" title="Github" target="_blank">Github</a>
+                </li>
+                <li>
+                    <a href="http://forums.laravel.io/" title="論壇" target="_blank">論壇</a>
+                </li>
+                <li>
+                    <a href="http://twitter.com/laravelphp" title="Twitter" target="_blank">Twitter</a>
+                </li>
+            </ul>
+        </nav>
+        <p class="copyright">Copyright &copy; 2013 Taylor Otwell. 網站由 <a href="http://casserolelabs.com/" title="Casserole Labs" target="_blank">Casserole Labs</a> 及 <a href="http://daylerees.com" title="Dayle Rees">Dayle Rees</a> 設計，中文翻譯 <a href="http://blog.kejyun.com" target="_blank">KeJyun</a></p>
+    </div>
+</footer>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://laravel.com/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="../../js/plugins.js"></script>
+<script src="../../js/main.min.js"></script>
+</body>
+</html>
