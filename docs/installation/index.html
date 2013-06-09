@@ -13,7 +13,9 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <title>Laravel 4 PHP Framework繁體中文教學文件</title>
-<meta name="description" content="Laravel, 優雅的PHP網頁工匠框架(Framework) 再開始享受開發上的樂趣吧">
+<meta name="description" content="Laravel, 優雅的PHP網頁工匠框架(Framework) 開始享受開發上的樂趣吧">
+<meta name="keyword" content="Laravel,Documentation,教學文件,繁體,中文,PHP,Framework,框架" />
+
 <link media="all" type="text/css" rel="stylesheet" href="../../css/style.css">
 <script src="../../js/modernizr-2.6.2.min.js"></script>
 
@@ -158,27 +160,31 @@
 <h2>安裝Composer</h2>
 
 <p>
-    Laravel utilizes <a href="http://getcomposer.org">Composer</a> to manage its dependencies. First, download a copy of the <code>composer.phar</code>. Once you have the PHAR archive, you can either keep it in your local project directory or move to <code>usr/local/bin</code> to use it globally on your system. On Windows, you can use the Composer <a href="https://getcomposer.org/Composer-Setup.exe">Windows installer</a>.
+    Laravel 使用 <a href="http://getcomposer.org" target="_blank">Composer</a> 作為套件管理軟體，首先下載 <code>composer.phar</code>，你可以將 PHAR 檔案放到你的專案目錄，或者將檔案移至 <code>usr/local/bin</code> ，讓整個系統都可以存取到這個檔案，在 Windows 中，你可以使用 Composer 中的 <a href="https://getcomposer.org/Composer-Setup.exe">Windows installer</a> 進行安裝
 </p>
 
 <p><a name="install-laravel"></a></p>
 
 <h2>安裝Laravel</h2>
 
-<h3>Via Composer Create-Project</h3>
+<h3>透過 Composer Create-Project 建立 Laravel 專案</h3>
 
-<p>You may install Laravel by issuing the Composer <code>create-project</code> command in your terminal:</p>
+<p>
+    你可以透過 Composer 的 <code>create-project</code> 指令建立您的 Laravel 專案
+</p>
 
 <pre><code>composer create-project laravel/laravel
 </code></pre>
 
-<h3>Via Download</h3>
+<h3>透過下載建立 Laravel 專案</h3>
 
 <p>
-    Once Composer is installed, download the <a href="https://github.com/laravel/laravel/archive/master.zip">latest version</a> of the Laravel framework and extract its contents into a directory on your server. Next, in the root of your Laravel application, run the <code>php composer.phar install</code> (or <code>composer install</code>) command to install all of the framework's dependencies. This process requires Git to be installed on the server to successfully complete the installation.
+    只要 Composer 安裝完成，下載 <a href="https://github.com/laravel/laravel/archive/master.zip">最新版本</a> 的 Laravel 檔案，並解壓到你的伺服器中，接下來在您的 Laravel 專案根目錄執行 <code>php composer.phar install</code> (或 <code>composer install</code>) 指令去安裝所有相依的套件，這個 Laravel 安裝過程，需要在伺服器完整安裝完 Git 後才可以順利執行。
 </p>
 
-<p>If you want to update the Laravel framework, you may issue the <code>php composer.phar update</code> command.</p>
+<p>
+    如果你想要更新 Laravel，你可以執行 <code>php composer.phar update</code> 指令進行更新
+</p>
 
 <p><a name="server-requirements"></a></p>
 
@@ -196,46 +202,52 @@
 <h2>設置</h2>
 
 <p>
-    Laravel needs almost no configuration out of the box. You are free to get started developing! However, you may wish to review the <code>app/config/app.php</code> file and its documentation. It contains several options such as <code>timezone</code> and <code>locale</code> that you may wish to change according to your application.
+    幾乎沒有Laravel需要配置開箱。你可以自由開始開發！不過，你不妨檢討的應用程式/配置/ app.php的文件和文 ​​檔。它包含幾個選項，如時區和語言環境，你不妨根據您的應用程序改變。
+
+    Laravel 開始幾乎不需要進行任何的設定，你可以自由開始開發了！不過，你或許希望重新檢視 <code>app/config/app.php</code> 檔案和說明文件，它包含幾個選項，如 <code>timezone(時區)</code> 和 <code>locale(語言環境)</code> ，你或許想根據您的應用程式需求進行變更。
 </p>
 
 <blockquote>
   <p>
-    <strong>Note:</strong> One configuration option you should be sure to set is the <code>key</code> option within <code>app/config/app.php</code>. This value should be set to a 32 character, random string. This key is used when encrypting values, and encrypted values will not be safe until it is properly set. You can set this value quickly by using the following artisan command <code>php artisan key:generate</code>.
+    <strong>備註:</strong> 一個在 <code>app/config/app.php</code> 的設置選項應該確保有設定 <code>key</code> 的選項，這個值應該設為32個字元的隨機字串，這個 key 將會被用來加密資料，除非 key 設定完成，否則您的加密資料都是不安全的，你可以透過 artisan 指令快速地建立此 key值 <code>php artisan key:generate</code>
   </p>
 </blockquote>
 
 <p><a name="permissions"></a></p>
 
-<h3>Permissions</h3>
+<h3>權限</h3>
 
 <p>
-    Laravel requires one set of permissions to be configured - folders within app/storage require write access by the web server.
+    Laravel 需要被設定一組權限的 - <code>app/storage</code> 資料夾在伺服器中必須要有寫入的權限
 </p>
 
 <p><a name="paths"></a></p>
 
-<h3>Paths</h3>
+<h3>路徑</h3>
 
 <p>
-    Several of the framework directory paths are configurable. To change the location of these directories, check out the <code>bootstrap/paths.php</code> file.
+    Laravel 框架的目錄是可以被設定的，可以檢查一下 <code>bootstrap/paths.php</code> 的檔案去變更你要變更的目錄
 </p>
 
 <blockquote>
   <p>
-    <strong>Note:</strong> Laravel is designed to protect your application code, and local storage by placing only files that are necessarily public in the public folder.  It is recommended that you either set the public folder as your site's documentRoot (also known as a web root) or to place the contents of public into your site's root directory and place all of Laravel's other files outside the web root.
+    <strong>備註:</strong> Laravel 已經設計成保護您的網頁應用程式的架構，僅能藉由本地端去存取你的程式，需要公開的檔案將會被放到 public 資料夾，建議您將 public 資料夾設定為您網頁的存取根目錄 (documentRoot)，也是你所知的網站根目錄(/)，放置所有要讓外部存取的檔案到 public 資料夾中，所有 Laravel 的其他相關檔案放在網頁根目錄之外，讓外部無法直接存取。
   </p>
 </blockquote>
+
+
 
 <p><a name="pretty-urls"></a></p>
 
 <h2>美觀的網址</h2>
 
 <p>
-    The framework ships with a <code>public/.htaccess</code> file that is used to allow URLs without <code>index.php</code>. If you use Apache to serve your Laravel application, be sure to enable the <code>mod_rewrite</code> module.
+    Laravel 有 <code>public/.htaccess</code> 的檔案，讓網址中不要出現 <code>index.php</code> 的檔案名稱，如果你使用 Apache當作您 Laravel 專案的網頁伺服器，請確保您有開啟 <code>mod_rewrite</code> 模組
 </p>
 
-<p>If the <code>.htaccess</code> file that ships with Laravel does not work with your Apache installation, try this one:</p>
+<p>
+    如果 <code>.htaccess</code> 在您的 Laravel 專案 Apache 伺服器中沒有發生作用，可以試試看這個:
+</p>
 
 <pre><code>Options +FollowSymLinks
 RewriteEngine On
