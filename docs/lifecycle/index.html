@@ -154,7 +154,7 @@
 <h2>概觀</h2>
 
 <p>
-	The Laravel request lifecycle is fairly simple. A request enters your application and is dispatched to the appropriate route or controller. The response from that route is then sent back to the browser and displayed on the screen. Sometimes you may wish to do some processing before or after your routes are actually called. There are several opportunities to do this, two of which are "start" files and application events.
+	Laravel 發出請求(Request)的生命週期相當簡單，當使用者請求存取你的應用程式，會將它費配到適當的 路由 (Route) 或 控制器(Controller)，然後從該路由送回訊息給瀏覽器顯示在螢幕上，有時候你可能會希望在存取路由 "之前 (before)" 或 "之後 (after)" 做一些處理，有幾個機會點可以做到這樣的需求，其中兩個是 "start" 檔案 和 應用程式事件。
 </p>
 
 <p><a name="start-files"></a></p>
@@ -162,15 +162,15 @@
 <h2>起始檔案</h2>
 
 <p>
-	Your application's start files are stored at <code>app/start</code>. By default, three are included with your application: <code>global.php</code>, <code>local.php</code>, and <code>artisan.php</code>. For more information about <code>artisan.php</code>, refer to the documentation on the <a href="/docs/commands#registering-commands">Artisan command line</a>.
+	你應用程式的 start 檔案室存放在 <code>app/start</code>，預設引用三個檔案到你的應用程式: <code>global.php</code> 、 <code>local.php</code> 及 <code>artisan.php</code> ，更多的 <code>artisan.php</code> 資訊請參考 <a href="../../docs/commands/#registering-commands">開發:註冊指令</a> 的說明文件。
 </p>
 
 <p>
-	The <code>global.php</code> start file contains a few basic items by default, such as the registration of the <a href="/docs/errors">Logger</a> and the inclusion of your <code>app/filters.php</code> file. However, you are free to add anything to this file that you wish. It will be automatically included on <em>every</em> request to your application, regardless of environment. The <code>local.php</code> file, on the other hand, is only called when the application is executing in the <code>local</code> environment. For more information on environments, check out the <a href="/docs/configuration">configuration</a> documentation.
+	<code>global.php</code> 的啟動檔案包含一些預設基本的元素，像是註冊 <a href="../../docs/errors">錯誤及記錄</a> 和引入你的 <code>app/filters.php</code> 檔案，不管怎樣，你還是可以隨意的加入任何東西在這個檔案，這樣在 <em>每次</em> 的請求，不論執行環境為何，都會自動引用到你的應用程式，而 <code>local.php</code> 的檔案則是當執行環境為 <code>local</code> 時才會被引用進去，對於更多的環境相關設定，請參考 <a href="../../docs/configuration">設定</a></li> 說明文件。
 </p>
 
 <p>
-	Of course, if you have other environments in addition to <code>local</code>, you may create start files for those environments as well. They will be automatically included when your application is running in that environment.
+	當然，如果你有除了 <code>local</code> 以外的其他執行環境，你可以建立這些環境的啟動檔案，他們將會在該環境中自動的被執行
 </p>
 
 <p><a name="application-events"></a></p>
@@ -178,7 +178,9 @@
 <h2>應用事件</h2>
 
 <p>
-	You may also do pre and post request processing by registering <code>before</code>, <code>after</code>, <code>close</code>, <code>finish</code>, and <code>shutdown</code> application events:
+	註冊之前，您也可以做前期和後期的請求處理，之後，關閉，完成後，關閉應用程序事件：
+
+	你可以藉由註冊 <code>before</code> 、 <code>after</code> 、 <code>close</code> 、 <code>finish</code> 和 <code>shutdown</code> 做應用程式的"前期"和"後期"的請求處理:
 </p>
 
 <p><strong>Registering Application Events</strong></p>
@@ -194,7 +196,9 @@ App::after(function($request, $response)
 });
 </code></pre>
 
-<p>Listeners to these events will be run <code>before</code> and <code>after</code> each request to your application.</p>
+<p>
+	這些事件的傾聽，將會在每次對應用程式請求(Request)的<code>之前(before)</code> 及 <code>之後(after)</code> 執行。
+</p>
     </article>
     <div class="clearfix"></div>
     </div>
