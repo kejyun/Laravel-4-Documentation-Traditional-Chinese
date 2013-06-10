@@ -5,5 +5,5 @@
  聯絡方式:kejyun@gmail.com
  -->
 <script type="text/javascript">
-window.location="./introduction";
+window.location="/docs/introduction";
 </script>
