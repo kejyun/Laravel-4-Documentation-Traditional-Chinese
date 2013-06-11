@@ -161,14 +161,16 @@
 <h2>基本控制器</h2>
 
 <p>
-  Instead of defining all of your route-level logic in a single <code>routes.php</code> file, you may wish to organize this behavior using Controller classes. Controllers can group related route logic into a class, as well as take advantage of more advanced framework features such as automatic <a href="/docs/ioc">dependency injection</a>.
+  而不是在一個單一的routes.php文件中定義的所有路線級邏輯，你可能希望使用控制器類組織這種行為。控制器可以歸為一類，相關的路由邏輯分組，以及利用更先進的功能，如自動依賴注入框架。
+
+  除了在 <code>routes.php</code> 檔案中定義你所有路由層級的邏輯外，你可能希望使用控制器類別去整理這些處理邏輯，控制器可以整合相關的路由邏輯成一個類別，也可以有進階框架功能的優點，像是自動化的 <a href="../../docs/ioc">IoC容器</a>
 </p>
 
 <p>
-  Controllers are typically stored in the <code>app/controllers</code> directory, and this directory is registered in the <code>classmap</code> option of your <code>composer.json</code> file by default.
+  控制器基本上是存放在 <code>app/controllers</code> 目錄裡，這個目錄已經在預設在 <code>composer.json</code> 檔案中的 <code>classmap</code> 選項預設註冊載入。
 </p>
 
-<p>Here is an example of a basic controller class:</p>
+<p>這裡有一個基本控制器的範例:</p>
 
 <pre><code>class UserController extends BaseController {
 
@@ -186,29 +188,35 @@
 </code></pre>
 
 <p>
-  All controllers should extend the <code>BaseController</code> class. The <code>BaseController</code> is also stored in the <code>app/controllers</code> directory, and may be used as a place to put shared controller logic. The <code>BaseController</code> extends the framework's <code>Controller</code> class. Now, We can route to this controller action like so:
+  所有的控制器必須繼承 <code>BaseController</code> 的類別，<code>BaseController</code> 也存放在 <code>app/controllers</code> 的目錄裡，也可以用來放一些共用的控制器邏輯，<code>BaseController</code> 繼承了 Laravel 框架的 <code>Controller</code> 類別，現在我們可以路由到這個控制的的方法，像這樣:
 </p>
 
 <pre><code>Route::get('user/{id}', 'UserController@showProfile');
 </code></pre>
 
-<p>If you choose to nest or organize your controller using PHP namespaces, simply use the fully qualified class name when defining the route:</p>
+<p>
+  如果你選擇用巢狀或 PHP 命名空間 (namespaces) 的方式去組織你的控制器，在定義路由時，只要使用完整符合類別名稱的規則即可:
+</p>
 
 <pre><code>Route::get('foo', 'Namespace\FooController@method');
 </code></pre>
 
-<p>You may also specify names on controller routes:</p>
+<p>你也可以命名控制器的路由</p>
 
 <pre><code>Route::get('foo', array('uses' =&gt; 'FooController@method',
                                         'as' =&gt; 'name'));
 </code></pre>
 
-<p>To generate a URL to a controller action, you may use the <code>URL::action</code> method:</p>
+<p>
+  為了產生 URL 指到到控制器，你可以使用 <code>URL::action</code> 的方法:
+</p>
 
 <pre><code>$url = URL::action('FooController@method');
 </code></pre>
 
-<p>You may access the name of the controller action being run using the <code>currentRouteAction</code> method:</p>
+<p>
+  你可以執行 <code>currentRouteAction</code> 方法去取得目前路由到控制器的方法:
+</p>
 
 <pre><code>$action = Route::currentRouteAction();
 </code></pre>
@@ -217,13 +225,17 @@
 
 <h2>控制器過濾</h2>
 
-<p><a href="/docs/routing#route-filters">Filters</a> may be specified on controller routes similar to "regular" routes:</p>
+<p>
+  <a href="../../docs/routing">路由 : 過濾器</a> 可以指定用在控制器，就像常見的"路由"一樣。
+</p>
 
 <pre><code>Route::get('profile', array('before' =&gt; 'auth',
             'uses' =&gt; 'UserController@showProfile'));
 </code></pre>
 
-<p>However, you may also specify filters from within your controller:</p>
+<p>
+  然而，你也可以在控制器裡面指定你的過濾器:
+</p>
 
 <pre><code>class UserController extends BaseController {
 
@@ -243,7 +255,9 @@
 }
 </code></pre>
 
-<p>You may also specify controller filters inline using a Closure:</p>
+<p>
+  你也可以在控制器的過濾器裡使用閉合函式:
+</p>
 
 <pre><code>class UserController extends BaseController {
 
@@ -266,16 +280,16 @@
 <h2>RESTful控制器</h2>
 
 <p>
-  Laravel allows you to easily define a single route to handle every action in a controller using simple, REST naming conventions. First, define the route using the <code>Route::controller</code> method:
+  Laravel 允許你使用簡單的 REST 命名規範，去定義一個簡單的路由去處理每一個在控制器裡的方法，首先使用 <code>Route::controller</code> 去定義路由:
 </p>
 
-<p><strong>Defining A RESTful Controller</strong></p>
+<p><strong>定義一個 RESTful 控制器</strong></p>
 
 <pre><code>Route::controller('users', 'UserController');
 </code></pre>
 
 <p>
-  The <code>controller</code> method accepts two arguments. The first is the base URI the controller handles, while the second is the class name of the controller. Next, just add methods to your controller, prefixed with the HTTP verb they respond to:
+  <code>controller</code> 方法允許兩個參數，第一個是 URI 為基準的控制器處理方法，第二個是控制器類別名稱，接下來只要增加方法到你的控制器，前綴使用 HTTP 請求方法的動詞去對應即可:
 </p>
 
 <pre><code>class UserController extends BaseController {
@@ -293,10 +307,12 @@
 }
 </code></pre>
 
-<p>The <code>index</code> methods will respond to the root URI handled by the controller, which, in this case, is <code>users</code>.</p>
+<p>
+  <code>index</code> 方法將會對應到控制器處理 URI 的根目錄，在這個例子是 <code>users</code>
+</p>
 
 <p>
-  If your controller action contains multiple words, you may access the action using "dash" syntax in the URI. For example, the following controller action on our <code>UserController</code> would respond to the <code>users/admin-profile</code> URI:
+  如果你的控制器方法包含數個字詞，你可以在 URI 使用 "破折號 (dash)" 的語法去存取它，舉例來說，在下面 <code>UserController</code> 的動作將會對應到 <code>users/admin-profile</code> 的 URI。
 </p>
 
 <pre><code>public function getAdminProfile() {}
@@ -307,24 +323,28 @@
 <h2>資源控制器</h2>
 
 <p>
-  Resource controllers make it easier to build RESTful controllers around resources. For example, you may wish to create a controller that manages "photos" stored by your application. Using the <code>controller:make</code> command via the Artisan CLI and the <code>Route::resource</code> method, we can quickly create such a controller.
+  資源 (Resource) 的控制器可以很容易地去建置 RESTful 控制器，舉例來說，你也許希望在你的應用裡，建立一個控制器去管理你的"相片"，在 Artisan介面指令 使用 <code>controller:make</code> 的指令，和 <code>Route::resource</code> 的方法，我們就可以快速地建立這些控制器。
 </p>
 
-<p>To create the controller via the command line, execute the following command:</p>
+<p>
+  為了透過命令列建立控制器，你可以執行下列指令:
+</p>
 
 <pre><code>php artisan controller:make PhotoController
 </code></pre>
 
-<p>Now we can register a resourceful route to the controller:</p>
+<p>
+  現在我們可以註冊一個資源化 (resourceful) 的路由到這個控制器:
+</p>
 
 <pre><code>Route::resource('photo', 'PhotoController');
 </code></pre>
 
 <p>
-  This single route declaration creates multiple routes to handle a variety of RESTful actions on the photo resource. Likewise, the generated controller will already have stubbed methods for each of these actions with notes informing you which URIs and verbs they handle.
+  這個單一路由的定義，在 photo 建立了多個路由資源，去做不同的 RESTful 動作存取，同樣的，被產生的控制器將會有基本的方法，這些方法動作將會告知你哪個 URI 和 HTTP 請求動作是他們所處理的。
 </p>
 
-<p><strong>Actions Handled By Resource Controller</strong></p>
+<p><strong>資源控制器處理的動作</strong></p>
 
 <table>
 <thead>
@@ -381,14 +401,18 @@
 </tbody>
 </table>
 
-<p>Sometimes you may only need to handle a subset of the resource actions:</p>
+<p>
+  有時候，你也許只需要處理資源的某些方法:
+</p>
 
 <pre><code>php artisan controller:make PhotoController --only=index,show
 
 php artisan controller:make PhotoController --except=index
 </code></pre>
 
-<p>And, you may also specify a subset of actions to handle on the route:</p>
+<p>
+  接下來，也可以指名路由去處理部分的方法動作:
+</p>
 
 <pre><code>Route::resource('photo', 'PhotoController',
                 array('only' =&gt; array('index', 'show')));
@@ -399,10 +423,10 @@ php artisan controller:make PhotoController --except=index
 <h2>處理不存在的方法</h2>
 
 <p>
-  A catch-all method may be defined which will be called when no other matching method is found on a given controller. The method should be named <code>missingMethod</code>, and receives the parameter array for the request as its only argument:
+  可以定義一個擷取所有動作的方法，在沒有比對到控制器中的方法時，會呼叫此方法，這個方法是命名為 <code>missingMethod</code>，且接受了的參數陣列為此請求方法的唯一參數:
 </p>
 
-<p><strong>Defining A Catch-All Method</strong></p>
+<p><strong>定義一個接收所有 (Catch-All) 請求的方法</strong></p>
 
 <pre><code>public function missingMethod($parameters)
 {
