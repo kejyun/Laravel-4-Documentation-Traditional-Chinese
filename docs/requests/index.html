@@ -139,21 +139,21 @@
         <h1>請求及輸入<br />(Requests &amp; Input)</h1>
 
 <ul>
-	<li>
-		<a href="#basic-input">基本輸入資訊</a>
-	</li>
-	<li>
-		<a href="#cookies">Cookies</a>
-	</li>
-	<li>
-		<a href="#old-input">舊輸入資訊</a>
-	</li>
-	<li>
-		<a href="#files">檔案</a>
-	</li>
-	<li>
-		<a href="#request-information">請求資訊</a>
-	</li>
+    <li>
+        <a href="#basic-input">基本輸入資訊</a>
+    </li>
+    <li>
+        <a href="#cookies">Cookies</a>
+    </li>
+    <li>
+        <a href="#old-input">舊輸入資訊</a>
+    </li>
+    <li>
+        <a href="#files">檔案</a>
+    </li>
+    <li>
+        <a href="#request-information">請求資訊</a>
+    </li>
 </ul>
 
 <p><a name="basic-input"></a></p>
@@ -161,20 +161,20 @@
 <h2>基本輸入資訊</h2>
 
 <p>
-	You may access all user input with a few simple methods. You do not need to worry about the HTTP verb used for the request, as input is accessed in the same way for all verbs.
+    你可以透過很簡單的方式，去存取到所有使用者輸入的資料，你不需要擔心任何不同的 HTTP 存取方法 (GET、POST、PUT、DELETE)，只要透過 Input 就可以存取到不同 HTTP 存取方法的資料了。
 </p>
 
-<p><strong>Retrieving An Input Value</strong></p>
+<p><strong>取得使用者傳入的資料</strong></p>
 
 <pre><code>$name = Input::get('name');
 </code></pre>
 
-<p><strong>Retrieving A Default Value If The Input Value Is Absent</strong></p>
+<p><strong>取不到使用者傳入的資料時，設定資料的預設值</strong></p>
 
 <pre><code>$name = Input::get('name', 'Sally');
 </code></pre>
 
-<p><strong>Determining If An Input Value Is Present</strong></p>
+<p><strong>判斷使用者傳入的資料是否存在</strong></p>
 
 <pre><code>if (Input::has('name'))
 {
@@ -182,12 +182,12 @@
 }
 </code></pre>
 
-<p><strong>Getting All Input For The Request</strong></p>
+<p><strong>取得所有使用者傳入任何 HTTP 請求的資料</strong></p>
 
 <pre><code>$input = Input::all();
 </code></pre>
 
-<p><strong>Getting Only Some Of The Request Input</strong></p>
+<p><strong>取得使用者輸入的部分資料</strong></p>
 
 <pre><code>$input = Input::only('username', 'password');
 
@@ -195,7 +195,7 @@ $input = Input::except('credit_card');
 </code></pre>
 
 <p>
-	Some JavaScript libraries such as Backbone may send input to the application as JSON. You may access this data via <code>Input::get</code> like normal.
+    某些 JavaScript 的函式庫會傳給應用程式 JSON 格式的資料，如 Backbone，你也可以透過 <code>Input::get</code> 去存取這些資料。
 </p>
 
 <p><a name="cookies"></a></p>
@@ -203,22 +203,22 @@ $input = Input::except('credit_card');
 <h2>Cookies</h2>
 
 <p>
-	All cookies created by the Laravel framework are encrypted and signed with an authentication code, meaning they will be considered invalid if they have been changed by the client.
+    在 Laravel 中的所有 cookies 資料都會被一個驗證碼經過加密，意思是如果 cookies 在 client 端被修改變更後，Laravel 會認為這個是不合法的 cookies。
 </p>
 
-<p><strong>Retrieving A Cookie Value</strong></p>
+<p><strong>取得 Cookie 資料</strong></p>
 
 <pre><code>$value = Cookie::get('name');
 </code></pre>
 
-<p><strong>Attaching A New Cookie To A Response</strong></p>
+<p><strong>在回應資料中加入 Cookie 資料</strong></p>
 
 <pre><code>$response = Response::make('Hello World');
 
 $response-&gt;withCookie(Cookie::make('name', 'value', $minutes));
 </code></pre>
 
-<p><strong>Creating A Cookie That Lasts Forever</strong></p>
+<p><strong>建立一個永遠不會失效的 Cookie</strong></p>
 
 <pre><code>$cookie = Cookie::forever('name', 'value');
 </code></pre>
@@ -228,15 +228,16 @@ $response-&gt;withCookie(Cookie::make('name', 'value', $minutes));
 <h2>舊輸入資訊</h2>
 
 <p>
-	You may need to keep input from one request until the next request. For example, you may need to re-populate a form after checking it for validation errors.
+    你或許在使用者做下一次的請求之前，需要保存使用者輸入過的資訊，舉例來說，你在使用者輸入資料後，對資料檢查時發現有誤時，在顯示資料的錯誤訊息外，你可能需要重新顯示使用者先前輸入過的資料。
 </p>
 
-<p><strong>Flashing Input To The Session</strong></p>
+
+<p><strong>將使用者輸入的資料存入 Session</strong></p>
 
 <pre><code>Input::flash();
 </code></pre>
 
-<p><strong>Flashing Only Some Input To The Session</strong></p>
+<p><strong>將使用者輸入的部分資料存入 Session</strong></p>
 
 <pre><code>Input::flashOnly('username', 'email');
 
@@ -244,7 +245,7 @@ Input::flashExcept('password');
 </code></pre>
 
 <p>
-	Since you often will want to flash input in association with a redirect to the previous page, you may easily chain input flashing onto a redirect.
+    因為你可能需要在將使用者導回先前的頁面時，順便帶有使用者先前輸入過的資料，你可以透過簡單的 chain 的方式在先前的頁面使用這些資料。
 </p>
 
 <pre><code>return Redirect::to('form')-&gt;withInput();
@@ -253,10 +254,10 @@ return Redirect::to('form')-&gt;withInput(Input::except('password'));
 </code></pre>
 
 <blockquote>
-  <p><strong>Note:</strong> You may flash other data across requests using the <a href="/docs/session">Session</a> class.</p>
+  <p><strong>備註:</strong> 你可以使用 <a href="../../docs/session">Session</a> 去存取在不同的請求中的資料</p>
 </blockquote>
 
-<p><strong>Retrieving Old Data</strong></p>
+<p><strong>取得舊的資料</strong></p>
 
 <pre><code>Input::old('username');
 </code></pre>
@@ -265,12 +266,12 @@ return Redirect::to('form')-&gt;withInput(Input::except('password'));
 
 <h2>檔案</h2>
 
-<p><strong>Retrieving An Uploaded File</strong></p>
+<p><strong>取得上傳的資料</strong></p>
 
 <pre><code>$file = Input::file('photo');
 </code></pre>
 
-<p><strong>Determining If A File Was Uploaded</strong></p>
+<p><strong>判斷檔案是否已完成上傳</strong></p>
 
 <pre><code>if (Input::hasFile('photo'))
 {
@@ -279,27 +280,27 @@ return Redirect::to('form')-&gt;withInput(Input::except('password'));
 </code></pre>
 
 <p>
-	The object returned by the <code>file</code> method is an instance of the <code>Symfony\Component\HttpFoundation\File\UploadedFile</code> class, which extends the PHP <code>SplFileInfo</code> class and provides a variety of methods for interacting with the file.
+    <code>file</code> 方法回傳的物件是 <code>Symfony\Component\HttpFoundation\File\UploadedFile</code> 類別的實例，引用了 PHP <code>SplFileInfo</code> 類別去提供不同的方法去存取檔案。
 </p>
 
-<p><strong>Moving An Uploaded File</strong></p>
+<p><strong>移動上傳的檔案</strong></p>
 
 <pre><code>Input::file('photo')-&gt;move($destinationPath);
 
 Input::file('photo')-&gt;move($destinationPath, $fileName);
 </code></pre>
 
-<p><strong>Retrieving The Path To An Uploaded File</strong></p>
+<p><strong>取得上傳檔案的路徑</strong></p>
 
 <pre><code>$path = Input::file('photo')-&gt;getRealPath();
 </code></pre>
 
-<p><strong>Retrieving The Size Of An Uploaded File</strong></p>
+<p><strong>取得上傳檔案的大小</strong></p>
 
 <pre><code>$size = Input::file('photo')-&gt;getSize();
 </code></pre>
 
-<p><strong>Retrieving The MIME Type Of An Uploaded File</strong></p>
+<p><strong>取得上傳檔案的 MIME 類型</strong></p>
 
 <pre><code>$mime = Input::file('photo')-&gt;getMimeType();
 </code></pre>
@@ -309,15 +310,15 @@ Input::file('photo')-&gt;move($destinationPath, $fileName);
 <h2>請求資訊</h2>
 
 <p>
-	The <code>Request</code> class provides many methods for examining the HTTP request for your application and extends the <code>Symfony\Component\HttpFoundation\Request</code> class. Here are some of the highlights.
+    <code>Request</code> 類別提供許多的方法去檢查 HTTP 請求，並引用了 <code>Symfony\Component\HttpFoundation\Request</code> 類別，這裡有一些相關重點整理。
 </p>
 
-<p><strong>Retrieving The Request URI</strong></p>
+<p><strong>取得請求的 URI</strong></p>
 
 <pre><code>$uri = Request::path();
 </code></pre>
 
-<p><strong>Determining If The Request Path Matches A Pattern</strong></p>
+<p><strong>判斷請求是否符合指定的模式</strong></p>
 
 <pre><code>if (Request::is('admin/*'))
 {
@@ -325,27 +326,27 @@ Input::file('photo')-&gt;move($destinationPath, $fileName);
 }
 </code></pre>
 
-<p><strong>Get The Request URL</strong></p>
+<p><strong>取得請求 URL</strong></p>
 
 <pre><code>$url = Request::url();
 </code></pre>
 
-<p><strong>Retrieve A Request URI Segment</strong></p>
+<p><strong>取得請求 URI 的片段</strong></p>
 
 <pre><code>$segment = Request::segment(1);
 </code></pre>
 
-<p><strong>Retrieving A Request Header</strong></p>
+<p><strong>取得請求標頭</strong></p>
 
 <pre><code>$value = Request::header('Content-Type');
 </code></pre>
 
-<p><strong>Retrieving Values From $_SERVER</strong></p>
+<p><strong>從 $_SERVER 取得資料</strong></p>
 
 <pre><code>$value = Request::server('PATH_INFO');
 </code></pre>
 
-<p><strong>Determine If The Request Is Using AJAX</strong></p>
+<p><strong>判斷是否使用 AJAX 去請求資料</strong></p>
 
 <pre><code>if (Request::ajax())
 {
@@ -353,7 +354,7 @@ Input::file('photo')-&gt;move($destinationPath, $fileName);
 }
 </code></pre>
 
-<p><strong>Determining If The Request Is Over HTTPS</strong></p>
+<p><strong>判斷是否透過 HTTPS 去請求資料</strong></p>
 
 <pre><code>if (Request::secure())
 {
