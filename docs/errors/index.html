@@ -139,34 +139,38 @@
         <h1>錯誤及記錄</h1>
 
 <ul>
-	<li>
-		<a href="#error-detail">錯誤細節</a>
-	</li>
-	<li>
-		<a href="#handling-errors">處理錯誤</a>
-	</li>
-	<li>
-		<a href="#http-exceptions">HTTP例外處理</a>
-	</li>
-	<li>
-		<a href="#handling-404-errors">處理404錯誤</a>
-	</li>
-	<li>
-		<a href="#logging">紀錄</a>
-	</li>
+    <li>
+        <a href="#error-detail">錯誤細節</a>
+    </li>
+    <li>
+        <a href="#handling-errors">處理錯誤</a>
+    </li>
+    <li>
+        <a href="#http-exceptions">HTTP例外處理</a>
+    </li>
+    <li>
+        <a href="#handling-404-errors">處理404錯誤</a>
+    </li>
+    <li>
+        <a href="#logging">紀錄</a>
+    </li>
 </ul>
 
 <p><a name="error-detail"></a></p>
 
 <h2>錯誤細節</h2>
 
-<p>By default, error detail is enabled for your application. This means that when an error occurs you will be shown an error page with a detailed stack trace and error message. You may turn off error details by setting the <code>debug</code> option in your <code>app/config/app.php</code> file to <code>false</code>. <strong>It is strongly recommended that you turn off error detail in a production environment.</strong></p>
+<p>
+    Laravel 預設會開啟錯誤訊息顯示，所以在發生錯誤時，將會在錯誤頁面顯示詳細的錯誤訊息，你可以在 <code>app/config/app.php</code> 檔案中，藉由將 <code>debug</code> 選項設定為 <code>false</code>，即可關掉這些錯誤顯示，<strong>強烈建議你在產品的環境中做這樣的設定</strong>。
+</p>
 
 <p><a name="handling-errors"></a></p>
 
 <h2>處理錯誤</h2>
 
-<p>By default, the <code>app/start/global.php</code> file contains an error handler for all exceptions:</p>
+<p>
+    預設的情況下，<code>app/start/global.php</code> 檔案中，包含了所有例外狀況的處理程序:
+</p>
 
 <pre><code>App::error(function(Exception $exception)
 {
@@ -174,7 +178,9 @@
 });
 </code></pre>
 
-<p>This is the most basic error handler. However, you may specify more handlers if needed. Handlers are called based on the type-hint of the Exception they handle. For example, you may create a handler that only handles <code>RuntimeException</code> instances:</p>
+<p>
+    這個是最基本的例外處理程序，然而，如果可以的話，你可能想要定義更多的自訂的例外處理程序，處理程序是根據他們所需要處理的例外類型提示 (type-hint) 而被呼叫的，舉例來說，你可以建立一個只有處理 <code>RuntimeException</code> 例外狀況的處理程序:
+</p>
 
 <pre><code>App::error(function(RuntimeException $exception)
 {
@@ -182,7 +188,9 @@
 });
 </code></pre>
 
-<p>If an exception handler returns a response, that response will be sent to the browser and no other error handlers will be called:</p>
+<p>
+    假如例外處理程序回傳一個回應，則此回應將會傳送給瀏覽器，而沒有其他任何的例外處理程序會被呼叫:
+</p>
 
 <pre><code>App::error(function(InvalidUserException $exception)
 {
@@ -192,7 +200,9 @@
 });
 </code></pre>
 
-<p>To listen for PHP fatal errors, you may use the <code>App::fatal</code> method:</p>
+<p>
+    你可以使用 <code>App::fatal</code> 的方法，去擷取 PHP fatal errors 錯誤事件:
+</p>
 
 <pre><code>App::fatal(function($exception)
 {
@@ -204,25 +214,35 @@
 
 <h2>HTTP例外處理</h2>
 
-<p>Exceptions in respect to HTTP, refer to errors that may occur during a client request. This may be a page not found error (404), an unauthorized error (401) or even a generated 500 error. In order to return such a response, use the following:</p>
+<p>
+    在 HTTP 的例外情形，可參考用戶端請求時可能發生的錯誤情況，可能是沒有找到頁面的錯誤 (404)，未授權的錯誤 (401)，甚至是產生 500 錯誤的情況，你可以使用下列方式回傳這樣的錯誤回應:
+</p>
 
 <pre><code>App::abort(404, 'Page not found');
 </code></pre>
 
-<p>The first argument, is the HTTP status code, with the following being a custom message you'd like to show with the error.</p>
+<p>
+    第一個參數是 HTTP 的狀態碼，而後面是你想顯示的自訂錯誤訊息。
+</p>
 
-<p>In order to raise a 401 Unauthorized exception, just do the following:</p>
+<p>
+    你可以使用下列方法，產生 401  未授權的錯誤:
+</p>
 
 <pre><code>App::abort(401, 'You are not authorized.');
 </code></pre>
 
-<p>These exceptions can be executed at any time during the request's lifecycle.</p>
+<p>
+    這些例外狀況可以在任何請求的生命週期中被執行。
+</p>
 
 <p><a name="handling-404-errors"></a></p>
 
 <h2>處理404錯誤</h2>
 
-<p>You may register an error handler that handles all "404 Not Found" errors in your application, allowing you to return custom 404 error pages:</p>
+<p>
+    你可以在應用程式註冊一個錯誤處理程序處理所有 "404 沒有找到頁面" 的錯誤情況，允許你產生一個自訂的 404 錯誤頁面:
+</p>
 
 <pre><code>App::missing(function($exception)
 {
@@ -234,7 +254,9 @@
 
 <h2>紀錄</h2>
 
-<p>The Laravel logging facilities provide a simple layer on top of the powerful <a href="http://github.com/seldaek/monolog">Monolog</a>. By default, Laravel is configured to create daily log files for your application, and these files are stored in <code>app/storage/logs</code>. You may write information to these logs like so:</p>
+<p>
+    Laravel 的記錄功能，提供一個簡單強大的 <a href="http://github.com/seldaek/monolog">Monolog</a>，預設的情況下，Laravel 會被設定去產生每天的紀錄檔，並將記錄檔存放在 <code>app/storage/logs</code> 目錄中，你也可以些一些資訊到這些紀錄檔中，就像:
+</p>
 
 <pre><code>Log::info('This is some useful information.');
 
@@ -243,16 +265,22 @@ Log::warning('Something could be going wrong.');
 Log::error('Something is really going wrong.');
 </code></pre>
 
-<p>The logger provides the seven logging levels defined in <a href="http://tools.ietf.org/html/rfc5424">RFC 5424</a>: <strong>debug</strong>, <strong>info</strong>, <strong>notice</strong>, <strong>warning</strong>, <strong>error</strong>, <strong>critical</strong>, and <strong>alert</strong>.</p>
+<p>
+    紀錄器提供七種在 <a href="http://tools.ietf.org/html/rfc5424">RFC 5424</a> 定義的紀錄級別 : <strong>debug</strong>, <strong>info</strong> 、 <strong>notice</strong> 、 <strong>warning</strong> 、 <strong>error</strong> 、 <strong>critical</strong> 及 <strong>alert</strong>
+</p>
 
-<p>Monolog has a variety of additional handlers you may use for logging. If needed, you may access the underlying Monolog instance being used by Laravel:</p>
+<p>
+    Monolog 有數種你可以使用的額外的處理程序，如果需要，你可以在 Laravel 存取 Monolog 底層的實例資源:
+</p>
 
 <pre><code>$monolog = Log::getMonolog();
 </code></pre>
 
-<p>You may also register an event to catch all messages passed to the log:</p>
+<p>
+    你也可以註冊一個事件，去擷取所有訊息並傳送訊息到紀錄裡:
+</p>
 
-<p><strong>Registering A Log Listener</strong></p>
+<p><strong>註冊一個紀錄傾聽器</strong></p>
 
 <pre><code>Log::listen(function($level, $message, $context)
 {
