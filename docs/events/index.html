@@ -161,10 +161,10 @@
 <h2>基本使用</h2>
 
 <p>
-    The Laravel <code>Event</code> class provides a simple observer implementation, allowing you to subscribe and listen for events in your application.
+    Laravel 的 <code>Event</code> 類別提供一個簡單的觀察者實作，允許你訂閱及傾聽你應用程式的事件。
 </p>
 
-<p><strong>Subscribing To An Event</strong></p>
+<p><strong>訂閱事件</strong></p>
 
 <pre><code>Event::listen('user.login', function($user)
 {
@@ -174,25 +174,27 @@
 });
 </code></pre>
 
-<p><strong>Firing An Event</strong></p>
+<p><strong>觸發事件</strong></p>
 
 <pre><code>$event = Event::fire('user.login', array($user));
 </code></pre>
 
 <p>
-    You may also specify a priority when subscribing to events. Listeners with higher priority will be run first, while listeners that have the same priority will be run in order of subscription.
+    你也可以指定訂閱事件的優先順序，有更高優先等級傾聽器會先被執行，如果有相同優先等級的傾聽器，將會依照事件訂閱順序依序執行。
 </p>
 
-<p><strong>Subscribing To Events With Priority</strong></p>
+<p><strong>訂閱有優先等級的事件</strong></p>
 
 <pre><code>Event::listen('user.login', 'LoginHandler', 10);
 
 Event::listen('user.login', 'OtherHandler', 5);
 </code></pre>
 
-<p>Sometimes, you may wish to stop the propagation of an event to other listeners. You may do so using by returning <code>false</code> from your listener:</p>
+<p>
+    有時候，你也需希望能夠停止擴散事件到其他事件傾聽器，你可以在你的傾聽器中回傳 <code>false</code> 達到停止擴散的目的:
+</p>
 
-<p><strong>Stopping The Propagation Of An Event</strong></p>
+<p><strong>停止傳遞事件</strong></p>
 
 <pre><code>Event::listen('user.login', function($event)
 {
@@ -206,9 +208,11 @@ Event::listen('user.login', 'OtherHandler', 5);
 
 <h2>萬用字元傾聽器</h2>
 
-<p>When registering an event listener, you may use asterisks to specify wildcard listeners:</p>
+<p>
+    你可以使用萬用字元 (*) 去註冊事件傾聽器:
+</p>
 
-<p><strong>Registering Wildcard Event Listeners</strong></p>
+<p><strong>註冊萬用字元事件傾聽器</strong></p>
 
 <pre><code>Event::listen('foo.*', function($param, $event)
 {
@@ -217,7 +221,7 @@ Event::listen('user.login', 'OtherHandler', 5);
 </code></pre>
 
 <p>
-    This listener will handle all events that begin with <code>foo.</code>. Note that the full event name is passed as the last argument to the handler.
+    這個傾聽器將會處理所有開頭為 <code>foo.</code> 的所有事件，注意到，完整的事件名稱，將會當作最後一個參數，傳給送處理器。
 </p>
 
 <p><a name="using-classes-as-listeners"></a></p>
@@ -225,17 +229,19 @@ Event::listen('user.login', 'OtherHandler', 5);
 <h2>使用類別傾聽器</h2>
 
 <p>
-    In some cases, you may wish to use a class to handle an event rather than a Closure. Class event listeners will be resolved out of the <a href="/docs/ioc">Laravel IoC container</a>, providing you the full power of dependency injection on your listeners.
+    在某些例子中，你可能希望使用一個類別去處理事件，而不是用閉合函式，類別事件傾聽器將會在 <a href="/docs/ioc">Laravel IoC container</a> 中被處理，提供一個完整強大的相依性，注入在你的傾聽器中。
 </p>
 
-<p><strong>Registering A Class Listener</strong></p>
+<p><strong>註冊事件傾聽器類別</strong></p>
 
 <pre><code>Event::listen('user.login', 'LoginHandler');
 </code></pre>
 
-<p>By default, the <code>handle</code> method on the <code>LoginHandler</code> class will be called:</p>
+<p>
+    預設，在 <code>LoginHandler</code> 類別的 <code>handle</code> 方法將會被呼叫:
+</p>
 
-<p><strong>Defining An Event Listener Class</strong></p>
+<p><strong>定義事件傾聽器類別</strong></p>
 
 <pre><code>class LoginHandler {
 
@@ -248,10 +254,10 @@ Event::listen('user.login', 'OtherHandler', 5);
 </code></pre>
 
 <p>
-    If you do not wish to use the default <code>handle</code> method, you may specify the method that should be subscribed:
+    假如你不希望使用預設 <code>handle</code> 方法，你可以在訂閱事件中，指定要執行的方法:
 </p>
 
-<p><strong>Specifying Which Method To Subscribe</strong></p>
+<p><strong>指定訂閱事件的方法</strong></p>
 
 <pre><code>Event::listen('user.login', 'LoginHandler@onLogin');
 </code></pre>
@@ -261,15 +267,15 @@ Event::listen('user.login', 'OtherHandler', 5);
 <h2>佇列事件</h2>
 
 <p>
-    Using the <code>queue</code> and <code>flush</code> methods, you may "queue" an event for firing, but not fire it immediately:
+    使用 <code>queue</code> 及 <code>flush</code> 方法，你可以不要立即觸發事件，將事件存放在 "佇列" 中，等著之後再被觸發:
 </p>
 
-<p><strong>Registering A Queued Event</strong></p>
+<p><strong>註冊一個佇列事件</strong></p>
 
 <pre><code>Event::queue('foo', array($user));
 </code></pre>
 
-<p><strong>Registering An Event Flusher</strong></p>
+<p><strong>註冊一個事件清除器</strong></p>
 
 <pre><code>Event::flusher('foo', function($user)
 {
@@ -277,7 +283,9 @@ Event::listen('user.login', 'OtherHandler', 5);
 });
 </code></pre>
 
-<p>Finally, you may run the "flusher" and flush all queued events using the <code>flush</code> method:</p>
+<p>
+    最後，你可以使用 <code>flush</code> 方法，執行 "事件清除器" 去清除所有被 "佇列" 的事件:
+</p>
 
 <pre><code>Event::flush('foo');
 </code></pre>
@@ -287,10 +295,10 @@ Event::listen('user.login', 'OtherHandler', 5);
 <h2>事件訂閱</h2>
 
 <p>
-    Event subscribers are classes that may subscribe to multiple events from within the class itself. Subscribers should define a <code>subscribe</code> method, which will be passed an event dispatcher instance:
+    事件訂閱是類別時，可以在類別中訂閱數個事件，訂閱者應定義 <code>subscribe</code> 方法，此方法將會被事件分配器實例傳遞:
 </p>
 
-<p><strong>Defining An Event Subscriber</strong></p>
+<p><strong>定義事件訂閱者</strong></p>
 
 <pre><code>class UserEventHandler {
 
@@ -326,9 +334,11 @@ Event::listen('user.login', 'OtherHandler', 5);
 }
 </code></pre>
 
-<p>Once the subscriber has been defined, it may be registered with the <code>Event</code> class.</p>
+<p>
+    只要訂閱者被定義，此事件將會在 <code>Event</code> 類別中被註冊。
+</p>
 
-<p><strong>Registering An Event Subscriber</strong></p>
+<p><strong>註冊事件訂閱者</strong></p>
 
 <pre><code>$subscriber = new UserEventHandler;
 
