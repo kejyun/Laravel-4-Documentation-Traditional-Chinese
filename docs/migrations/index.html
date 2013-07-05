@@ -161,33 +161,35 @@
 <h2>介紹</h2>
 
 <p>
-    Migrations are a type of version control for your database. They allow a team to modify the database schema and stay up to date on the current schema state. Migrations are typically paired with the <a href="/docs/schema">Schema Builder</a> to easily manage your application's scheme.
+    Migration 是資料庫的版本控制系統，可以讓你們團隊去修改資料庫的結構，並保持彼此的資料庫結構都在最新狀態， Migration 搭配 <a href="../../docs/schema">Schema產生器</a> 方便的管理你應用程式資料庫的結構。
 </p>
 
 <p><a name="creating-migrations"></a></p>
 
 <h2>建立 Migrations</h2>
 
-<p>To create a migration, you may use the <code>migrate:make</code> command on the Artisan CLI:</p>
+<p>
+    你可以在 <a href="../../docs/artisan">Artisan CLI</a> 中使用 <code>migrate:make</code> 去建立一個新的 Migration:
+</p>
 
-<p><strong>Creating A Migration</strong></p>
+<p><strong>建立新的 Migration</strong></p>
 
 <pre><code>php artisan migrate:make create_users_table
 </code></pre>
 
 <p>
-    The migration will be placed in your <code>app/database/migrations</code> folder, and will contain a timestamp which allows the framework to determine the order of the migrations.
+    產生的 Migration 檔案將會被放在 <code>app/database/migrations</code> 資料夾當中，檔名中會包含時間戳記，讓 Laravel 可以知道這些 Migration 執行的順序。
 </p>
 
 <p>
-    You may also specify a <code>--path</code> option when creating the migration. The path should be relative to the root directory of your installation:
+    在建立 Migration 時你也可以使用 <code>--path</code> 選項去指定 Migration 產生的路徑，這個路徑是相對於你安裝 Laravel 的根目錄:
 </p>
 
 <pre><code>php artisan migrate:make foo --path=app/migrations
 </code></pre>
 
 <p>
-    The <code>--table</code> and <code>--create</code> options may also be used to indicate the name of the table, and whether the migration will be creating a new table:
+    <code>--table</code> 跟 <code>--create</code> 選項可以用來指定自動產生的 Migration 檔案中，要使用什麼樣的資料表名稱，以及告訴 Migration 要做建立資料表的動作:
 </p>
 
 <pre><code>php artisan migrate:make create_users_table --table=users --create
@@ -197,40 +199,40 @@
 
 <h2>執行 Migrations</h2>
 
-<p><strong>Running All Outstanding Migrations</strong></p>
+<p><strong>執行所有尚未執行的 Migration</strong></p>
 
 <pre><code>php artisan migrate
 </code></pre>
 
-<p><strong>Running All Outstanding Migrations For A Path</strong></p>
+<p><strong>執行指定路徑中，所有中尚未執行的 Migration</strong></p>
 
 <pre><code>php artisan migrate --path=app/foo/migrations
 </code></pre>
 
-<p><strong>Running All Outstanding Migrations For A Package</strong></p>
+<p><strong>執行指定套件中，所有尚未執行的 Migration</strong></p>
 
 <pre><code>php artisan migrate --package=vendor/package
 </code></pre>
 
 <blockquote>
-  <p><strong>Note:</strong> If you receive a "class not found" error when running migrations, try running the <code>composer update</code> command.</p>
+  <p><strong>注意:</strong> 如果你在執行 Migration 時收到 "class not found" 的錯誤訊息，可以試著執行 <code>composer update</code> 指令去更新套件。</p>
 </blockquote>
 
 <p><a name="rolling-back-migrations"></a></p>
 
 <h2>復原 Migrations</h2>
 
-<p><strong>Rollback The Last Migration Operation</strong></p>
+<p><strong>復原最後一筆 migration 紀錄</strong></p>
 
 <pre><code>php artisan migrate:rollback
 </code></pre>
 
-<p><strong>Rollback all migrations</strong></p>
+<p><strong>重設所有的 migration 紀錄</strong></p>
 
 <pre><code>php artisan migrate:reset
 </code></pre>
 
-<p><strong>Rollback all migrations and run them all again</strong></p>
+<p><strong>重設所有的 migration，並重新執行所有的 migration</strong></p>
 
 <pre><code>php artisan migrate:refresh
 
@@ -242,10 +244,12 @@ php artisan migrate:refresh --seed
 <h2>資料庫 Seeding</h2>
 
 <p>
-    Laravel also includes a simple way to seed your database with test data using seed classes. All seed classes are stored in <code>app/database/seeds</code>. Seed classes may have any name you wish, but probably should follow some sensible convention, such as <code>UserTableSeeder</code>, etc. By default, a <code>DatabaseSeeder</code> class is defined for you. From this class, you may use the <code>call</code> method to run other seed classes, allowing you to control the seeding order.
+    Laravel還包括一個簡單的方法你的數據庫的測試數據，使用種子類種子。所有種子類存儲在應用程序/數據庫/種子。種子類可能有任何你希望的名字，但默認情況下應該遵循一些明智的慣例，如UserTableSeeder等，為您定義一個DatabaseSeeder類。從這個類，你可以使用呼叫的方法來運行其他種子類，允許你控制播種順序。
+
+    Laravel 亦提供簡單的 seed 類別方法，去產生資料庫的測試資料，所有的 seed 類別存放在 <code>app/database/seeds</code> 目錄中， seed 類別名稱可以隨意的命名，但必須遵循一些規則，像是 <code>UserTableSeeder</code> ，預設情況下會為你定義 <code>DatabaseSeeder</code> 類別，從這個類別你可以使用 <code>call</code> 方法去執行你的測試資料種子的類別方法，讓你可以控制測試資料的順序。
 </p>
 
-<p><strong>Example Database Seed Class</strong></p>
+<p><strong>資料庫 Seed 類別範例</strong></p>
 
 <pre><code>class DatabaseSeeder extends Seeder {
 
@@ -270,13 +274,15 @@ class UserTableSeeder extends Seeder {
 }
 </code></pre>
 
-<p>To seed your database, you may use the <code>db:seed</code> command on the Artisan CLI:</p>
+<p>
+    你可以在 <a href="../../docs/artisan">Artisan CLI</a> 使用 <code>db:seed</code> 去執行產生你 Seed 的測試資料:
+</p>
 
 <pre><code>php artisan db:seed
 </code></pre>
 
 <p>
-    You may also seed your database using the <code>migrate:refresh</code> command, which will also rollback and re-run all of your migrations:
+    你也可以使用 <code>migrate:refresh</code> 指令去產生你 Seed 的測試資料，這個指令會回復並重新執行所有的 Migration:
 </p>
 
 <pre><code>php artisan migrate:refresh --seed
@@ -318,7 +324,7 @@ class UserTableSeeder extends Seeder {
                 </li>
             </ul>
         </nav>
-        <p class="copyright">Copyright &copy; 2013 Taylor Otwell. 網站由 <a href="http://casserolelabs.com/" title="Casserole Labs" target="_blank">Casserole Labs</a> 及 <a href="http://daylerees.com" title="Dayle Rees">Dayle Rees</a> 設計，中文翻譯 <a href="http://blog.kejyun.com" target="_blank">KeJyun</a></p>
+        <p class="copyright">Copyright &copy; 2013 Taylor Otwell. 網站由 <a href="http://casserolelabs.com/" title="Casserole Labs" target="_blank">Casserole Labs</a> 及 <a href="http://daylerees.com" title="Dayle Rees">Dayle Rees</a> 設計，中文翻譯 <a href="http://blog.kejyun.com" target="_blank">KeJyun</a> 及 <a href="http://blog.liaosankai.comm" target="_blank">SANKAI</a> </p>
     </div>
 </footer>
 
