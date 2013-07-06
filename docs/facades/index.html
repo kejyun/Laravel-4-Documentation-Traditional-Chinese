@@ -162,15 +162,15 @@
 <h2>介紹</h2>
 
 <p>
-    Facades provide a "static" interface to classes that are available in the application's <a href="/docs/ioc">IoC container</a>. Laravel ships with many facades, and you have probably been using them without even knowing it!
+    Facades 提供一個 "靜態" 介面讓類別能夠運用在應用程式的 <a href="../../docs/ioc">IoC容器</a> (Ioc container)。 Laravel 裝載很多 facades，甚至你可能不知不覺已經使用過它們了！
 </p>
 
 <p>
-    Occasionally, You may wish to create your own facades for your applications and packages, so let's explore the concept, development and usage of these classes.
+    有時候，你也許希望為你的應用程式和套件建立自己的 facades，所以讓我們來探討這些類別的概念、開發和用法。
 </p>
 
 <blockquote>
-  <p><strong>Note:</strong> Before digging into facades, it is strongly recommended that you become very familiar with the Laravel <a href="/docs/ioc">IoC container</a>.</p>
+  <p><strong>注意:</strong> 在深入 facades 之前，強烈建議先熟悉了解 Laravel 的 <a href="../../docs/ioc">IoC容器</a>。</p>
 </blockquote>
 
 <p><a name="explanation"></a></p>
@@ -178,11 +178,11 @@
 <h2>解釋</h2>
 
 <p>
-    In the context of a Laravel application, a facade is a class that provides access to an object from the container. The machinery that makes this work is in the <code>Facade</code> class. Laravel's facades, and any custom facades you create, will extend the base <code>Facade</code> class.
+    對 Laravel 應用程式而言，facade 是提供從容器存取物件的一個類別。 能讓這裝置正常運作的原因，正是這些 <code>Facade</code> 類別。 Laravel 的 facades 以及任何你所建立的自訂 facades，都將繼承這個類別來當基礎。
 </p>
 
 <p>
-    Your facade class only needs to implement a single method: <code>getFacadeAccessor</code>. It's the <code>getFacadeAccessor</code> method's job to define what to resolve from the container. The <code>Facade</code> base class makes use of the <code>__callStatic()</code> magic-method to defer calls from your facade to the resolved object.
+    你的 facade 類別只需要實作一個方法 <code>getFacadeAccessor</code> 。 <code>getFacadeAccessor</code> 的工作就是去定義哪些東西要從容器分析出來。 而 <code>Facade</code> 基本類別利用 <code>__callStatic()</code> 神奇方法來從你的 facade 呼叫並分析物件。
 </p>
 
 <p><a name="practical-usage"></a></p>
@@ -190,14 +190,14 @@
 <h2>實際使用</h2>
 
 <p>
-    In the example below, a call is made to the Laravel cache system. By glancing at this code, one might assume that the static method <code>get</code> is being called on the <code>Cache</code> class.
+    下面是一個 Laravel 快取系統呼叫的範例。 從程式碼中粗略來看，假設 <code>Cache</code>  類別的靜態方法 <code>get</code> 正被呼叫。
 </p>
 
 <pre><code>$value = Cache::get('key');
 </code></pre>
 
 <p>
-    However, if we look at that <code>Illuminate\Support\Facades\Cache</code> class, you'll see that there is no static method <code>get</code>:
+    然而，如果我們試著看看 <code>Illuminate\Support\Facades\Cache</code> 這個類別，你將會發現它並沒有 <code>get</code> 靜態方法:
 </p>
 
 <pre><code>class Cache extends Facade {
@@ -213,14 +213,16 @@
 </code></pre>
 
 <p>
-    The Cache class extends the base <code>Facade</code> class and defines a method <code>getFacadeAccessor()</code>. Remember, this method's job is to return the name of an IoC binding.
+    這個 Cache 類別繼承了基本的 <code>Facade</code> 類別，並且定義了 <code>getFacadeAccessor()</code> 方法。 記住，這個方法的工作是用來回傳控制反轉所綁定的名稱。
 </p>
 
 <p>
-    When a user references any static method on the <code>Cache</code> facade, Laravel resolves the <code>cache</code> binding from the IoC container and runs the requested method (in this case, <code>get</code>) against that object.
+    當一個使用者在 <code>Cache</code> 這個 facade 參照任何靜態方法，Laravel 會從控制反轉容器中分析被綁定的 <code>cache</code> ，並執行被請求的方法(這個案例就是 <code>get</code> )。
 </p>
 
-<p>So, our <code>Cache::get</code> call could be re-written like so:</p>
+<p>
+    所以，我們的 <code>Cache::get</code> 呼叫起來，應該會被覆寫像是:
+</p>
 
 <pre><code>$value = $app-&gt;make('cache')-&gt;get('key');
 </code></pre>
@@ -229,15 +231,19 @@
 
 <h2>建立Facades</h2>
 
-<p>Creating a facade for your own application or package is simple. You only need 3 things:</p>
+<p>
+    為自己的應用程式或套件建立 facade 是相當簡單的。 你只需要三件事:
+</p>
 
 <ul>
-<li>An IoC binding</li>
-<li>A facade class.</li>
-<li>A facade alias configuration.</li>
+    <li>一個控制反轉(Ioc)綁定</li>
+    <li>一個 facade 類別</li>
+    <li>一個 facade 別名設定</li>
 </ul>
 
-<p>Let's look at an example. Here, we have a class defined as <code>PaymentGateway\Payment</code>.</p>
+<p>
+    看看這個範例，這裡我們有一個類別 <code>PaymentGateway\Payment</code> 定義如下。
+</p>
 
 <pre><code>namespace PaymentGateway;
 
@@ -251,7 +257,9 @@ class Payment {
 }
 </code></pre>
 
-<p>We need to be able to resolve this class from the IoC container. So, let's add a binding:</p>
+<p>
+    我們需要能夠從控制反轉容器中分析這個類別。 所以我們進行綁定:
+</p>
 
 <pre><code>App::bind('payment', function()
 {
@@ -260,10 +268,10 @@ class Payment {
 </code></pre>
 
 <p>
-    A great place to register this binding would be to create a new <a href="/docs/ioc#service-providers">service provider</a> named <code>PaymentServiceProvider</code>, and add this binding to the <code>register</code> method. You can then configure Laravel to load your service provider from the <code>app/config/app.php</code> configuration file.
+    綁定後將會建立一個被命名為 <code>PaymentServiceProvider</code> 新的 <a href="../../docs/ioc#service-providers">服務提供者 (service provider) </a> 服務供應器。並追加到 <code>register</code> 方法。 你可以從 <code>app/config/app.php</code> 追加設定讓 Laravel 讀取你的服務供應器。
 </p>
 
-<p>Next, we can create our own facade class:</p>
+<p>接下來，我們建立自己的 facade 類別:</p>
 
 <pre><code>use Illuminate\Support\Facades\Facade;
 
@@ -275,7 +283,7 @@ class Payment extends Facade {
 </code></pre>
 
 <p>
-    Finally, if we wish, we can add an alias for our facade to the <code>aliases</code> array in the <code>app/config/app.php</code> configuration file. Now, we can call the <code>process</code> method on an instance of the <code>Payment</code> class.
+    最後，如果我們想要的話，可以從 <code>app/config/app.php</code> 的設定檔追加 facade 別名到 <code>aliases</code> 陣列中。 現在，我們能夠從 <code>Payment</code> 實例來呼叫 <code>process</code> 方法。
 </p>
 
 <pre><code>Payment::process();
@@ -286,7 +294,7 @@ class Payment extends Facade {
 <h2>模擬Facades</h2>
 
 <p>
-    Unit testing is an important aspect of why facades work the way that they do. In fact, testability is the primary reason for facades to even exist. For more information, check out the <a href="/docs/testing#mocking-facades">mocking facades</a> section of the documentation.
+    單元測試是為什麼要使用 facades 來作業的重要一環。 事實上，可測試性甚至是 facades 存在的主要理由。 更多資訊可參考 <a href="../../docs/testing#service-providers">模擬Facades (mocking facades)</a> 這篇章節。
 </p>
     </article>
     <div class="clearfix"></div>
