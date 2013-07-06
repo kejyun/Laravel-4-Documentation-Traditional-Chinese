@@ -252,12 +252,10 @@ $values = Redis::lrange('names', 5, 10);
 <h2>管線化</h2>
 
 <p>
-    批量輸送（Pipelining）應當用於需要在一個操作中發送許多命令的場景。立即使用pipeline命令動手試試吧：
-
     當你需要在同一個操作中，傳送多個指令到伺服器中，就需要使用管線 (Pipelining) ，在開始使用 Redis 時，使用 <code>pipeline</code> 指令即可:
 </p>
 
-<p><strong>Piping Many Commands To Your Servers</strong></p>
+<p><strong>管線 (Piping) 傳送多個指令到 Redis 伺服器</strong></p>
 
 <pre><code>Redis::pipeline(function($pipe)
 {
