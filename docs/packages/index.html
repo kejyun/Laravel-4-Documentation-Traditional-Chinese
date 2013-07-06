@@ -282,7 +282,7 @@
 <pre><code>return View::make('package::view.name');
 </code></pre>
 
-<p><strong>Retrieving A Package Configuration Item</strong></p>
+<p><strong>取得套件設定選項</strong></p>
 
 <pre><code>return Config::get('package::group.option');
 </code></pre>
@@ -359,7 +359,7 @@
 <h3>覆寫設定檔</h3>
 
 <p>
-  When other developers install your package, they may wish to override some of the configuration options. However, if they change the values in your package source code, they will be overwritten the next time Composer updates the package. Instead, the <code>config:publish</code> artisan command should be used:
+  當其它開發者安裝了你的套件，他們可能想要覆寫一些你的套件設定檔內容。然而，如果他們直接修改你套件內的設定檔，他們必需在下次 Composer updates 後，又要再次覆寫一次。一個代替的方式是使用 <code>config:publish</code> artisan 指令來解決這個問題:
 </p>
 
 <p><strong>執行設定檔發佈指令</strong></p>
@@ -381,7 +381,7 @@
 <h2>套件Migrations</h2>
 
 <p>
-  You may easily create and run migrations for any of your packages. To create a migration for a package in the workbench, use the <code>--bench</code> option:
+    你可以容易的為你的套件建立並執行遷移(migrations)。建立遷移可以使用指令參數 <code>--bench</code>:
 </p>
 
 <p><strong>建立 workbench 中的套件遷移</strong></p>
