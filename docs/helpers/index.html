@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<!-- 
+ 作者:KeJyun
+ 建立日期:2013-06-09
+ 最後修改日期:2013-06-09
+ 聯絡方式:kejyun@gmail.com
+ -->
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Laravel 4 PHP Framework Documentation 繁體中文教學文件</title>
+<link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico">
+<meta name="description" content="Laravel, 優雅的PHP網頁工匠框架(Framework) 開始享受開發上的樂趣吧!">
+<meta name="keyword" content="Laravel,Documentation,教學,文件,繁體,中文,PHP,Framework,框架,優雅" />
+
+<link media="all" type="text/css" rel="stylesheet" href="../../css/style.css">
+<script src="../../js/modernizr-2.6.2.min.js"></script>
+
+<style type="text/css">
+.docs-menu ul li{
+    margin-top: 10px;
+}
+</style>
+</head>
+<body>
+<!-- Header -->
+<header>
+    <div class="container">
+        <a href="http://laravel.com/" title="Laravel PHP Framework" class="logo" target="_blank">&nbsp;</a>
+        <nav class="menu">
+            <ul>
+                <li>
+                    <a href="http://laravel.com/" title="Welcome" target="_blank">Welcome</a>
+                </li>
+                <li>
+                    <a href="http://laravel.com/docs" title="Documentation" target="_blank">Documentation</a>
+                </li>
+                <li class="active">
+                    <a href="../../docs/introduction" title="中文文件">中文文件</a>
+                </li>
+                <li>
+                    <a href="http://laravel.com/api" title="API" target="_blank">API</a>
+                </li>
+                <li>
+                    <a href="https://github.com/laravel/laravel" title="Github" target="_blank">Github</a>
+                </li>
+                <li>
+                    <a href="http://forums.laravel.io/" title="論壇" target="_blank">論壇</a>
+                </li>
+                <li>
+                    <a href="http://twitter.com/laravelphp" title="Twitter" target="_blank">Twitter</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- Header sectoin -->
+<section class="docs-heading">
+    <div class="container">
+        <h2>文件</h2>
+        <div class="sponsor">
+            <span>贊助商 </span>
+            <a href="http://www.cartalyst.com/" title="Cartalyst" target="_blank">
+                <img src="../../img/cartalyst_small.png">
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="docs-content">
+    <div class="container">
+    <nav class="docs-menu">
+        <ul>
+            <li>前言                <ul>
+                    <li><a href="../../docs/introduction">介紹</a></li>
+                    <li><a href="../../docs/quick">快速開始</a></li>
+                    <li><a href="../../docs/contributing">貢獻</a></li>
+                </ul>
+            </li>
+            <li>
+                入門                <ul>
+                    <li><a href="../../docs/installation">安裝</a></li>
+                    <li><a href="../../docs/configuration">設定</a></li>
+                    <li><a href="../../docs/lifecycle">生命週期</a></li>
+                    <li><a href="../../docs/routing">路由</a></li>
+                    <li><a href="../../docs/requests">請求及輸入<br />(Requests &amp; Input)</a></li>
+                    <li><a href="../../docs/responses">視圖及回應<br />(Views &amp; Responses)</a></li>
+                    <li><a href="../../docs/controllers">控制器(Controllers)</a></li>
+                    <li><a href="../../docs/errors">錯誤及記錄</a></li>
+                </ul>
+            </li>
+
+            <li>
+                更多                <ul>
+                <li><a href="../../docs/cache">快取</a></li>
+                <li><a href="../../docs/events">事件</a></li>
+                <li><a href="../../docs/facades">Facades</a></li>
+                <li><a href="../../docs/html">表單及HTML</a></li>
+                <li><a href="../../docs/helpers">Helpers 函式</a></li>
+                <li><a href="../../docs/ioc">IoC容器</a></li>
+                <li><a href="../../docs/localization">在地化</a></li>
+                <li><a href="../../docs/mail">郵件</a></li>
+                <li><a href="../../docs/packages">套件開發</a></li>
+                <li><a href="../../docs/pagination">分頁</a></li>
+                <li><a href="../../docs/queues">佇列</a></li>
+                <li><a href="../../docs/security">安全性</a></li>
+                <li><a href="../../docs/session">Session</a></li>
+                <li><a href="../../docs/templates">樣板</a></li>
+                <li><a href="../../docs/testing">單元測試</a></li>
+                <li><a href="../../docs/validation">驗證</a></li>
+                </ul>
+            </li>
+            <li>
+                資料庫                <ul>
+                    <li><a href="../../docs/database">基本用法</a></li>
+                    <li><a href="../../docs/queries">Query產生器</a></li>
+                    <li><a href="../../docs/eloquent">Eloquent ORM</a></li>
+                    <li><a href="../../docs/schema">Schema產生器</a></li>
+                    <li><a href="../../docs/migrations">Migrations &amp; Seeding</a></li>
+                    <li><a href="../../docs/redis">Redis</a></li>
+                </ul>
+            </li>
+
+            <li>
+                Artisan介面指令                <ul>
+                    <li><a href="../../docs/artisan">概要</a></li>
+                    <li><a href="../../docs/commands">開發</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+
+    <article class="docs-body">
+        <h1>Helpers 函式</h1>
+
+<ul>
+	<li>
+		<a href="#arrays">陣列</a>
+	</li>
+	<li>
+		<a href="#paths">路徑</a>
+	</li>
+	<li>
+		<a href="#strings">字串</a>
+	</li>
+	<li>
+		<a href="#urls">網址</a>
+	</li>
+	<li>
+		<a href="#miscellaneous">其他雜項</a>
+	</li>
+</ul>
+
+<p><a name="arrays"></a></p>
+
+<h2>陣列</h2>
+
+<h3>array_add</h3>
+
+<p>The <code>array_add</code> function adds a given key / value pair to the array if the given key doesn't already exist in the array.</p>
+
+<pre><code>$array = array('foo' =&gt; 'bar');
+
+$array = array_add($array, 'key', 'value');
+</code></pre>
+
+<h3>array_divide</h3>
+
+<p>The <code>array_divide</code> function returns two arrays, one containing the keys, and the other containing the values of the original array.</p>
+
+<pre><code>$array = array('foo' =&gt; 'bar');
+
+list($keys, $values) = array_divide($array);
+</code></pre>
+
+<h3>array_dot</h3>
+
+<p>The <code>array_dot</code> function flattens a multi-dimensional array into a single level array that uses "dot" notation to indicate depth.</p>
+
+<pre><code>$array = array('foo' =&gt; array('bar' =&gt; 'baz'));
+
+$array = array_dot($array);
+
+// array('foo.bar' =&gt; 'baz');
+</code></pre>
+
+<h3>array_except</h3>
+
+<p>The <code>array_except</code> method removes the given key / value pairs from the array.</p>
+
+<pre><code>$array = array_except($array, array('keys', 'to', 'remove'));
+</code></pre>
+
+<h3>array_fetch</h3>
+
+<p>The <code>array_fetch</code> method returns a flattened array containing the selected nested element.</p>
+
+<pre><code>$array = array(array('name' =&gt; 'Taylor'), array('name' =&gt; 'Dayle'));
+
+var_dump(array_fetch($array, 'name'));
+
+// array('Taylor', 'Dayle');
+</code></pre>
+
+<h3>array_first</h3>
+
+<p>The <code>array_first</code> method returns the first element of an array passing a given truth test.</p>
+
+<pre><code>$array = array(100, 200, 300);
+
+$value = array_first($array, function($key, $value)
+{
+    return $value &gt;= 150;
+});
+</code></pre>
+
+<p>A default value may also be passed as the third parameter:</p>
+
+<pre><code>$value = array_first($array, $callback, $default);
+</code></pre>
+
+<h3>array_flatten</h3>
+
+<p>The <code>array_flatten</code> method will flatten a multi-dimensional array into a single level.</p>
+
+<pre><code>$array = array('name' =&gt; 'Joe', 'languages' =&gt; array('PHP', 'Ruby'));
+
+$array = array_flatten($array);
+
+// array('Joe', 'PHP', 'Ruby');
+</code></pre>
+
+<h3>array_forget</h3>
+
+<p>The <code>array_forget</code> method will remove a given key / value pair from a deeply nested array using "dot" notation.</p>
+
+<pre><code>$array = array('names' =&gt; array('joe' =&gt; array('programmer')));
+
+$array = array_forget($array, 'names.joe');
+</code></pre>
+
+<h3>array_get</h3>
+
+<p>The <code>array_get</code> method will retrieve a given value from a deeply nested array using "dot" notation.</p>
+
+<pre><code>$array = array('names' =&gt; array('joe' =&gt; array('programmer')));
+
+$value = array_get($array, 'names.joe');
+</code></pre>
+
+<h3>array_only</h3>
+
+<p>The <code>array_only</code> method will return only the specified key / value pairs from the array.</p>
+
+<pre><code>$array = array('name' =&gt; 'Joe', 'age' =&gt; 27, 'votes' =&gt; 1);
+
+$array = array_only($array, array('name', 'votes'));
+</code></pre>
+
+<h3>array_pluck</h3>
+
+<p>The <code>array_pluck</code> method will pluck a list of the given key / value pairs from the array.</p>
+
+<pre><code>$array = array(array('name' =&gt; 'Taylor'), array('name' =&gt; 'Dayle'));
+
+$array = array_pluck($array, 'name');
+
+// array('Taylor', 'Dayle');
+</code></pre>
+
+<h3>array_pull</h3>
+
+<p>The <code>array_pull</code> method will return a given key / value pair from the array, as well as remove it.</p>
+
+<pre><code>$array = array('name' =&gt; 'Taylor', 'age' =&gt; 27);
+
+$name = array_pull($array, 'name');
+</code></pre>
+
+<h3>array_set</h3>
+
+<p>The <code>array_set</code> method will set a value within a deeply nested array using "dot" notation.</p>
+
+<pre><code>$array = array('names' =&gt; array('programmer' =&gt; 'Joe'));
+
+array_set($array, 'names.editor', 'Taylor');
+</code></pre>
+
+<h3>array_sort</h3>
+
+<p>The <code>array_sort</code> method sorts the array by the results of the given Closure.</p>
+
+<pre><code>$array = array(
+    array('name' =&gt; 'Jill'),
+    array('name' =&gt; 'Barry'),
+);
+
+$array = array_values(array_sort($array, function($value)
+{
+    return $value['name'];
+}));
+</code></pre>
+
+<h3>head</h3>
+
+<p>Return the first element in the array. Useful for method chaining in PHP 5.3.x.</p>
+
+<pre><code>$first = head($this-&gt;returnsArray('foo'));
+</code></pre>
+
+<h3>last</h3>
+
+<p>Return the last element in the array. Useful for method chaining.</p>
+
+<pre><code>$last = last($this-&gt;returnsArray('foo'));
+</code></pre>
+
+<p><a name="paths"></a></p>
+
+<h2>路徑</h2>
+
+<h3>app_path</h3>
+
+<p>Get the fully qualified path to the <code>application</code> directory.</p>
+
+<h3>base_path</h3>
+
+<p>Get the fully qualified path to the root of the application install.</p>
+
+<h3>public_path</h3>
+
+<p>Get the fully qualified path to the <code>public</code> directory.</p>
+
+<h3>storage_path</h3>
+
+<p>Get the fully qualified path to the <code>application/storage</code> directory.</p>
+
+<p><a name="strings"></a></p>
+
+<h2>字串</h2>
+
+<h3>camel_case</h3>
+
+<p>Convert the given string to <code>camelCase</code>.</p>
+
+<pre><code>$camel = camel_case('foo_bar');
+
+// fooBar
+</code></pre>
+
+<h3>class_basename</h3>
+
+<p>Get the class name of the given class, without any namespace names.</p>
+
+<pre><code>$class = class_basename('Foo\Bar\Baz');
+
+// Baz
+</code></pre>
+
+<h3>e</h3>
+
+<p>Run <code>htmlentites</code> over the given string, with UTF-8 support.</p>
+
+<pre><code>$entities = e('&lt;html&gt;foo&lt;/html&gt;');
+</code></pre>
+
+<h3>ends_with</h3>
+
+<p>Determine if the given haystack ends with a given needle.</p>
+
+<pre><code>$value = ends_with('This is my name', 'name');
+</code></pre>
+
+<h3>snake_case</h3>
+
+<p>Convert the given string to <code>snake_case</code>.</p>
+
+<pre><code>$snake = snake_case('fooBar');
+
+// foo_bar
+</code></pre>
+
+<h3>starts_with</h3>
+
+<p>Determine if the given haystack begins with the given needle.</p>
+
+<pre><code>$value = starts_with('This is my name', 'This');
+</code></pre>
+
+<h3>str_contains</h3>
+
+<p>Determine if the given haystack contains the given needle.</p>
+
+<pre><code>$value = str_contains('This is my name', 'my');
+</code></pre>
+
+<h3>str_finish</h3>
+
+<p>Add a single instance of the given needle to the haystack. Remove any extra instances.</p>
+
+<pre><code>$string = str_finish('this/string', '/');
+
+// this/string/
+</code></pre>
+
+<h3>str_is</h3>
+
+<p>Determine if a given string matches a given pattern. Asterisks may be used to indicate wildcards.</p>
+
+<pre><code>$value = str_is('foo*', 'foobar');
+</code></pre>
+
+<h3>str_plural</h3>
+
+<p>Convert a string to its plural form (English only).</p>
+
+<pre><code>$plural = str_plural('car');
+</code></pre>
+
+<h3>str_random</h3>
+
+<p>Generate a random string of the given length.</p>
+
+<pre><code>$string = str_random(40);
+</code></pre>
+
+<h3>str_singular</h3>
+
+<p>Convert a string to its singular form (English only).</p>
+
+<pre><code>$singular = str_singular('cars');
+</code></pre>
+
+<h3>studly_case</h3>
+
+<p>Convert the given string to <code>StudlyCase</code>.</p>
+
+<pre><code>$value = studly_case('foo_bar');
+
+// FooBar
+</code></pre>
+
+<h3>trans</h3>
+
+<p>Translate a given language line. Alias of <code>Lang::get</code>.</p>
+
+<pre><code>$value = trans('validation.required'):
+</code></pre>
+
+<h3>trans_choice</h3>
+
+<p>Tranlate a given language line with inflection. Alias of <code>Lang::choice</code>.</p>
+
+<pre><code>$value = trans_choice('foo.bar', $count);
+</code></pre>
+
+<p><a name="urls"></a></p>
+
+<h2>網址</h2>
+
+<h3>action</h3>
+
+<p>Generate a URL for a given controller action.</p>
+
+<pre><code>$url = action('HomeController@getIndex', $params);
+</code></pre>
+
+<h3>asset</h3>
+
+<p>Generate a URL for an asset.</p>
+
+<pre><code>$url = asset('img/photo.jpg');
+</code></pre>
+
+<h3>link_to</h3>
+
+<p>Generate a HTML link to the given URL.</p>
+
+<pre><code>echo link_to('foo/bar', $title, $attributes = array(), $secure = null);
+</code></pre>
+
+<h3>link_to_asset</h3>
+
+<p>Generate a HTML link to the given asset.</p>
+
+<pre><code>echo link_to_asset('foo/bar.zip', $title, $attributes = array(), $secure = null);
+</code></pre>
+
+<h3>link_to_route</h3>
+
+<p>Generate a HTML link to the given route.</p>
+
+<pre><code>echo link_to_route('route.name', $title, $parameters = array(), $attributes = array());
+</code></pre>
+
+<h3>link_to_action</h3>
+
+<p>Generate a HTML link to the given controller action.</p>
+
+<pre><code>echo link_to_action('HomeController@getIndex', $title, $parameters = array(), $attributes = array());
+</code></pre>
+
+<h3>secure_asset</h3>
+
+<p>Generate a HTML link to the given asset using HTTPS.</p>
+
+<pre><code>echo secure_asset('foo/bar.zip', $title, $attributes = array());
+</code></pre>
+
+<h3>secure_url</h3>
+
+<p>Generate a fully qualified URL to a given path using HTTPS.</p>
+
+<pre><code>echo secure_url('foo/bar', $parameters = array());
+</code></pre>
+
+<h3>url</h3>
+
+<p>Generate a fully qualified URL to the given path.</p>
+
+<pre><code>echo url('foo/bar', $parameters = array(), $secure = null);
+</code></pre>
+
+<p><a name="miscellaneous"></a></p>
+
+<h2>其他雜項</h2>
+
+<h3>csrf_token</h3>
+
+<p>Get the value of the current CSRF token.</p>
+
+<pre><code>$token = csrf_token();
+</code></pre>
+
+<h3>dd</h3>
+
+<p>Dump the given variable and end execution of the script.</p>
+
+<pre><code>dd($value);
+</code></pre>
+
+<h3>value</h3>
+
+<p>If the given value is a <code>Closure</code>, return the value returned by the <code>Closure</code>. Otherwise, return the value.</p>
+
+<pre><code>$value = value(function() { return 'bar'; });
+</code></pre>
+
+<h3>with</h3>
+
+<p>Return the given object. Useful for method chaining constructors in PHP 5.3.x.</p>
+
+<pre><code>$value = with(new Foo)-&gt;doWork();
+</code></pre>
+    </article>
+    <div class="clearfix"></div>
+    </div>
+</section>
+
+
+
+<footer>
+    <div class="container">
+        <a href="http://laravel.com/" title="Laravel PHP Framework" class="logo" target="_blank">
+            <img src="http://laravel.com/img/footer_logo.png" alt="Laravel PHP Framework">
+        </a>
+        <nav class="menu">
+            <ul>
+                <li>
+                    <a href="http://laravel.com/" title="Welcome" target="_blank">Welcome</a>
+                </li>
+                <li>
+                    <a href="http://laravel.com/docs" title="Documentation" target="_blank">Documentation</a>
+                </li>
+                <li class="active">
+                    <a href="../../docs/introduction" title="中文文件">中文文件</a>
+                </li>
+                <li>
+                    <a href="http://laravel.com/api" title="API" target="_blank">API</a>
+                </li>
+                <li>
+                    <a href="https://github.com/laravel/laravel" title="Github" target="_blank">Github</a>
+                </li>
+                <li>
+                    <a href="http://forums.laravel.io/" title="論壇" target="_blank">論壇</a>
+                </li>
+                <li>
+                    <a href="http://twitter.com/laravelphp" title="Twitter" target="_blank">Twitter</a>
+                </li>
+            </ul>
+        </nav>
+        <p class="copyright">Copyright &copy; 2013 Taylor Otwell. 網站由 <a href="http://casserolelabs.com/" title="Casserole Labs" target="_blank">Casserole Labs</a> 及 <a href="http://daylerees.com" title="Dayle Rees">Dayle Rees</a> 設計，中文翻譯 <a href="http://blog.kejyun.com" target="_blank">KeJyun</a> 及 <a href="http://blog.liaosankai.comm" target="_blank">SANKAI</a> </p>
+    </div>
+</footer>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://laravel.com/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="../../js/plugins.js"></script>
+<script src="../../js/main.min.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-31063691-6', 'kejyun.github.io');
+  ga('send', 'pageview');
+</script>
+</body>
+</html>
