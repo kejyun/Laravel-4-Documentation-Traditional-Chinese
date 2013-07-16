@@ -204,7 +204,7 @@
 <h2>介紹</h2>
 
 <p>
-    Eloquent ORM 是 Laravel 提供的一個優雅、簡單的 ActiveRecord 實作資料庫的操作的方法，每個資料表有一個相對應的 "模組 (Model)" ，讓你可以對相對應的資料表進行互動操作。
+    Eloquent ORM 是 Laravel 提供的一個優雅、簡單的 ActiveRecord 實作資料庫的操作的方法，每個資料表有一個相對應的 "模型 (Model)" ，讓你可以對相對應的資料表進行互動操作。
 </p>
 
 <p>
@@ -216,16 +216,16 @@
 <h2>基本使用</h2>
 
 <p>
-    在開始要建立 Eloquent 模組時，通常這些模組的檔案都放在 <code>app/models</code> 目錄下，但你也可以放在任何你想放的地方，只要能夠透過 <code>composer.json</code> 檔案中的設定去載入模組即可。
+    在開始要建立 Eloquent 模型時，通常這些模型的檔案都放在 <code>app/models</code> 目錄下，但你也可以放在任何你想放的地方，只要能夠透過 <code>composer.json</code> 檔案中的設定去載入模型即可。
 </p>
 
-<p><strong>定義 Eloquent 模組</strong></p>
+<p><strong>定義 Eloquent 模型</strong></p>
 
 <pre><code>class User extends Eloquent {}
 </code></pre>
 
 <p>
-    你會注意到，我們並沒有告訴 Eloquent 我們的 <code>User</code> 模組是要用哪一個資料表去做存取控制，除非你有另外指定要使用的資料表名稱，否則 Eloquent 將會使用類別名稱的"小寫"及"複數"的單字去當作預設的資料表名稱，所以在這個例子中， Eloquent 會假設 <code>User</code> 模組的資料是存放在 <code>users</code> 資料表中，你也可以在你的模組中使用 <code>table</code> 變數去指定你想要的使用的資料表名稱:
+    你會注意到，我們並沒有告訴 Eloquent 我們的 <code>User</code> 模型是要用哪一個資料表去做存取控制，除非你有另外指定要使用的資料表名稱，否則 Eloquent 將會使用類別名稱的"小寫"及"複數"的單字去當作預設的資料表名稱，所以在這個例子中， Eloquent 會假設 <code>User</code> 模型的資料是存放在 <code>users</code> 資料表中，你也可以在你的模型中使用 <code>table</code> 變數去指定你想要的使用的資料表名稱:
 </p>
 
 <pre><code>class User extends Eloquent {
@@ -236,14 +236,14 @@
 </code></pre>
 
 <blockquote>
-  <p><strong>注意:</strong> Eloquent 會假設每一個資料表的主鍵 (primary key) 名稱為 <code>id</code> ，你也可以使用 <code>primaryKey</code> 變數去複寫原來的規則，同樣的，你也可以定義 <code>connection</code> 變數去複寫你想要在這個模組中使用的資料庫連線。</p>
+  <p><strong>注意:</strong> Eloquent 會假設每一個資料表的主鍵 (primary key) 名稱為 <code>id</code> ，你也可以使用 <code>primaryKey</code> 變數去複寫原來的規則，同樣的，你也可以定義 <code>connection</code> 變數去複寫你想要在這個模型中使用的資料庫連線。</p>
 </blockquote>
 
 <p>
-    只要模組一定義完成，你就可以開始取得或建立資料到你的資料表了，但這裡必須注意到，預設的情況下，你必須在資料表中建立 <code>updated_at</code> 及 <code>created_at</code> 這兩個欄位，用來記錄資料的建立時間及更新時間，如果你不希望模組去幫你自動維護資料建立時間及更新時間，在你的模組中你只要將 <code>$timestamps</code> 變數設定為 <code>false</code> 即可。
+    只要模型一定義完成，你就可以開始取得或建立資料到你的資料表了，但這裡必須注意到，預設的情況下，你必須在資料表中建立 <code>updated_at</code> 及 <code>created_at</code> 這兩個欄位，用來記錄資料的建立時間及更新時間，如果你不希望模型去幫你自動維護資料建立時間及更新時間，在你的模型中你只要將 <code>$timestamps</code> 變數設定為 <code>false</code> 即可。
 </p>
 
-<p><strong>取得所有模組的資料</strong></p>
+<p><strong>取得所有模型的資料</strong></p>
 
 <pre><code>$users = User::all();
 </code></pre>
@@ -256,13 +256,13 @@ var_dump($user-&gt;name);
 </code></pre>
 
 <blockquote>
-  <p><strong>注意:</strong> 所有在 <a href="../../docs/queries">Query產生器</a> 的方法，在使用 Eloquent 模組時也可以使用。</p>
+  <p><strong>注意:</strong> 所有在 <a href="../../docs/queries">Query產生器</a> 的方法，在使用 Eloquent 模型時也可以使用。</p>
 </blockquote>
 
 <p><strong>透過主鍵 (Primary Key) 取得單筆資料，或丟出例外狀況</strong></p>
 
 <p>
-    假如模組沒有找到指定的資料，有時你可能想要丟出例外狀況，讓你的例外狀況可以讓 <code>App::error</code> 捕捉到，並且呈現 404 頁面給使用者。
+    假如模型沒有找到指定的資料，有時你可能想要丟出例外狀況，讓你的例外狀況可以讓 <code>App::error</code> 捕捉到，並且呈現 404 頁面給使用者。
 </p>
 
 <pre><code>$model = User::findOrFail(1);
@@ -271,7 +271,7 @@ $model = User::where('votes', '&gt;', 100)-&gt;firstOrFail();
 </code></pre>
 
 <p>
-    傾聽 <code>ModelNotFoundException</code> 可以註冊一個模組錯誤處理器
+    傾聽 <code>ModelNotFoundException</code> 可以註冊一個模型錯誤處理器
 </p>
 
 <pre><code>use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -282,7 +282,7 @@ App::error(function(ModelNotFoundException $e)
 });
 </code></pre>
 
-<p><strong>使用 Eloquent 模組進行查詢</strong></p>
+<p><strong>使用 Eloquent 模型進行查詢</strong></p>
 
 <pre><code>$users = User::where('votes', '&gt;', 100)-&gt;take(10)-&gt;get();
 
@@ -306,20 +306,18 @@ foreach ($users as $user)
 <h2>大量指定</h2>
 
 <p>
-    當創建一個新的模型，通過模型構造的一組屬性。然後分配這些屬性通過質量分配模型。這是很方便，但是，可以是一個嚴重的安全問題時，一味地通過用戶輸入到模型。如果是一味通過用戶輸入到模型中，用戶可以自由修改任何和所有模型的屬性。出於這個原因，所有的雄辯的模型默認情況下，防止大規模分配。
-
-    當建立模組時，你傳遞一個陣列屬性到模組建構子，這些屬性會經由大量指定 (mass-assignment) 的方式去指定到模組中，這樣是相當方便的，但是，當綁定使用者傳入的資料到模組中，也可能是一個 <strong>嚴重</strong> 的安全性問題，假如使用者傳入的資料綁定到模組，使用者就可以任意的修改 <strong>任何 (any)</strong> 和 <strong>所有 (all)</strong> 模組中的屬性，出於這個原因，所有的 Eloquent 模組預設會避免及保護資料不會被大量指定的方式所覆寫。
+    當建立模型時，你傳遞一個陣列屬性到模型建構子，這些屬性會經由大量指定 (mass-assignment) 的方式去指定到模型中，這樣是相當方便的，但是，當綁定使用者傳入的資料到模型中，也可能是一個 <strong>嚴重</strong> 的安全性問題，假如使用者傳入的資料綁定到模型，使用者就可以任意的修改 <strong>任何 (any)</strong> 和 <strong>所有 (all)</strong> 模型中的屬性，出於這個原因，所有的 Eloquent 模型預設會避免及保護資料不會被大量指定的方式所覆寫。
 </p>
 
 <p>
-    為了使用大量指定的功能，你必須在你的模組設定 <code>fillable</code> 或 <code>guarded</code> 變數資料。
+    為了使用大量指定的功能，你必須在你的模型設定 <code>fillable</code> 或 <code>guarded</code> 變數資料。
 </p>
 
 <p>
     <code>fillable</code> 變數指定那些欄位可以使用被大量指定功能指定資料，可以設定類別 (class) 或 實例 (instance) 層級的變數。
 </p>
 
-<p><strong>定義可大量指定的屬性欄位到模組</strong></p>
+<p><strong>定義可大量指定的屬性欄位到模型</strong></p>
 
 <pre><code>class User extends Eloquent {
 
@@ -336,7 +334,7 @@ foreach ($users as $user)
     在 <code>fillable</code> 的反義屬性就是 <code>guarded</code>，這屬性可以設定 "黑名單" 而不只是設定 "白名單" :
 </p>
 
-<p><strong>定義受保護的屬性欄位到模組</strong></p>
+<p><strong>定義受保護的屬性欄位到模型</strong></p>
 
 <pre><code>class User extends Eloquent {
 
@@ -346,7 +344,7 @@ foreach ($users as $user)
 </code></pre>
 
 <p>
-    在上述範例 <code>id</code> 及 <code>password</code> 屬性將不會被大量指定方式修改原模組的變數資料，所有除了這兩個變數外的變數，都可以被使用大量指定方式指定去修改資料，你也可以保護 <strong>所有</strong> 的屬性都不會被大量指定的方式修改資料值:
+    在上述範例 <code>id</code> 及 <code>password</code> 屬性將不會被大量指定方式修改原模型的變數資料，所有除了這兩個變數外的變數，都可以被使用大量指定方式指定去修改資料，你也可以保護 <strong>所有</strong> 的屬性都不會被大量指定的方式修改資料值:
 </p>
 
 <p><strong>封鎖所有變數不被大量指定方式修改資料內容</strong></p>
@@ -359,10 +357,10 @@ foreach ($users as $user)
 <h2>新增、更新及刪除</h2>
 
 <p>
-    為了透過模組建立一筆新的資料到資料庫，只需要建立新的模組實例後，並且呼叫 <code>save</code> 方法即可。
+    為了透過模型建立一筆新的資料到資料庫，只需要建立新的模型實例後，並且呼叫 <code>save</code> 方法即可。
 </p>
 
-<p><strong>Saving A New Model</strong></p>
+<p><strong>儲存新的模型資料</strong></p>
 
 <pre><code>$user = new User;
 
@@ -372,14 +370,14 @@ $user-&gt;save();
 </code></pre>
 
 <blockquote>
-  <p><strong>注意:</strong> 通常你的 Eloquent 模組都會有一個自動增加的鍵值 (key)，但你如果想要指定你自己的鍵值在模組中有自動增加的屬性，只要將 <code>incrementing</code> 設定為 <code>自動增加 (incrementing)</code> 即可。</p>
+  <p><strong>注意:</strong> 通常你的 Eloquent 模型都會有一個自動增加的鍵值 (key)，但你如果想要指定你自己的鍵值在模型中有自動增加的屬性，只要將 <code>incrementing</code> 設定為 <code>自動增加 (incrementing)</code> 即可。</p>
 </blockquote>
 
 <p>
-    你可以使用 <code>create</code> 方法在單一行去儲存資料到模組中，插入 (INSERT) 的模組實例將會被回傳，但是在使用這樣的方式去儲存資料前，你需要在模組中指定 <code>fillable</code> 或 <code>guarded</code> 屬性，這樣 Eloquent 模組會保護你的模組不被大量指定方式所攻擊。
+    你可以使用 <code>create</code> 方法在單一行去儲存資料到模型中，插入 (INSERT) 的模型實例將會被回傳，但是在使用這樣的方式去儲存資料前，你需要在模型中指定 <code>fillable</code> 或 <code>guarded</code> 屬性，這樣 Eloquent 模型會保護你的模型不被大量指定方式所攻擊。
 </p>
 
-<p><strong>設定保護 (Guarded) 屬性到模組中</strong></p>
+<p><strong>設定保護 (Guarded) 屬性到模型中</strong></p>
 
 <pre><code>class User extends Eloquent {
 
@@ -388,7 +386,7 @@ $user-&gt;save();
 }
 </code></pre>
 
-<p><strong>使用模組的新增 (Create) 方法</strong></p>
+<p><strong>使用模型的新增 (Create) 方法</strong></p>
 
 <pre><code>$user = User::create(array('name' =&gt; 'John'));
 </code></pre>
@@ -397,7 +395,7 @@ $user-&gt;save();
     為了更新資料，你需要取得資料後，並改變一個你要更新的屬性欄，並使用 <code>save</code> 方法即可更新資料:
 </p>
 
-<p><strong>更新一個已取得資料的模組</strong></p>
+<p><strong>更新一個已取得資料的模型</strong></p>
 
 <pre><code>$user = User::find(1);
 
@@ -407,33 +405,33 @@ $user-&gt;save();
 </code></pre>
 
 <p>
-    有時你會須希望不僅儲存模組中的資料，也希望能夠儲存所有關聯的資料，你可以使用 <code>push</code> 的方法，去達到這樣的目的:
+    有時你會須希望不僅儲存模型中的資料，也希望能夠儲存所有關聯的資料，你可以使用 <code>push</code> 的方法，去達到這樣的目的:
 </p>
 
-<p><strong>儲存模組資料及關連的資料</strong></p>
+<p><strong>儲存模型資料及關連的資料</strong></p>
 
 <pre><code>$user-&gt;push();
 </code></pre>
 
 <p>
-    你也可以對一個集合的模組資料進行更新:
+    你也可以對一個集合的模型資料進行更新:
 </p>
 
 <pre><code>$affectedRows = User::where('votes', '&gt;', 100)-&gt;update(array('status' =&gt; 2));
 </code></pre>
 
 <p>
-    只需要在模組實例使用 <code>delete</code> 方法，即可刪除模組的資料:
+    只需要在模型實例使用 <code>delete</code> 方法，即可刪除模型的資料:
 </p>
 
-<p><strong>刪除一存在的模組資料</strong></p>
+<p><strong>刪除一存在的模型資料</strong></p>
 
 <pre><code>$user = User::find(1);
 
 $user-&gt;delete();
 </code></pre>
 
-<p><strong>透過鍵值刪除一存在的模組資料</strong></p>
+<p><strong>透過鍵值刪除一存在的模型資料</strong></p>
 
 <pre><code>User::destroy(1);
 
@@ -441,17 +439,17 @@ User::destroy(1, 2, 3);
 </code></pre>
 
 <p>
-    單然你也可以對一模組資料集合執行刪除的動作:
+    單然你也可以對一模型資料集合執行刪除的動作:
 </p>
 
 <pre><code>$affectedRows = User::where('votes', '&gt;', 100)-&gt;delete();
 </code></pre>
 
 <p>
-    如果你只想要更新模組的時間戳記，你可以使用 <code>touch</code> 方法去進行更新:
+    如果你只想要更新模型的時間戳記，你可以使用 <code>touch</code> 方法去進行更新:
 </p>
 
-<p><strong>僅更新模組的時間戳記</strong></p>
+<p><strong>僅更新模型的時間戳記</strong></p>
 
 <pre><code>$user-&gt;touch();
 </code></pre>
@@ -461,7 +459,7 @@ User::destroy(1, 2, 3);
 <h2>微刪除</h2>
 
 <p>
-    When soft deleting a model, it is not actually removed from your database. Instead, a <code>deleted_at</code> timestamp is set on the record. To enable soft deletes for a model, specify the <code>softDelete</code> property on the model:
+    當微刪除模型資料時，資料不會真的從資料庫中移除，而是會去更新 <code>deleted_at</code> 時間戳記欄位，在模型中設定 <code>softDelete</code> 變數，就可以讓模型開啟微刪除的功能:
 </p>
 
 <pre><code>class User extends Eloquent {
@@ -472,42 +470,50 @@ User::destroy(1, 2, 3);
 </code></pre>
 
 <p>
-    To add a <code>deleted_at</code> column to your table, you may use the <code>softDeletes</code> method from a migration:
+    你可以在 Migration 中使用 <code>softDeletes</code> 方法，在資料表中加入 <code>deleted_at</code> 欄位:
 </p>
 
 <pre><code>$table-&gt;softDeletes();
 </code></pre>
 
 <p>
-    Now, when you call the <code>delete</code> method on the model, the <code>deleted_at</code> column will be set to the current timestamp. When querying a model that uses soft deletes, the "deleted" models will not be included in query results. To force soft deleted models to appear in a result set, use the <code>withTrashed</code> method on the query:
+    現在當你在模型中呼叫 <code>delete</code> 方法時，資料表中的 <code>deleted_at</code> 欄位值會被設定為現在的時間戳記，當使用微刪除的模型在對資料庫進行查詢撈取資料時，被 "微刪除 (deleted)" 的資料將不會被撈取出來，如果要強制模型去撈取被微刪除的資料，在查詢過程中使用 <code>withTrashed</code> 方法即可:
 </p>
 
-<p><strong>Forcing Soft Deleted Models Into Results</strong></p>
+<p><strong>強制微刪除的資料也出現在查詢結果中</strong></p>
 
 <pre><code>$users = User::withTrashed()-&gt;where('account_id', 1)-&gt;get();
 </code></pre>
 
-<p>If you wish to <strong>only</strong> receive soft deleted models in your results, you may use the <code>onlyTrashed</code> method:</p>
+<p>
+    如果你 <strong>只 (only)</strong> 希望撈取微刪除的資料出來，你可以使用 <code>onlyTrashed</code> 去達成這件事:
+</p>
 
 <pre><code>$users = User::onlyTrashed()-&gt;where('account_id', 1)-&gt;get();
 </code></pre>
 
-<p>To restore a soft deleted model into an active state, use the <code>restore</code> method:</p>
+<p>
+    使用 <code>restore</code> 方法，可以回復原本被微刪除的資料:
+</p>
 
 <pre><code>$user-&gt;restore();
 </code></pre>
 
-<p>You may also use the <code>restore</code> method on a query:</p>
+<p>
+    你可以在查詢過程中使用 <code>restore</code> 方法:
+</p>
 
 <pre><code>User::withTrashed()-&gt;where('account_id', 1)-&gt;restore();
 </code></pre>
 
-<p>The <code>restore</code> method may also be used on relationships:</p>
+<p><code>restore</code> 方法也可以用在關聯的資料上:</p>
 
 <pre><code>$user-&gt;posts()-&gt;restore();
 </code></pre>
 
-<p>If you wish to truly remove a model from the database, you may use the <code>forceDelete</code> method:</p>
+<p>
+    使用 <code>forceDelete</code> 方法，可以真的將資料從資料庫中移除:
+</p>
 
 <pre><code>$user-&gt;forceDelete();
 </code></pre>
@@ -517,7 +523,9 @@ User::destroy(1, 2, 3);
 <pre><code>$user-&gt;posts()-&gt;forceDelete();
 </code></pre>
 
-<p>To determine if a given model instance has been soft deleted, you may use the <code>trashed</code> method:</p>
+<p>
+    使用 <code>trashed</code> 方法，可以知道模型中是否有被微刪除的資料:
+</p>
 
 <pre><code>if ($user-&gt;trashed())
 {
@@ -530,10 +538,10 @@ User::destroy(1, 2, 3);
 <h2>時間戳記</h2>
 
 <p>
-    By default, Eloquent will maintain the <code>created_at</code> and <code>updated_at</code> columns on your database table automatically. Simply add these <code>datetime</code> columns to your table and Eloquent will take care of the rest. If you do not wish for Eloquent to maintain these columns, add the following property to your model:
+    預設的情況下， Eloquent 會自動在你的資料表加入並維護 <code>created_at</code> 及 <code>updated_at</code> 這兩個欄位資料，欄位會被設定為 <code>datetime</code> 的資料型態，這兩個欄位的資料異動都交給 Eloquent 去處理，若你不希望 Eloquent 去幫你維護這兩個欄位的資料，在你的模型中將參數 <code>$timestamps</code> 設定為 <code>false</code> 即可，如下範例所示::
 </p>
 
-<p><strong>Disabling Auto Timestamps</strong></p>
+<p><strong>關閉自動維護時間戳記功能</strong></p>
 
 <pre><code>class User extends Eloquent {
 
@@ -545,10 +553,10 @@ User::destroy(1, 2, 3);
 </code></pre>
 
 <p>
-    If you wish to customize the format of your timestamps, you may override the <code>freshTimestamp</code> method in your model:
+    如果你希望自訂時間戳記格式，你可以在模型中使用 <code>freshTimestamp</code> 方法去複寫原始設定的格式:
 </p>
 
-<p><strong>Providing A Custom Timestamp Format</strong></p>
+<p><strong>提供自訂時間戳記格式</strong></p>
 
 <pre><code>class User extends Eloquent {
 
@@ -565,10 +573,10 @@ User::destroy(1, 2, 3);
 <h2>查詢範圍</h2>
 
 <p>
-    Scopes allow you to easily re-use query logic in your models. To define a scope, simply prefix a model method with <code>scope</code>:
+    Scopes 允許你容易地在模型中去重複使用查詢邏輯，只要使用 <code>scope</code> 當作模型中方法的前綴字，即可定義 Scope:
 </p>
 
-<p><strong>Defining A Query Scope</strong></p>
+<p><strong>定義查詢 Scope</strong></p>
 
 <pre><code>class User extends Eloquent {
 
@@ -580,7 +588,7 @@ User::destroy(1, 2, 3);
 }
 </code></pre>
 
-<p><strong>Utilizing A Query Scope</strong></p>
+<p><strong>使用查詢 Scope</strong></p>
 
 <pre><code>$users = User::popular()-&gt;orderBy('created_at')-&gt;get();
 </code></pre>
@@ -590,25 +598,25 @@ User::destroy(1, 2, 3);
 <h2>關聯</h2>
 
 <p>
-    Of course, your database tables are probably related to one another. For example, a blog post may have many comments, or an order could be related to the user who placed it. Eloquent makes managing and working with these relationships easy. Laravel supports four types of relationships:
+    當然，你的資料表總會關連到其他資料表的資料，舉例來說，一篇部落格文章會有數個文章評論，或者會有不同的使用者資料放到不同的排序資料中， Eloquent 可以讓你容易的管理這些關聯關係， Laravel 支援四種不同型態的關聯:
 </p>
 
 <ul>
-<li><a href="#one-to-one">One To One</a></li>
-<li><a href="#one-to-many">One To Many</a></li>
-<li><a href="#many-to-many">Many To Many</a></li>
-<li><a href="#polymorphic-relations">Polymorphic Relations</a></li>
+<li><a href="#one-to-one">一對一 (One To One)</a></li>
+<li><a href="#one-to-many">一對多 (One To Many)</a></li>
+<li><a href="#many-to-many">多對多 (Many To Many)</a></li>
+<li><a href="#polymorphic-relations">多型態的關聯 (Polymorphic Relations)</a></li>
 </ul>
 
 <p><a name="one-to-one"></a></p>
 
-<h3>One To One</h3>
+<h3>一對一 (One To One)</h3>
 
 <p>
-    A one-to-one relationship is a very basic relation. For example, a <code>User</code> model might have one <code>Phone</code>. We can define this relation in Eloquent:
+    一對一的關聯資料是非常基本的關聯，舉例來說 <code>User</code> 模型中的使用，有一筆 <code>Phone</code> 模型中的電話資料，我們可以在 Eloquent 定義這個關聯關係:
 </p>
 
-<p><strong>Defining A One To One Relation</strong></p>
+<p><strong>定義一對一關聯</strong></p>
 
 <pre><code>class User extends Eloquent {
 
@@ -621,13 +629,15 @@ User::destroy(1, 2, 3);
 </code></pre>
 
 <p>
-    The first argument passed to the <code>hasOne</code> method is the name of the related model. Once the relationship is defined, we may retrieve it using Eloquent's <a href="#dynamic-properties">dynamic properties</a>:
+    傳送給 <code>hasOne</code> 方法的第一個參數是要關聯的模組名稱，只要關聯定義完成，你可以使用 Eloquent 的 <a href="#dynamic-properties">動態屬性</a> 去取得被關聯的資料:
 </p>
 
 <pre><code>$phone = User::find(1)-&gt;phone;
 </code></pre>
 
-<p>The SQL performed by this statement will be as follows:</p>
+<p>
+    SQL 將會執行下列的語法去做查詢:
+</p>
 
 <pre><code>select * from users where id = 1
 
@@ -635,17 +645,17 @@ select * from phones where user_id = 1
 </code></pre>
 
 <p>
-    Take note that Eloquent assumes the foreign key of the relationship based on the model name. In this case, <code>Phone</code> model is assumed to use a <code>user_id</code> foreign key. If you wish to override this convention, you may pass a second argument to the <code>hasOne</code> method:
+    這裡要注意到， Eloquent 認定要做關聯的外來鍵 (foreign key) 是基於模組名稱去做設定的，在這個例子中， <code>Phone</code> 模型會被認定要用 <code>user_id</code> 做關聯時的外來鍵，假如你要變更這個預設的外來鍵名稱設定，你可以在 <code>hasOne</code> 方法中的第二個參數傳送你要自訂的外來鍵名稱:
 </p>
 
 <pre><code>return $this-&gt;hasOne('Phone', 'custom_key');
 </code></pre>
 
 <p>
-    To define the inverse of the relationship on the <code>Phone</code> model, we use the <code>belongsTo</code> method:
+    我們可以使用 <code>belongsTo</code> 方法，在 <code>Phone</code> 模型中定義反向的關聯:
 </p>
 
-<p><strong>Defining The Inverse Of A Relation</strong></p>
+<p><strong>定義反向關聯</strong></p>
 
 <pre><code>class Phone extends Eloquent {
 
@@ -659,10 +669,10 @@ select * from phones where user_id = 1
 
 <p><a name="one-to-many"></a></p>
 
-<h3>One To Many</h3>
+<h3>一對多 (One To Many)</h3>
 
 <p>
-    An example of a one-to-many relation is a blog post that "has many" comments. We can model this relation like so:
+    一對多關聯的範例，就像一個部落格文章有"多"個評論，所以我們可以在模型中定義這個關聯關係:
 </p>
 
 <pre><code>class Post extends Eloquent {
@@ -675,30 +685,32 @@ select * from phones where user_id = 1
 }
 </code></pre>
 
-<p>Now we can access the post's comments through the <a href="#dynamic-properties">dynamic property</a>:</p>
+<p>
+    現在我們可以透過 <a href="#dynamic-properties">動態屬性</a> 去存取部落格文章的評論資料了:
+</p>
 
 <pre><code>$comments = Post::find(1)-&gt;comments;
 </code></pre>
 
 <p>
-    If you need to add further constraints to which comments are retrieved, you may call the <code>comments</code> method and continue chaining conditions:
+    如果需要在取得的評論資料中家更多的限制，可以呼叫 <code>comments</code> 方法，並持續使用方法鏈 (chain) 的方式，做更多的條件的設定:
 </p>
 
 <pre><code>$comments = Post::find(1)-&gt;comments()-&gt;where('title', '=', 'foo')-&gt;first();
 </code></pre>
 
 <p>
-    Again, you may override the conventional foreign key by passing a second argument to the <code>hasMany</code> method:
+    只要在 <code>hasMany</code> 第二個參數傳送外來鍵的名稱，即可複寫預設的外來鍵名稱:
 </p>
 
 <pre><code>return $this-&gt;hasMany('Comment', 'custom_key');
 </code></pre>
 
 <p>
-    To define the inverse of the relationship on the <code>Comment</code> model, we use the <code>belongsTo</code> method:
+    我們可以使用 <code>belongsTo</code> 方法，在 <code>Comment</code> 模型中定義反向的關聯:
 </p>
 
-<p><strong>Defining The Inverse Of A Relation</strong></p>
+<p><strong>定義反向關聯</strong></p>
 
 <pre><code>class Comment extends Eloquent {
 
@@ -712,7 +724,7 @@ select * from phones where user_id = 1
 
 <p><a name="many-to-many"></a></p>
 
-<h3>Many To Many</h3>
+<h3>多對多 (Many To Many)</h3>
 
 <p>
     Many-to-many relations are a more complicated relationship type. An example of such a relationship is a user with many roles, where the roles are also shared by other users. For example, many users may have the role of "Admin". Three database tables are needed for this relationship: <code>users</code>, <code>roles</code>, and <code>role_user</code>. The <code>role_user</code> table is derived from the alphabetical order of the related model names, and should have <code>user_id</code> and <code>role_id</code> columns.
@@ -761,7 +773,7 @@ select * from phones where user_id = 1
 
 <p><a name="polymorphic-relations"></a></p>
 
-<h3>Polymorphic Relations</h3>
+<h3>多型態的關聯 (Polymorphic Relations)</h3>
 
 <p>
     Polymorphic relations allow a model to belong to more than one other model, on a single association. For example, you might have a photo model that belongs to either a staff model or an order model. We would define this relation like so:
@@ -863,7 +875,7 @@ photos
 
 <p><a name="dynamic-properties"></a></p>
 
-<h3>Dynamic Properties</h3>
+<h3>動態屬性</h3>
 
 <p>
     Eloquent allows you to access your relations via dynamic properties. Eloquent will automatically load the relationship for you, and is even smart enough to know whether to call the <code>get</code> (for one-to-many relationships) or <code>first</code> (for one-to-one relationships) method.  It will then be accessible via a dynamic property by the same name as the relation. For example, with the following model <code>$phone</code>:
