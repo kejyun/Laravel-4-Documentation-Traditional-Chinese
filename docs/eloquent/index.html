@@ -518,7 +518,7 @@ User::destroy(1, 2, 3);
 <pre><code>$user-&gt;forceDelete();
 </code></pre>
 
-<p>The <code>forceDelete</code> method also works on relationships:</p>
+<p><code>forceDelete</code> 方法也可以用在關聯資料上:</p>
 
 <pre><code>$user-&gt;posts()-&gt;forceDelete();
 </code></pre>
@@ -727,10 +727,12 @@ select * from phones where user_id = 1
 <h3>多對多 (Many To Many)</h3>
 
 <p>
-    Many-to-many relations are a more complicated relationship type. An example of such a relationship is a user with many roles, where the roles are also shared by other users. For example, many users may have the role of "Admin". Three database tables are needed for this relationship: <code>users</code>, <code>roles</code>, and <code>role_user</code>. The <code>role_user</code> table is derived from the alphabetical order of the related model names, and should have <code>user_id</code> and <code>role_id</code> columns.
+    多對多關聯是一個較複雜的關連類型，舉例來說，像使用者有多種腳色，而相同的腳色可能有數個不同的使用者扮演，就像許多使用者有 "管理者 (Admin)" 的腳色，資料庫中需要三個資料表去表示之間的關係: <code>users</code> 、 <code>roles</code> 及 <code>role_user</code> 這三個資料表，其中 <code>role_user</code> 資料表名稱，是根據關聯的兩個資料表 ( users 及 roles)的字母順序去做命名，在 <code>role_user</code> 資料表中需要有 <code>user_id</code> 及 <code>role_id</code> 這兩個欄位。
 </p>
 
-<p>We can define a many-to-many relation using the <code>belongsToMany</code> method:</p>
+<p>
+    我們可以使用 <code>belongsToMany</code> 方法，去定義多對多的關係:
+</p>
 
 <pre><code>class User extends Eloquent {
 
@@ -742,24 +744,28 @@ select * from phones where user_id = 1
 }
 </code></pre>
 
-<p>Now, we can retrieve the roles through the <code>User</code> model:</p>
+<p>
+    現在我們可以透過 <code>User</code> 模型，去取得使用者的腳色資料:
+</p>
 
 <pre><code>$roles = User::find(1)-&gt;roles;
 </code></pre>
 
 <p>
-    If you would like to use an unconventional table name for your pivot table, you may pass it as the second argument to the <code>belongsToMany</code> method:
+    在 <code>belongsToMany</code> 方法的第二個參數你可以傳入資料表名稱，使用非預設的名稱當作關聯資料表的名稱:
 </p>
 
 <pre><code>return $this-&gt;belongsToMany('Role', 'user_roles');
 </code></pre>
 
-<p>You may also override the conventional associated keys:</p>
+<p>你也可以複寫預設使用的關聯鍵值 (associated keys):</p>
 
 <pre><code>return $this-&gt;belongsToMany('Role', 'user_roles', 'user_id', 'foo_id');
 </code></pre>
 
-<p>Of course, you may also define the inverse of the relationship on the <code>Role</code> model:</p>
+<p>
+    你也可以在 <code>Role</code> 模型中定義反向的關聯:
+</p>
 
 <pre><code>class Role extends Eloquent {
 
@@ -776,7 +782,7 @@ select * from phones where user_id = 1
 <h3>多型態的關聯 (Polymorphic Relations)</h3>
 
 <p>
-    Polymorphic relations allow a model to belong to more than one other model, on a single association. For example, you might have a photo model that belongs to either a staff model or an order model. We would define this relation like so:
+    多型態的關聯，允許模型可以關聯數個其他的模型，舉例來說，你有一個 photo 模型的資料，其資料是屬於 staff 或 Order 模型，我們可以這樣定義彼此的關聯:
 </p>
 
 <pre><code>class Photo extends Eloquent {
@@ -807,7 +813,9 @@ class Order extends Eloquent {
 }
 </code></pre>
 
-<p>Now, we can retrieve the photos for either a staff member or an order:</p>
+<p>
+    我們可以用 staff 或 order 資料去取得 photos 模型的資料:
+</p>
 
 <p><strong>Retrieving A Polymorphic Relation</strong></p>
 
@@ -820,21 +828,25 @@ foreach ($staff-&gt;photos as $photo)
 </code></pre>
 
 <p>
-    However, the true "polymorphic" magic is when you access the staff or order from the <code>Photo</code> model:
+    然而，"多型態關聯" 神奇的地方在於，你可以透過 <code>Photo</code> 模型去取得 staff 或 order 模型的資料:
 </p>
 
-<p><strong>Retrieving The Owner Of A Polymorphic Relation</strong></p>
+<p><strong>取得擁有多型態關聯的資料</strong></p>
 
 <pre><code>$photo = Photo::find(1);
 
 $imageable = $photo-&gt;imageable;
 </code></pre>
 
-<p>The <code>imageable</code> relation on the <code>Photo</code> model will return either a <code>Staff</code> or <code>Order</code> instance, depending on which type of model owns the photo.</p>
+<p>
+    在 <code>Photo</code> 模型中 <code>imageable</code> 關聯將會回傳 <code>Staff</code> 或 <code>Order</code> 模型實例，取決於哪個類型的模型擁有這個 photo 的資料。
+</p>
 
-<p>To help understand how this works, let's explore the database structure for a polymorphic relation:</p>
+<p>
+    為了幫助你了解"多型態關聯"是如何運作的，讓我們來多型態關聯中探索資料庫的結構:
+</p>
 
-<p><strong>Polymorphic Relation Table Structure</strong></p>
+<p><strong>多型態關聯資料表結構</strong></p>
 
 <pre><code>staff
     id - integer
@@ -852,7 +864,7 @@ photos
 </code></pre>
 
 <p>
-    The key fields to notice here are the <code>imageable_id</code> and <code>imageable_type</code> on the <code>photos</code> table. The ID will contain the ID value of, in this example, the owning staff or order, while the type will contain the class name of the owning model. This is what allows the ORM to determine which type of owning model to return when accessing the <code>imageable</code> relation.
+    在 <code>photos</code> 資料比中的關鍵欄位在 <code>imageable_id</code> 及 <code>imageable_type</code> 上，可以提醒資料是屬於哪個模型的資料， <code>imageable_id</code> 將會包含關聯模型的 ID 值，在這個例子中，擁有者是 staff 或 order 模型，所以 <code>imageable_type</code> 資料會是擁有的模型名稱，這可以讓 ORM 去決定 <code>imageable</code> 關聯將回傳哪個模型的實例。
 </p>
 
 <p><a name="querying-relations"></a></p>
@@ -860,15 +872,15 @@ photos
 <h2>查詢關聯</h2>
 
 <p>
-    When accessing the records for a model, you may wish to limit your results based on the existence of a relationship. For example, you wish to pull all blog posts that have at least one comment. To do so, you may use the <code>has</code> method:
+    當存取模型的資料時，你或許想限制關聯資料存取的筆數，舉例來說，你可能想撈取所有的部落格文章，其中文章至少要有一個以上的評論，你可以使用 <code>has</code> 的方法，去達到這樣的目的:
 </p>
 
-<p><strong>Checking Relations When Selecting</strong></p>
+<p><strong>在撈取資料時檢查關聯</strong></p>
 
 <pre><code>$posts = Post::has('comments')-&gt;get();
 </code></pre>
 
-<p>You may also specify an operator and a count:</p>
+<p>你也可以指定運算子及筆數</p>
 
 <pre><code>$posts = Post::has('comments', '&gt;=', 3)-&gt;get();
 </code></pre>
@@ -878,7 +890,7 @@ photos
 <h3>動態屬性</h3>
 
 <p>
-    Eloquent allows you to access your relations via dynamic properties. Eloquent will automatically load the relationship for you, and is even smart enough to know whether to call the <code>get</code> (for one-to-many relationships) or <code>first</code> (for one-to-one relationships) method.  It will then be accessible via a dynamic property by the same name as the relation. For example, with the following model <code>$phone</code>:
+    Eloquent 允許你透過動態屬性去存取關聯的資料， Eloquent 將會自動替你建立關聯關係，也可以很聰明地呼叫 <code>get</code> (一對多的關聯關係) 或 <code>first</code> (一對一的關聯關係) 方法去取得關聯資料，以下列的 <code>$phone</code> 模型舉例:
 </p>
 
 <pre><code>class Phone extends Eloquent {
@@ -893,12 +905,12 @@ photos
 $phone = Phone::find(1);
 </code></pre>
 
-<p>Instead of echoing the user's email like this:</p>
+<p>取代像列印使用者的 email:</p>
 
 <pre><code>echo $phone-&gt;user()-&gt;first()-&gt;email;
 </code></pre>
 
-<p>It may be shortened to simply:</p>
+<p>可以被簡化為:</p>
 
 <pre><code>echo $phone-&gt;user-&gt;email;
 </code></pre>
@@ -908,7 +920,9 @@ $phone = Phone::find(1);
 <h2>預先加載</h2>
 
 <p>
-    Eager loading exists to alleviate the N + 1 query problem. For example, consider a <code>Book</code> model that is related to <code>Author</code>. The relationship is defined like so:
+    預先加載的存在是為了減輕N +1查詢問題。例如，考慮一個書模型，是關係到作者。關係定義，像這樣：
+
+    預先加載是為了減輕 N + 1 個查詢問題，舉例來說，考慮讓 <code>Book</code> 模型關聯到 <code>Author</code> 模型，其關聯關係可定義成像這樣:
 </p>
 
 <pre><code>class Book extends Eloquent {
@@ -921,7 +935,7 @@ $phone = Phone::find(1);
 }
 </code></pre>
 
-<p>Now, consider the following code:</p>
+<p>現在我們來考慮下列的程式:</p>
 
 <pre><code>foreach (Book::all() as $book)
 {
@@ -930,11 +944,13 @@ $phone = Phone::find(1);
 </code></pre>
 
 <p>
-    This loop will execute 1 query to retrieve all of the books on the table, then another query for each book to retrieve the author. So, if we have 25 books, this loop would run 26 queries.
+    這個迴圈會執行 1 次查詢去取得 "books" 資料表中所有的書籍，而另外一個查詢是去取得其書籍的作者，所以在我們有 25 本書的情況下，這個迴圈將會執行 26 次的查詢。
 </p>
 
 <p>
-    Thankfully, we can use eager loading to drastically reduce the number of queries. The relationships that should be eager loaded may be specified via the <code>with</code> method:
+    值得慶幸的是，我們可以用預先加載查詢的數量大幅減少。通過與方法的關係，應該是急於裝可以指定：
+
+    值得慶幸的是，我們可以使用預先加載去減少查詢數量，可以使用 <code>with</code> 方法在關聯中去完成預先加載:
 </p>
 
 <pre><code>foreach (Book::with('author')-&gt;get() as $book)
@@ -943,31 +959,41 @@ $phone = Phone::find(1);
 }
 </code></pre>
 
-<p>In the loop above, only two queries will be executed:</p>
+<p>
+    在上列的迴圈，只有兩個查詢會被執行:
+</p>
 
 <pre><code>select * from books
 
 select * from authors where id in (1, 2, 3, 4, 5, ...)
 </code></pre>
 
-<p>Wise use of eager loading can drastically increase the performance of your application.</p>
+<p>
+    明智的使用預先加載，可以大大提高你應用程式的效能。
+</p>
 
-<p>Of course, you may eager load multiple relationships at one time:</p>
+<p>
+    當然你也可以一次就加載數個關聯的資料:
+</p>
 
 <pre><code>$books = Book::with('author', 'publisher')-&gt;get();
 </code></pre>
 
-<p>You may even eager load nested relationships:</p>
+<p>
+    你也可以預先加載巢狀的關聯:
+</p>
 
 <pre><code>$books = Book::with('author.contacts')-&gt;get();
 </code></pre>
 
-<p>In the example above, the <code>author</code> relationship will be eager loaded, and the author's <code>contacts</code> relation will also be loaded.</p>
+<p>
+    在上述的範例中，<code>author</code> 關聯將會被預先加載，而 author 的 <code>contacts</code> 關聯也會被預先加載。
+</p>
 
-<h3>Eager Load Constraints</h3>
+<h3>預先加載限制</h3>
 
 <p>
-    Sometimes you may wish to eager load a relationship, but also specify a condition for the eager load. Here's an example:
+    有時你會希望預先加載關聯資料，並且可以指定加載的條件，這裡有使用範例:
 </p>
 
 <pre><code>$users = User::with(array('posts' =&gt; function($query)
@@ -977,13 +1003,13 @@ select * from authors where id in (1, 2, 3, 4, 5, ...)
 </code></pre>
 
 <p>
-    In this example, we're eager loading the user's posts, but only if the post's title column contains the word "first".
+    在這個範例中，我們可以預先加載使用者的文章，但只加載文章標題欄位有 "first" 字串的欄位。
 </p>
 
-<h3>Lazy Eager Loading</h3>
+<h3>懶人預先加載</h3>
 
 <p>
-    It is also possible to eagerly load related models directly from an already existing model collection. This may be useful when dynamically deciding whether to load related models or not, or in combination with caching.
+    也可以從存在的模型集合中直接預先加載資料，這樣可以根據所需，動態決定是否加載關聯的模型資料，或是快取的組合。
 </p>
 
 <pre><code>$books = Book::all();
@@ -996,10 +1022,10 @@ $books-&gt;load('author', 'publisher');
 <h2>新增相關模組</h2>
 
 <p>
-    You will often need to insert new related models. For example, you may wish to insert a new comment for a post. Instead of manually setting the <code>post_id</code> foreign key on the model, you may insert the new comment from its parent <code>Post</code> model directly:
+    你經常需要新增新的資料到關聯的模組中，舉例來說，你也許希望新增一則評論到文章時，能夠幫你自動將 <code>post_id</code> 外來鍵新增到模型當中，你可以透過母模型 <code>Post</code> 去直接新增一則評論到文章中，來達到自動新增外來鍵到模型中的目的:
 </p>
 
-<p><strong>Attaching A Related Model</strong></p>
+<p><strong>附加關聯模型</strong></p>
 
 <pre><code>$comment = new Comment(array('message' =&gt; 'A new comment.'));
 
@@ -1008,12 +1034,14 @@ $post = Post::find(1);
 $comment = $post-&gt;comments()-&gt;save($comment);
 </code></pre>
 
-<p>In this example, the <code>post_id</code> field will automatically be set on the inserted comment.</p>
+<p>
+    在這個範例中，<code>post_id</code> 欄位將會自動的設定到評論的關聯文章資料中。
+</p>
 
-<h3>Associating Models (Belongs To)</h3>
+<h3>關聯模型 - 屬於 (Belongs To)</h3>
 
 <p>
-    When updating a <code>belongsTo</code> relationship, you may use the <code>associate</code> method. This method will set the foreign key on the child model:
+    當更新一個 <code>屬於 (belongsTo)</code> 關係的關聯資料時，你可以使用 <code>associate</code> 方法去實作，這個方法將會設定外來鍵到子模型中:
 </p>
 
 <pre><code>$account = Account::find(10);
@@ -1023,47 +1051,53 @@ $user-&gt;account()-&gt;associate($account);
 $user-&gt;save();
 </code></pre>
 
-<h3>Inserting Related Models (Many To Many)</h3>
+<h3>新增關聯模型 - 多對多 (Many To Many)</h3>
 
 <p>
-    You may also insert related models when working with many-to-many relations. Let's continue using our <code>User</code> and <code>Role</code> models as examples. We can easily attach new roles to a user using the <code>attach</code> method:
+    你可能會新增資料到 "多對多 (many-to-many)" 關聯模型當中，讓我們用 <code>User</code> 及 <code>Role</code> 模型來當作範例，我們可以使用 <code>attach</code> 方法，附加一個新的腳色給使用者::
 </p>
 
-<p><strong>Attaching Many To Many Models</strong></p>
+<p><strong>附加多對多模型</strong></p>
 
 <pre><code>$user = User::find(1);
 
 $user-&gt;roles()-&gt;attach(1);
 </code></pre>
 
-<p>You may also pass an array of attributes that should be stored on the pivot table for the relation:</p>
+<p>
+    你也可以傳送一個屬性陣列資料，儲存關聯資料到資料表中:
+</p>
 
 <pre><code>$user-&gt;roles()-&gt;attach(1, array('expires' =&gt; $expires));
 </code></pre>
 
-<p>Of course, the opposite of <code>attach</code> is <code>detach</code>:</p>
+<p>
+    當然，<code>attach</code> 的反向方法就是 <code>detach</code>:
+</p>
 
 <pre><code>$user-&gt;roles()-&gt;detach(1);
 </code></pre>
 
 <p>
-    You may also use the <code>sync</code> method to attach related models. The <code>sync</code> method accepts an array of IDs to place on the pivot table. After this operation is complete, only the IDs in the array will be on the intermediate table for the model:
+    你也可以使用 <code>sync</code> 方法去附加關聯模型資料，<code>sync</code> 方法接收編號陣列資料，並將編號資料存放到關聯資料中，在操作完成後，陣列中的編號將會建立到關聯資料模型中:
 </p>
 
-<p><strong>Using Sync To Attach Many To Many Models</strong></p>
+<p><strong>使用同步附加多對多模型</strong></p>
 
 <pre><code>$user-&gt;roles()-&gt;sync(array(1, 2, 3));
 </code></pre>
 
-<p>You may also associate other pivot table values with the given IDs:</p>
+<p>
+    除了關聯給予的陣列編號外，你也可以將其他的資料儲存到關聯模型中:
+</p>
 
-<p><strong>Adding Pivot Data When Syncing</strong></p>
+<p><strong>同步時加入關聯資料</strong></p>
 
 <pre><code>$user-&gt;roles()-&gt;sync(array(1 =&gt; array('expires' =&gt; true)));
 </code></pre>
 
 <p>
-    Sometimes you may wish to create a new related model and attach it in a single command. For this operation, you may use the <code>save</code> method:
+    有時你可能希望新增一個新的資料到關聯的模型中，並同時在一行指令中附加新的關聯資料，在這個操作中，你可以使用 <code>save</code> 方法去完成這樣的需求:
 </p>
 
 <pre><code>$role = new Role(array('name' =&gt; 'Editor'));
@@ -1072,7 +1106,7 @@ User::find(1)-&gt;roles()-&gt;save($role);
 </code></pre>
 
 <p>
-    In this example, the new <code>Role</code> model will be saved and attached to the user model. You may also pass an array of attributes to place on the joining table for this operation:
+    在這個範例中，新的 <code>Role</code> 模型資料將會被儲存，並附加到使用者模型中，你也可以傳遞一屬性陣列值，將此陣列值的資料，也一併存放到關聯資料中:
 </p>
 
 <pre><code>User::find(1)-&gt;roles()-&gt;save($role, array('expires' =&gt; $expires));
