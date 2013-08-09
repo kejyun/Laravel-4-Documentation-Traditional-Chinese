@@ -24,6 +24,9 @@
 .docs-menu ul li{
     margin-top: 10px;
 }
+.to-top{
+    right: 500px;
+}
 </style>
 </head>
 <body>
@@ -56,6 +59,8 @@
                 </li>
             </ul>
         </nav>
+        <a class="to-top">回到最上方</a>
+
     </div>
 </header>
 
@@ -436,9 +441,11 @@ Auth::login($user);
 php artisan migrate
 </code></pre>
 
-<p>To send a password reminder, we can use the <code>Password::remind</code> method:</p>
+<p>
+    我們可以使用 <code>Password::remind</code> 方法去傳送密碼重設提示:
+</p>
 
-<p><strong>Sending A Password Reminder</strong></p>
+<p><strong>傳送密碼重設提示</strong></p>
 
 <pre><code>Route::post('password/remind', function()
 {
