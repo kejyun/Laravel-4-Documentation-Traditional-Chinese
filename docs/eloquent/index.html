@@ -12,7 +12,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<title>Laravel 4 PHP Framework Documentation 繁體中文教學文件</title>
+<title>Laravel 4 PHP Framework Documentation 繁體中文教學文件 - Eloquent ORM</title>
 <link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico">
 <meta name="description" content="Laravel, 優雅的PHP網頁工匠框架(Framework) 開始享受開發上的樂趣吧!">
 <meta name="keyword" content="Laravel,Documentation,教學,文件,繁體,中文,PHP,Framework,框架,優雅" />
@@ -1117,7 +1117,7 @@ User::find(1)-&gt;roles()-&gt;save($role);
 <h2>碰觸母節點時間戳記</h2>
 
 <p>
-    When a model <code>belongsTo</code> another model, such as a <code>Comment</code> which belongs to a <code>Post</code>, it is often helpful to update the parent's timestamp when the child model is updated. For example, when a <code>Comment</code> model is updated, you may want to automatically touch the <code>updated_at</code> timestamp of the owning <code>Post</code>. Eloquent makes it easy. Just add a <code>touches</code> property containing the names of the relationships to the child model:
+    當模型 <code>屬於 (belongsTo)</code>另外一個模型時，像 <code>Comment</code> 模型是附屬在 <code>Post</code> 模型下，如果子模型被更新時，也能夠更新母模型，對應用程式運作是相當方便的，舉例來說，當 <code>Comment</code> 模型被更新，你或許想要自動更新擁有它 <code>Post</code> 模型的 <code>更新時間 (updated_at)</code> 欄位，Eloquent可以讓這樣的功能變得相當容易，只需要在子模型中加入 <code>touches</code> 屬性，其中屬性包含有關連到子模型的母模型名稱:
 </p>
 
 <pre><code>class Comment extends Eloquent {
@@ -1133,7 +1133,7 @@ User::find(1)-&gt;roles()-&gt;save($role);
 </code></pre>
 
 <p>
-    Now, when you update a <code>Comment</code>, the owning <code>Post</code> will have its <code>updated_at</code> column updated:
+    現在當你更新 <code>Comment</code> 模型的資料時，擁有它的 <code>Post</code> 模型 <code>updated_at</code> 欄位將會自動更新:
 </p>
 
 <pre><code>$comment = Comment::find(1);
