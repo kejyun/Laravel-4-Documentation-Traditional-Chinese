@@ -161,20 +161,20 @@
 <h2>控制器輸出</h2>
 
 <p>
-    One method of using templates in Laravel is via controller layouts. By specifying the <code>layout</code> property on the controller, the view specified will be created for you and will be the assumed response that should be returned from actions.
+    Laravel 其中一個使用樣板的方法是透過 "控制器 (Controller)" 的 layout，藉由設定在控制器的 <code>layout</code> 屬性值，指定特定的視圖作為預設回傳的回應資料。
 </p>
 
-<p><strong>Defining A Layout On A Controller</strong></p>
+<p><strong>在控制器定義 Layout</strong></p>
 
 <pre><code>class UserController extends BaseController {
 
     /**
-     * The layout that should be used for responses.
+     * layout會被用在請求回應中
      */
     protected $layout = 'layouts.master';
 
     /**
-     * Show the user profile.
+     * 顯示使用者個人檔案
      */
     public function showProfile()
     {
@@ -189,17 +189,17 @@
 <h2>Blade樣板</h2>
 
 <p>
-    Blade is a simple, yet powerful templating engine provided with Laravel. Unlike controller layouts, Blade is driven by <em>template inheritance</em> and <em>sections</em>. All Blade templates should use the <code>.blade.php</code> extension.
+    Blade 是 Laravel 提供的一個簡單且強大的樣板引擎，不同於控制的 Layout，Blade是透過 <em>樣板繼承 (template inheritance)</em> 及 <em>區段 (sections)</em> 去驅動的，所有的 Blade 樣板需使用 <code>.blade.php</code> 作為附檔名。
 </p>
 
-<p><strong>Defining A Blade Layout</strong></p>
+<p><strong>定義 Blade Layout</strong></p>
 
 <pre><code>&lt;!-- Stored in app/views/layouts/master.blade.php --&gt;
 
 &lt;html&gt;
     &lt;body&gt;
         @section('sidebar')
-            This is the master sidebar.
+            這是主要的 sidebar.
         @show
 
         &lt;div class="container"&gt;
@@ -209,86 +209,88 @@
 &lt;/html&gt;
 </code></pre>
 
-<p><strong>Using A Blade Layout</strong></p>
+<p><strong>使用 Blade Layout</strong></p>
 
 <pre><code>@extends('layouts.master')
 
 @section('sidebar')
     @parent
 
-    &lt;p&gt;This is appended to the master sidebar.&lt;/p&gt;
+    &lt;p&gt;這段會被加到 layouts.master 的 sidebar中&lt;/p&gt;
 @stop
 
 @section('content')
-    &lt;p&gt;This is my body content.&lt;/p&gt;
+    &lt;p&gt;這裡是我的內文。&lt;/p&gt;
 @stop
 </code></pre>
 
 <p>
-    Note that views which <code>extend</code> a Blade layout simply override sections from the layout. Content of the layout can be included in a child view using the <code>@parent</code> directive in a section, allowing you to append to the contents of a layout section such as a sidebar or footer.
+    注意到視圖僅僅覆寫 <code>繼承 (extend)</code> Blade 樣板的 layout 的區段資料 (section)，Layout 的內容可以使用 <code>@parent</code> 方法被引用到子視圖區段中，允許你附加 layout 區段資料的內文，像是 sidebar 或是 footer。
 </p>
 
 <p><a name="other-blade-control-structures"></a></p>
 
 <h2>其他Blade控制結構</h2>
 
-<p><strong>Echoing Data</strong></p>
+<p><strong>列印資料</strong></p>
 
 <pre><code>Hello, {{ $name }}.
 
 The current UNIX timestamp is {{ time() }}.
 </code></pre>
 
-<p>To escape the output, you may use the triple curly brace syntax:</p>
+<p>
+    你可以使用三個大括弧去跳脫輸出的資料:
+</p>
 
 <pre><code>Hello, {{{ $name }}}.
 </code></pre>
 
-<p><strong>If Statements</strong></p>
+<p><strong>If 陳述式</strong></p>
 
 <pre><code>@if (count($records) === 1)
-    I have one record!
+    有一筆資料
 @elseif (count($records) &gt; 1)
-    I have multiple records!
+    有多筆資料
 @else
-    I don't have any records!
+    沒有任何資料
 @endif
 
 @unless (Auth::check())
-    You are not signed in.
+    你尚未登入
 @endunless
 </code></pre>
 
 <p><strong>Loops</strong></p>
 
 <pre><code>@for ($i = 0; $i &lt; 10; $i++)
-    The current value is {{ $i }}
+    現在的值是 {{ $i }}
 @endfor
 
 @foreach ($users as $user)
-    &lt;p&gt;This is user {{ $user-&gt;id }}&lt;/p&gt;
+    &lt;p&gt;這是使用者 {{ $user-&gt;id }}&lt;/p&gt;
 @endforeach
 
 @while (true)
-    &lt;p&gt;I'm looping forever.&lt;/p&gt;
+    &lt;p&gt;我是無限迴圈&lt;/p&gt;
 @endwhile
 </code></pre>
 
-<p><strong>Including Sub-Views</strong></p>
+<p><strong>包含子視圖</strong></p>
 
 <pre><code>@include('view.name')
 </code></pre>
 
-<p><strong>Displaying Language Lines</strong></p>
+<p><strong>顯示語言資訊</strong></p>
 
 <pre><code>@lang('language.line')
 
 @choice('language.line', 1);
 </code></pre>
 
-<p><strong>Comments</strong></p>
+<p><strong>註解</strong></p>
 
-<pre><code>{{-- This comment will not be in the rendered HTML --}}
+<pre><code>{{-- 這個註解將不會產生 HTML去顯示 --}}
 </code></pre>
     </article>
     <div class="clearfix"></div>

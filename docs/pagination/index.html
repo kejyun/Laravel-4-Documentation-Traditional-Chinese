@@ -145,15 +145,15 @@
         <h1>分頁</h1>
 
 <ul>
-	<li>
-		<a href="#configuration">設置</a>
-	</li>
-	<li>
-		<a href="#usage">使用</a>
-	</li>
-	<li>
-		<a href="#appending-to-pagination-links">加入分頁連結</a>
-	</li>
+    <li>
+        <a href="#configuration">設置</a>
+    </li>
+    <li>
+        <a href="#usage">使用</a>
+    </li>
+    <li>
+        <a href="#appending-to-pagination-links">加入分頁連結</a>
+    </li>
 </ul>
 
 <p><a name="configuration"></a></p>
@@ -161,11 +161,11 @@
 <h2>設置</h2>
 
 <p>
-	In other frameworks, pagination can be very painful. Laravel makes it a breeze. There is a single configuration option in the <code>app/config/view.php</code> file. The <code>pagination</code> option specifies which view should be used to create pagination links. By default, Laravel includes two views.
+    在其它的框架中，實做分頁是令人痛苦的事，Laravel 卻讓分頁變得非常的簡單，在 <code>app/config/view.php</code> 設定檔中只有一個 <code>pagination</code> 選項需要設定，選項必須指定要用哪一種視圖 (view) 來建立分頁連結， Laravel 預設有兩種可以顯示的視圖。
 </p>
 
 <p>
-	The <code>pagination::slider</code> view will show an intelligent "range" of links based on the current page, while the <code>pagination::simple</code> view will simply show "previous" and "next" buttons. <strong>Both views are compatible with Twitter Bootstrap out of the box.</strong>
+    <code>pagination::slider</code> 視圖將會聰明的產生以目前頁數為主的範圍頁數連結，而 <code>pagination::simple</code> 視圖則僅僅是產生 "上一頁" 與 "下一頁" 按鈕，<strong>而兩種視圖都能支援 Twitter Bootstrap 框架</strong>
 </p>
 
 <p><a name="usage"></a></p>
@@ -173,23 +173,25 @@
 <h2>使用</h2>
 
 <p>
-	There are several ways to paginate items. The simplest is by using the <code>paginate</code> method on the query builder or an Eloquent model.
+    Laravel 有樹種方法去產生分頁項目，簡單的是在 "Query產生器" 或 "Eloquent 模型" 中使用 <code>paginate</code> 方法
 </p>
 
-<p><strong>Paginating Database Results</strong></p>
+<p><strong>分頁資料庫查詢結果</strong></p>
 
 <pre><code>$users = DB::table('users')-&gt;paginate(15);
 </code></pre>
 
-<p>You may also paginate <a href="/docs/eloquent">Eloquent</a> models:</p>
+<p>
+    你也可以在 <a href="../../docs/eloquent">Eloquent ORM</a> 模型做分頁查詢:
+</p>
 
-<p><strong>Paginating An Eloquent Model</strong></p>
+<p><strong>分頁 Eloquent 模型查詢結果</strong></p>
 
 <pre><code>$users = User::where('votes', '&gt;', 100)-&gt;paginate(15);
 </code></pre>
 
 <p>
-	The argument passed to the <code>paginate</code> method is the number of items you wish to display per page. Once you have retrieved the results, you may display them on your view, and create the pagination links using the <code>links</code> method:
+    傳送給 <code>paginate</code> 方法的參數是你希望每頁要顯示的項目選項數目，只要你取得查詢結果後，你可以在視圖中顯示，並使用 <code>links</code> 方法去建立分頁連結:
 </p>
 
 <pre><code>&lt;div class="container"&gt;
@@ -202,22 +204,24 @@
 </code></pre>
 
 <p>
-	This is all it takes to create a pagination system! Note that we did not have to inform the framework of the current page. Laravel will determine this for you automatically.
+    這就是所有產生分頁系統的步驟了! 你會注意到我們還沒有告知 Laravel 我們目前的頁面是哪一頁，這個資訊 Laravel 會自動幫你做好。
 </p>
 
-<p>You may also access additional pagination information via the following methods:</p>
+<p>
+    你也可以透過下列的方法去取得分頁的資訊:
+</p>
 
 <ul>
-	<li><code>getCurrentPage</code></li>
-	<li><code>getLastPage</code></li>
-	<li><code>getPerPage</code></li>
-	<li><code>getTotal</code></li>
-	<li><code>getFrom</code></li>
-	<li><code>getTo</code></li>
+    <li><code>getCurrentPage</code></li>
+    <li><code>getLastPage</code></li>
+    <li><code>getPerPage</code></li>
+    <li><code>getTotal</code></li>
+    <li><code>getFrom</code></li>
+    <li><code>getTo</code></li>
 </ul>
 
 <p>
-	Sometimes you may wish to create a pagination instance manually, passing it an array of items. You may do so using the <code>Paginator::make</code> method:
+    有時候你可能會想要自己手動建立分頁，只需要用 <code>Paginator::make</code> 方法即可手動建立分頁。
 </p>
 
 <p><strong>Creating A Paginator Manually</strong></p>
@@ -230,13 +234,15 @@
 <h2>加入分頁連結</h2>
 
 <p>
-	You can add to the query string of pagination links using the <code>appends</code> method on the Paginator:
+    你可以使用 <code>appends</code> 方法加入查詢字串到分頁連結中:
 </p>
 
 <pre><code>&lt;?php echo $users-&gt;appends(array('sort' =&gt; 'votes'))-&gt;links(); ?&gt;
 </code></pre>
 
-<p>This will generate URLs that look something like this:</p>
+<p>
+    這樣會產生像是下列的連結結果:
+</p>
 
 <pre><code>http://example.com/something?page=2&amp;sort=votes
 </code></pre>
