@@ -1143,7 +1143,7 @@ User::find(1)-&gt;roles()-&gt;save($role);
 
 <pre><code>$comment = Comment::find(1);
 
-$comment-&gt;text = 'Edit to this comment!';
+$comment-&gt;text = '編輯這個評論!';
 
 $comment-&gt;save();
 </code></pre>
@@ -1153,7 +1153,7 @@ $comment-&gt;save();
 <h2>使用數據透視表</h2>
 
 <p>
-    As you have already learned, working with many-to-many relations requires the presence of an intermediate table. Eloquent provides some very helpful ways of interacting with this table. For example, let's assume our <code>User</code> object has many <code>Role</code> objects that it is related to. After accessing this relationship, we may access the <code>pivot</code> table on the models:
+    就像你已經學過的，實做多對多關係需要中介的資料表，Eloquent 提供了非常好用的方法，幫助我們與中介資料表做互動，舉例來說，假設 <code>User</code> 物件有多個相關的 <code>Role</code> 物件，我們可以在模型中透過存取 <code>pivot</code> 來存取這個關係資料表:
 </p>
 
 <pre><code>$user = User::find(1);
@@ -1165,36 +1165,38 @@ foreach ($user-&gt;roles as $role)
 </code></pre>
 
 <p>
-    Notice that each <code>Role</code> model we retrieve is automatically assigned a <code>pivot</code> attribute. This attribute contains a model representing the intermediate table, and may be used as any other Eloquent model.
+    這邊會注意到每個 <code>Role</code> 模型會自動被指定一個 <code>pivot</code> 屬性，這個屬性會包含模型的中介資料表，且可能也會被其他的 Eloquent 模型存取。
 </p>
 
 <p>
-    By default, only the keys will be present on the <code>pivot</code> object. If your pivot table contains extra attributes, you must specify them when defining the relationship:
+    <code>pivot</code> 屬性在預設的情況下只有包含 "鍵值 (Key)"，如果你想要讓你的 pivot 資料表包含其他的屬性，則必須要在定義模型關係時，去指定要額外存取的屬性:
 </p>
 
 <pre><code>return $this-&gt;belongsToMany('Role')-&gt;withPivot('foo', 'bar');
 </code></pre>
 
 <p>
-    Now the <code>foo</code> and <code>bar</code> attributes will be accessible on our <code>pivot</code> object for the <code>Role</code> model.
+    現在 <code>foo</code> 及 <code>bar</code> 屬性可以在 <code>Role</code> 模型中的 <code>pivot</code> 物件中存取了。
 </p>
 
 <p>
-    If you want your pivot table to have automatically maintained <code>created_at</code> and <code>updated_at</code> timestamps, use the <code>withTimestamps</code> method on the relationship definition:
+    如果你想要你的 pivot 資料表可以自動維護 <code>created_at</code> 及 <code>updated_at</code> 這兩個欄位的時間戳記，可以在定義關係時使用 <code>withTimestamps</code> 方法即可:
 </p>
 
 <pre><code>return $this-&gt;belongsToMany('Role')-&gt;withTimestamps();
 </code></pre>
 
-<p>To delete all records on the pivot table for a model, you may use the <code>detach</code> method:</p>
+<p>
+    使用 <code>detach</code> 方法可以刪除模型在 pivot 資料表的所有紀錄:
+</p>
 
-<p><strong>Deleting Records On A Pivot Table</strong></p>
+<p><strong>刪除在 Pivot 資料表的紀錄</strong></p>
 
 <pre><code>User::find(1)-&gt;roles()-&gt;detach();
 </code></pre>
 
 <p>
-    Note that this operation does not delete records from the <code>roles</code> table, but only from the pivot table.
+    注意到這個操作不會刪除 <code>roles</code> 資料表的紀錄，僅有移除在 pivot 資料表的紀錄。
 </p>
 
 <p><a name="collections"></a></p>
@@ -1202,12 +1204,14 @@ foreach ($user-&gt;roles as $role)
 <h2>聚集</h2>
 
 <p>
-    All multi-result sets returned by Eloquent either via the <code>get</code> method or a relationship return an Eloquent <code>Collection</code> object. This object implements the <code>IteratorAggregate</code> PHP interface so it can be iterated over like an array. However, this object also has a variety of other helpful methods for working with result sets.
+    所有多結果的集合可以經由 Eloquent 的 <code>get</code> 方法或模型關係回傳 Eloquent <code>集合 (Collection)</code> 物件，這個物件實做了 PHP 的 <code>IteratorAggregate</code> 介面，所以可以像陣列一樣遞迴存取，然而物件也有其他各種的方法去存取這個資料集合。
 </p>
 
-<p>For example, we may determine if a result set contains a given primary key using the <code>contains</code> method:</p>
+<p>
+    舉例來說，我們可以使用 <code>contains</code> 方法，判斷集合資料中是否有指定的 "主鍵 (primary key)" 資料:
+</p>
 
-<p><strong>Checking If A Collection Contains A Key</strong></p>
+<p><strong>檢查集合是否包含鍵值資料</strong></p>
 
 <pre><code>$roles = User::find(1)-&gt;roles;
 
@@ -1217,21 +1221,23 @@ if ($roles-&gt;contains(2))
 }
 </code></pre>
 
-<p>Collections may also be converted to an array or JSON:</p>
+<p>資料集合也可以轉換成 陣列 或 JSON 格式:</p>
 
 <pre><code>$roles = User::find(1)-&gt;roles-&gt;toArray();
 
 $roles = User::find(1)-&gt;roles-&gt;toJson();
 </code></pre>
 
-<p>If a collection is cast to a string, it will be returned as JSON:</p>
+<p>假如集合轉換成字串，則會回傳 JSON 格式的資料:</p>
 
 <pre><code>$roles = (string) User::find(1)-&gt;roles;
 </code></pre>
 
-<p>Eloquent collections also contain a few helpful methods for looping and filtering the items they contain:</p>
+<p>
+    Eloquent 集合也包含一些有用的方法，可以遞迴或是過濾資料集合:
+</p>
 
-<p><strong>Iterating &amp; Filtering Collections</strong></p>
+<p><strong>遞迴 &amp; 過濾資料集合</strong></p>
 
 <pre><code>$roles = $user-&gt;roles-&gt;each(function($role)
 {
@@ -1244,7 +1250,7 @@ $roles = $user-&gt;roles-&gt;filter(function($role)
 });
 </code></pre>
 
-<p><strong>Applying A Callback To Each Collection Object</strong></p>
+<p><strong>實做回呼函式到每個集合的物件</strong></p>
 
 <pre><code>$roles = User::find(1)-&gt;roles;
 
@@ -1254,7 +1260,7 @@ $roles-&gt;each(function($role)
 });
 </code></pre>
 
-<p><strong>Sorting A Collection By A Value</strong></p>
+<p><strong>排序集合資料</strong></p>
 
 <pre><code>$roles = $roles-&gt;sortBy(function($role)
 {
@@ -1263,10 +1269,10 @@ $roles-&gt;each(function($role)
 </code></pre>
 
 <p>
-    Sometimes, you may wish to return a custom Collection object with your own added methods. You may specify this on your Eloquent model by overriding the <code>newCollection</code> method:
+    有時你可能會想要在你自己加入的方法中，回傳自訂的集合物件，你可以在 Eloquent 中去定義覆寫 <code>newCollection</code> 的方法:
 </p>
 
-<p><strong>Returning A Custom Collection Type</strong></p>
+<p><strong>回傳自訂集合類型</strong></p>
 
 <pre><code>class User extends Eloquent {
 
@@ -1283,15 +1289,16 @@ $roles-&gt;each(function($role)
 <h2>存取及修改器</h2>
 
 <p>
-    Eloquent provides a convenient way to transform your model attributes when getting or setting them. Simply define a <code>getFooAttribute</code> method on your model to declare an accessor. Keep in mind that the methods should follow camel-casing, even though your database columns are snake-case:
+    Eloquent 提供一個便利的方法讓你可以在"取得"或"設定"屬性時，轉換模型中的屬性，只要簡單的在模型中定義 <code>getFooAttribute</code> 方法當作存取器，這裡需要記住的是方法名稱必須遵循 <code>駝峰式大小寫 (camelCase)</code>，即便你的資料表欄位名稱規則是 <code>蛇底式小寫 (snake_case)</code>:
 </p>
 
-<p><strong>Defining An Accessor</strong></p>
+<p><strong>定義屬性存取器</strong></p>
 
 <pre><code>class User extends Eloquent {
 
     public function getFirstNameAttribute($value)
     {
+        // 將第一個字母轉換為大寫
         return ucfirst($value);
     }
 
@@ -1299,12 +1306,12 @@ $roles-&gt;each(function($role)
 </code></pre>
 
 <p>
-    In the example above, the <code>first_name</code> column has an accessor. Note that the value of the attribute is passed to the accessor.
+    在上述範例中，<code>first_name</code> 欄位會有一個存取器，欄位資料將會傳送給存取器。
 </p>
 
-<p>Mutators are declared in a similar fashion:</p>
+<p>修改器的定義也很類似:</p>
 
-<p><strong>Defining A Mutator</strong></p>
+<p><strong>定義修改器</strong></p>
 
 <pre><code>class User extends Eloquent {
 
@@ -1321,11 +1328,11 @@ $roles-&gt;each(function($role)
 <h2>日期設置器</h2>
 
 <p>
-    By default, Eloquent will convert the <code>created_at</code>, <code>updated_at</code>, and <code>deleted_at</code> columns to instances of <a href="https://github.com/briannesbitt/Carbon">Carbon</a>, which provides an assortment of helpful methods, and extends the native PHP <code>DateTime</code> class.
+    Eloquent 預設會將 <code>created_at</code> 、 <code>updated_at</code> 及 <code>deleted_at</code> 欄位轉換為 <a href="https://github.com/briannesbitt/Carbon" target="_blank">Carbon</a> 實例，該實例提供了各種好用的處理時間方法，且繼承了 PHP 原生的 <code>DateTime</code> 類別。
 </p>
 
 <p>
-    You may customize which fields are automatically mutated, and even completely disable this mutation, by overriding the <code>getDates</code> method of the model:
+    你可以在模型 (Model) 中透過 <code>getDates</code> 方法，自訂那些欄位要自動被變異，或是要關閉這些變異:
 </p>
 
 <pre><code>public function getDates()
@@ -1334,9 +1341,13 @@ $roles-&gt;each(function($role)
 }
 </code></pre>
 
-<p>When a column is considered a date, you may set its value to a UNIX timetamp, date string (<code>Y-m-d</code>), date-time string, and of course a <code>DateTime</code> / <code>Carbon</code> instance.</p>
+<p>
+    當欄位是日期格式時，你可以將此欄位設定為 UNIX 時間戳記、日期字串 (<code>Y-m-d</code>)，日期時間字串 (<code>Datetime</code>)，且必然是 <code>DateTime</code> / <code>Carbon</code> 的實例。
+</p>
 
-<p>To totally disable date mutations, simply return an empty array from the <code>getDates</code> method:</p>
+<p>
+    為了完全的關閉這些欄位變異，只要在 <code>getDates</code> 方法中簡單的回傳空陣列即可:
+</p>
 
 <pre><code>public function getDates()
 {
@@ -1349,10 +1360,10 @@ $roles-&gt;each(function($role)
 <h2>模組事件</h2>
 
 <p>
-    Eloquent models fire several events, allowing you to hook into various points in the model's lifecycle using the following methods: <code>creating</code>, <code>created</code>, <code>updating</code>, <code>updated</code>, <code>saving</code>, <code>saved</code>, <code>deleting</code>, <code>deleted</code>. If <code>false</code> is returned from the <code>creating</code>, <code>updating</code>, or <code>saving</code> events, the action will be cancelled:
+    Eloquent 模型會驅動數個事件，允許你藉由下列方法 <code>creating</code> 、 <code>created</code> 、 <code>updating</code> 、 <code>updated</code> 、 <code>saving</code> 、 <code>saved</code> 、 <code>deleting</code> 、 <code>deleted</code>，去取得模型的生命週期中的不同事件點，假如 <code>creating</code> 、 <code>updating</code> 或 <code>saving</code> 事件回傳 <code>false</code>，則原事件的動作將會被取消:
 </p>
 
-<p><strong>Cancelling Save Operations Via Events</strong></p>
+<p><strong>透過事件取消儲存操作</strong></p>
 
 <pre><code>User::creating(function($user)
 {
@@ -1360,9 +1371,11 @@ $roles-&gt;each(function($role)
 });
 </code></pre>
 
-<p>Eloquent models also contain a static <code>boot</code> method, which may provide a convenient place to register your event bindings.</p>
+<p>
+    Eloquent 模型也包含靜態的 <code>boot</code> 方法，提供一個地方可以放置及註冊你的事件綁定動作。
+</p>
 
-<p><strong>Setting A Model Boot Method</strong></p>
+<p><strong>設定模型 Boot 方法</strong></p>
 
 <pre><code>class User extends Eloquent {
 
@@ -1370,7 +1383,7 @@ $roles-&gt;each(function($role)
     {
         parent::boot();
 
-        // Setup event bindings...
+        // 設定事件綁定...
     }
 
 }
@@ -1381,10 +1394,10 @@ $roles-&gt;each(function($role)
 <h2>模組觀察</h2>
 
 <p>
-    To consolidate the handling of model events, you may register a model observer. An observer class may have methods that correspond to the various model events. For example, <code>creating</code>, <code>updating</code>, <code>saving</code> methods may be on an observer, in addition to any other model event name.
+    為了保護模型事件的處理，你可以註冊一個模型觀察器，觀察器類別有與模型事件相符的方法，舉例來說觀察器中會有 <code>creating</code> 、 <code>updating</code> 、 <code>saving</code> 的方法，除了這些方法，還有其他模型事件的名稱的方法。
 </p>
 
-<p>So, for example, a model observer might look like this:</p>
+<p>所以舉例來說，模型觀察器會長得像這樣:</p>
 
 <pre><code>class UserObserver {
 
@@ -1401,7 +1414,9 @@ $roles-&gt;each(function($role)
 }
 </code></pre>
 
-<p>You may register an observer instance using the <code>observe</code> method:</p>
+<p>
+    你可以使用 <code>observe</code> 方法去註冊一個觀察器的實例:
+</p>
 
 <pre><code>User::observe(new UserObserver);
 </code></pre>
@@ -1411,33 +1426,37 @@ $roles-&gt;each(function($role)
 <h2>轉換成陣列/JSON</h2>
 
 <p>
-    When building JSON APIs, you may often need to convert your models and relationships to arrays or JSON. So, Eloquent includes methods for doing so. To convert a model and its loaded relationship to an array, you may use the <code>toArray</code> method:
+    當建立 JSON 格式的 API，你會經常需要將模型或關係的資訊轉換成 "陣列" 或 "JSON" 格式，所以 Eloquent 也包含了這些資料格式的轉換方法，你可以使用 <code>toArray</code> 方法，將 "模型 (Model)" 及模型載入的 "關係資料 (Relationship)" 成為陣列格式的資料:
 </p>
 
-<p><strong>Converting A Model To An Array</strong></p>
+<p><strong>轉換模型為陣列格式資料</strong></p>
 
 <pre><code>$user = User::with('roles')-&gt;first();
 
 return $user-&gt;toArray();
 </code></pre>
 
-<p>Note that entire collections of models may also be converted to arrays:</p>
+<p>
+    這裡要注意到，整個模型的集合都會被轉換成陣列格式的資料:
+</p>
 
 <pre><code>return User::all()-&gt;toArray();
 </code></pre>
 
-<p>To convert a model to JSON, you may use the <code>toJson</code> method:</p>
+<p>
+    可以使用 <code>toJson</code> 方法，將模型轉換為 JSON 資料格式:
+</p>
 
-<p><strong>Converting A Model To JSON</strong></p>
+<p><strong>轉換模型為 JSON 格式資料</strong></p>
 
 <pre><code>return User::find(1)-&gt;toJson();
 </code></pre>
 
 <p>
-    Note that when a model or collection is cast to a string, it will be converted to JSON, meaning you can return Eloquent objects directly from your application's routes!
+    注意，當模型或集合被轉換為字串時，則都會被轉換為 JSON 資料格式，意思是你可以直接在應用程式的路由，回傳整個 Eloquent 物件!
 </p>
 
-<p><strong>Returning A Model From A Route</strong></p>
+<p><strong>從路由回傳模型物件</strong></p>
 
 <pre><code>Route::get('users', function()
 {
@@ -1446,10 +1465,10 @@ return $user-&gt;toArray();
 </code></pre>
 
 <p>
-    Sometimes you may wish to limit the attributes that are included in your model's array or JSON form, such as passwords. To do so, add a <code>hidden</code> property definition to your model:
+    有時你可能會想要限制模型轉換成 "陣列" 或 "JSON" 格式時的屬性資料有哪些，像是密碼欄位資料不想要轉換輸出，可以在你的模型加入 <code>hidden</code> 屬性，來達到這樣的目的:
 </p>
 
-<p><strong>Hiding Attributes From Array Or JSON Conversion</strong></p>
+<p><strong>在陣列或JSON資料格式轉換時隱藏屬性欄位</strong></p>
 
 <pre><code>class User extends Eloquent {
 
@@ -1458,7 +1477,9 @@ return $user-&gt;toArray();
 }
 </code></pre>
 
-<p>Alternatively, you may use the <code>visible</code> property to define a white-list:</p>
+<p>
+    另外，你也可以使用 <code>visible</code> 屬性去定義可以轉換輸出的白名單屬性欄位:
+</p>
 
 <pre><code>protected $visible = array('first_name', 'last_name');
 </code></pre>
