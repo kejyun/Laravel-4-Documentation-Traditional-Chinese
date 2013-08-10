@@ -302,8 +302,6 @@
 <h2>郵件與本地開發</h2>
 
 <p>
-    當你開發需要發送郵件的應用時，在你本地或開發環境中通常需要禁用郵件發送功能。你可以通過調用Mail::pretend方法或在app/config/mail.php配置文件中設置pretend選項為true達到這一目的。當郵件發送功能被置為pretend模式時，所有郵件都會被寫入當前應用的log文件中，而不會發送給收件人。
-
     當你開發郵件寄送的應用時，你通常會想要在 "本地" 或 "開發環境" 中關閉傳送郵件功能，為了達到這樣的目的，你可以呼叫 <code>Mail::pretend</code> 方法，或者在郵件設定檔 <code>app/config/mail.php</code> 設定 <code>pretend</code> 的選項為 <code>true</code>，當你的郵件設定在 <code>pretend</code> 模式時，郵件訊息將會寫到你應用程式的 log 檔案中，而不會發送給使用者。
 </p>
 
