@@ -145,18 +145,18 @@
         <h1>在地化</h1>
 
 <ul>
-	<li>
-		<a href="#introduction">介紹</a>
-	</li>
-	<li>
-		<a href="#language-files">語言檔</a>
-	</li>
-	<li>
-		<a href="#basic-usage">基本使用</a>
-	</li>
-	<li>
-		<a href="#pluralization">多元化</a>
-	</li>
+    <li>
+        <a href="#introduction">介紹</a>
+    </li>
+    <li>
+        <a href="#language-files">語言檔</a>
+    </li>
+    <li>
+        <a href="#basic-usage">基本使用</a>
+    </li>
+    <li>
+        <a href="#pluralization">多元化</a>
+    </li>
 </ul>
 
 <p><a name="introduction"></a></p>
@@ -164,7 +164,7 @@
 <h2>介紹</h2>
 
 <p>
-	The Laravel <code>Lang</code> class provides a convenient way of retrieving strings in various languages, allowing you to easily support multiple languages within your application.
+    Laravel 的 <code>Lang</code> 類別提供一個很方便的方式可以用來存取不同類型的語言，讓你的應用程式可以很容易的支援多國語言。
 </p>
 
 <p><a name="language-files"></a></p>
@@ -172,7 +172,7 @@
 <h2>語言檔</h2>
 
 <p>
-	Language strings are stored in files within the <code>app/lang</code> directory. Within this directory there should be a subdirectory for each language supported by the application.
+    語言資訊存放在 <code>app/lang</code> 資料夾中，在這個資料夾中會放置你應用程式所支援各種不同語言的子資料夾。
 </p>
 
 <pre><code>/app
@@ -183,22 +183,26 @@
             messages.php
 </code></pre>
 
-<p>Language files simply return an array of keyed strings. For example:</p>
+<p>
+    語言檔指回傳陣列的字串值，例如:
+</p>
 
-<p><strong>Example Language File</strong></p>
+<p><strong>語言檔範例</strong></p>
 
 <pre><code>&lt;?php
 
 return array(
-    'welcome' =&gt; 'Welcome to our application'
+    'welcome' =&gt; '歡迎到我的應用程式'
 );
 </code></pre>
 
 <p>
-	The default language for your application is stored in the <code>app/config/app.php</code> configuration file. You may change the active language at any time using the <code>App::setLocale</code> method:
+    應用程序默認語言配置在app/config/app.php配置文件中locale配置項.你可以在任何時候使用App::setLocale方法來改變當前激活語言。
+
+    預設的語言設定存放在 <code>app/config/app.php</code> 檔案中，你可以隨時使用 <code>App::setLocale</code> 方法去變更目前要使用的語言:
 </p>
 
-<p><strong>Changing The Default Language At Runtime</strong></p>
+<p><strong>執行時變更預設語言</strong></p>
 
 <pre><code>App::setLocale('es');
 </code></pre>
@@ -207,32 +211,36 @@ return array(
 
 <h2>基本使用</h2>
 
-<p><strong>Retrieving Lines From A Language File</strong></p>
+<p><strong>從語言檔中取得資料</strong></p>
 
 <pre><code>echo Lang::get('messages.welcome');
 </code></pre>
 
 <p>
-	The first segment of the string passed to the <code>get</code> method is the name of the language file, and the second is the name of the line that should be retrieved.
+    第一個傳送給 <code>get</code> 方法的參數是語言檔的檔案名稱，而第二個名稱是要取得字串的鍵值名稱。
 </p>
 
 <blockquote>
-  <p><strong>Note</strong>: If a language line does not exist, the key will be returned by the <code>get</code> method.</p>
+  <p><strong>注意</strong>: 假如要取得的語言資料不存在，則 <code>get</code> 方法會回傳原鍵值名稱。</p>
 </blockquote>
 
-<p><strong>Making Replacements In Lines</strong></p>
+<p><strong>取代語言檔字串</strong></p>
 
-<p>You may also define place-holders in your language lines:</p>
+<p>
+    你也可以在語言檔中定義 位置標誌符 (place-holders):
+</p>
 
 <pre><code>'welcome' =&gt; 'Welcome, :name',
 </code></pre>
 
-<p>Then, pass a second argument of replacements to the <code>Lang::get</code> method:</p>
+<p>
+    然後傳遞第二個參數給 <code>Lang::get</code> 方法，去取代設定的 位置標誌符 (place-holders):
+</p>
 
 <pre><code>echo Lang::get('messages.welcome', array('name' =&gt; 'Dayle'));
 </code></pre>
 
-<p><strong>Determine If A Language File Contains A Line</strong></p>
+<p><strong>判斷語言資訊是否存在</strong></p>
 
 <pre><code>if (Lang::has('messages.welcome'))
 {
@@ -245,19 +253,21 @@ return array(
 <h2>多元化</h2>
 
 <p>
-	Pluralization is a complex problem, as different languages have a variety of complex rules for pluralization. You may easily manage this in your language files. By using a "pipe" character, you may separate the singular and plural forms of a string:
+    複數形式是一個複雜的問題，因為不同的語言有著不同的複數形式規則。你可以通過簡單的在語言文件中使用”管道“符來分開單數和復數文本形式：
+
+    複數是一個很複雜的問題，不同的語言有不同且複雜的複數型態規則，你可以藉由使用"管線 (pipe)"字元，簡單的去區別單數與複數的字串格式:
 </p>
 
 <pre><code>'apples' =&gt; 'There is one apple|There are many apples',
 </code></pre>
 
-<p>You may then use the <code>Lang::choice</code> method to retrieve the line:</p>
+<p>然後你可以使用 <code>Lang::choice</code> 方法去取得有複數型態的語言資訊:</p>
 
 <pre><code>echo Lang::choice('messages.apples', 10);
 </code></pre>
 
 <p>
-	Since the Laravel translator is powered by the Symfony Translation component, you may also create more explicit pluralization rules easily:
+    由於 Laravel 翻譯器是用強大的 Symfony 翻譯原件，你也可以容易的建立更多複雜的複數規則:
 </p>
 
 <pre><code>'apples' =&gt; '{0} There are none|[1,19] There are some|[20,Inf] There are many',
