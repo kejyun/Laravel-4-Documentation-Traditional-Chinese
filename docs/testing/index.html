@@ -173,20 +173,22 @@
 <h2>介紹</h2>
 
 <p>
-    Laravel is built with unit testing in mind. In fact, support for testing with PHPUnit is included out of the box, and a <code>phpunit.xml</code> file is already setup for your application. In addition to PHPUnit, Laravel also utilizes the Symfony HttpKernel, DomCrawler, and BrowserKit components to allow you to inspect and manipulate your views while testing, allowing to simulate a web browser.
+    Laravel 自己有建立單元測試，但也有支援 PHPUnit 單元測試，在你的應用程式已經有設定好 <code>phpunit.xml</code> PHPUnit 單元測試的設定，除了 PHPUnit 外，Laravel 也使用了 Symfony HttpKernel 、 DomCrawler 及 BrowserKit 元件，讓你在測試的時候可以監看及操作你的視圖，以及模擬瀏覽器的行為。
 </p>
 
-<p>An example test file is provided in the <code>app/tests</code> directory. After installing a new Laravel application, simply run <code>phpunit</code> on the command line to run your tests.</p>
+<p>
+    在 <code>app/tests</code> 資料夾中有一個測試的範例檔，在安裝了新的 Laravel 應用程式後，只要在命令列執行 <code>phpunit</code> 指令即可執行測試。
+</p>
 
 <p><a name="defining-and-running-tests"></a></p>
 
 <h2>定義並執行測試</h2>
 
 <p>
-    To create a test case, simply create a new test file in the <code>app/tests</code> directory. The test class should extend <code>TestCase</code>. You may then define test methods as you normally would when using PHPUnit.
+    只要在 <code>app/tests</code> 資料夾中建立新的測試檔案就可以建立測試案例，測試類別必須繼承 <code>TestCase</code> 類別，現在你可以像使用 PHPUnit 一樣去定義測試方法。
 </p>
 
-<p><strong>An Example Test Class</strong></p>
+<p><strong>測試類別範例</strong></p>
 
 <pre><code>class FooTest extends TestCase {
 
@@ -198,7 +200,10 @@
 }
 </code></pre>
 
-<p>You may run all of the tests for your application by executing the <code>phpunit</code> command from your terminal.</p>
+<p>
+    
+    You may run all of the tests for your application by executing the <code>phpunit</code> command from your terminal.
+</p>
 
 <blockquote>
   <p><strong>Note:</strong> If you define your own <code>setUp</code> method, be sure to call <code>parent::setUp</code>.</p>

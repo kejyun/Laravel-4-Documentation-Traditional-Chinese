@@ -396,7 +396,7 @@ $total = DB::table('users')-&gt;sum('votes');
     有時你可能需要在查詢中使用原始的 SQL 語句，你可以使用 <code>DB::raw</code> 方法去達到這樣的查詢需求，這個原始 SQL 語句將會被被當作字串連接在產生的 SQL 語法當中，所以必須注意不要讓程式產生 SQL Injecttion 的情況發生:
 </p>
 
-<p><strong>Using A Raw Expression</strong></p>
+<p><strong>使用原始的查詢表達式</strong></p>
 
 <pre><code>$users = DB::table('users')
                      -&gt;select(DB::raw('count(*) as user_count, status'))
