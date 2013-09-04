@@ -204,12 +204,13 @@ body{
 </code></pre>
 
 <p>
-    
-    You may run all of the tests for your application by executing the <code>phpunit</code> command from your terminal.
+    你可以在命令列執行 <code>phpunit</code> 指令，去執行應用程式所有的測試。
 </p>
 
 <blockquote>
-  <p><strong>Note:</strong> If you define your own <code>setUp</code> method, be sure to call <code>parent::setUp</code>.</p>
+    <p>
+        <strong>注意:</strong> 你可以定義自己的 <code>setUp</code> 方法，但確保你有呼叫母類別的 <code>parent::setUp</code> 方法。
+    </p>
 </blockquote>
 
 <p><a name="test-environment"></a></p>
@@ -217,30 +218,36 @@ body{
 <h2>測試環境</h2>
 
 <p>
-    When running unit tests, Laravel will automatically set the configuration environment to <code>testing</code>. Also, Laravel includes configuration files for <code>session</code> and <code>cache</code> in the test environment. Both of these drivers are set to <code>array</code> while in the test environment, meaning no session or cache data will be persisted while testing. You are free to create other testing environment configurations as necessary.
+    在執行單元測試時，Laravel 將會自動設置環境參數為 <code>測試 (testing)</code> 模式，且 Laravel 包含了在測試環境的 <code>session</code> 及 <code>cache</code> 設定檔案，在測試環境中這兩個檔案設置為 <code>空陣列 (array)</code> ，意思是 session 或 cache 資料在測試時不會被保存下來，如果需要，你也可以自己配置其他的測試環境參數。
 </p>
 
 <p><a name="calling-routes-from-tests"></a></p>
 
 <h2>從測試呼叫路由</h2>
 
-<p>You may easily call one of your routes for a test using the <code>call</code> method:</p>
+<p>
+    你可以使用 <code>call</code> 方法可以執行路由:
+</p>
 
-<p><strong>Calling A Route From A Test</strong></p>
+<p><strong>從測試中呼叫路由</strong></p>
 
 <pre><code>$response = $this-&gt;call('GET', 'user/profile');
 
 $response = $this-&gt;call($method, $uri, $parameters, $files, $server, $content);
 </code></pre>
 
-<p>You may then inspect the <code>Illuminate\Http\Response</code> object:</p>
+<p>
+    你可以監看 <code>Illuminate\Http\Response</code> 物件:
+</p>
 
 <pre><code>$this-&gt;assertEquals('Hello World', $response-&gt;getContent());
 </code></pre>
 
-<p>You may also call a controller from a test:</p>
+<p>
+    你也可以在測試中呼叫控制器:
+</p>
 
-<p><strong>Calling A Controller From A Test</strong></p>
+<p><strong>從測試中呼叫控制器</strong></p>
 
 <pre><code>$response = $this-&gt;action('GET', 'HomeController@index');
 
@@ -248,7 +255,7 @@ $response = $this-&gt;action('GET', 'UserController@profile', array('user' =&gt;
 </code></pre>
 
 <p>
-    The <code>getContent</code> method will return the evaluated string contents of the response. If your route returns a <code>View</code>, you may access it using the <code>original</code> property:
+    <code>getContent</code> 方法會回傳和回應相同的字串內容，如果你路由是回傳 <code>視圖 (View)</code> ，你可以使用 <code>original</code> 參數去存取這個視圖的資料:
 </p>
 
 <pre><code>$view = $response-&gt;original;
@@ -256,14 +263,18 @@ $response = $this-&gt;action('GET', 'UserController@profile', array('user' =&gt;
 $this-&gt;assertEquals('John', $view['name']);
 </code></pre>
 
-<p>To call a HTTPS route, you may use the <code>callSecure</code> method:</p>
+<p>
+    使用 <code>callSecure</code> 方法可以呼叫 HTTPS 的路由:
+</p>
 
 <pre><code>$response = $this-&gt;callSecure('GET', 'foo/bar');
 </code></pre>
 
-<h3>DOM Crawler</h3>
+<h3>DOM 爬行器</h3>
 
-<p>You may also call a route and receive a DOM Crawler instance that you may use to inspect the content:</p>
+<p>
+    你可以呼叫路由並接收一個 "DOM 爬行器" 的實例，你可以使用這個實例去監控內容:
+</p>
 
 <pre><code>$crawler = $this-&gt;client-&gt;request('GET', '/');
 
@@ -273,7 +284,7 @@ $this-&gt;assertCount(1, $crawler-&gt;filter('h1:contains("Hello World!")'));
 </code></pre>
 
 <p>
-    For more information on how to use the crawler, refer to its <a href="http://symfony.com/doc/master/components/dom_crawler.html">official documentation</a>.
+    更多的 "DOM 爬行器" 相關資訊，請參考 <a href="http://symfony.com/doc/master/components/dom_crawler.html" target="_blank">官方文件</a>。
 </p>
 
 <p><a name="mocking-facades"></a></p>
@@ -281,7 +292,7 @@ $this-&gt;assertCount(1, $crawler-&gt;filter('h1:contains("Hello World!")'));
 <h2>模擬Facades</h2>
 
 <p>
-    When testing, you may often want to mock a call to a Laravel static facade. For example, consider the following controller action:
+    在測試時，你可能想要模擬呼叫 Laravel 靜態 Facade 方法，舉例來說，參考下列控制器的的動作:
 </p>
 
 <pre><code>public function getIndex()
@@ -293,10 +304,10 @@ $this-&gt;assertCount(1, $crawler-&gt;filter('h1:contains("Hello World!")'));
 </code></pre>
 
 <p>
-    We can mock the call to the <code>Event</code> class by using the <code>shouldReceive</code> method on the facade, which will return an instance of a <a href="https://github.com/padraic/mockery">Mockery</a> mock.
+    我們可以透過 <code>shouldReceive</code> 方法模擬呼叫在 Facade 中的 <code>Event</code> 類別，該方法會回傳一個 <a href="https://github.com/padraic/mockery" target="_blank">Mockery</a> 模擬的實例。
 </p>
 
-<p><strong>Mocking A Facade</strong></p>
+<p><strong>模擬 Facade</strong></p>
 
 <pre><code>public function testGetIndex()
 {
@@ -307,16 +318,20 @@ $this-&gt;assertCount(1, $crawler-&gt;filter('h1:contains("Hello World!")'));
 </code></pre>
 
 <blockquote>
-  <p><strong>Note:</strong> You should not mock the <code>Request</code> facade. Instead, pass the input you desire into the <code>call</code> method when running your test.</p>
+    <p>
+        <strong>注意:</strong> 不可以模擬 <code>Request</code> Facade，反之，你可以在執行測試時傳送你想要輸入資訊到 <code>call</code> 方法中，代替 <code>Request</code> 請求。
+    </p>
 </blockquote>
 
 <p><a name="framework-assertions"></a></p>
 
 <h2>框架宣告</h2>
 
-<p>Laravel ships with several <code>assert</code> methods to make testing a little easier:</p>
+<p>
+    Laravel 提供幾個 <code>宣告 (assert)</code> 的方法，讓測試能夠變得更容易:
+</p>
 
-<p><strong>Asserting Responses Are OK</strong></p>
+<p><strong>宣告回應為 OK</strong></p>
 
 <pre><code>public function testMethod()
 {
@@ -326,12 +341,12 @@ $this-&gt;assertCount(1, $crawler-&gt;filter('h1:contains("Hello World!")'));
 }
 </code></pre>
 
-<p><strong>Asserting Response Statuses</strong></p>
+<p><strong>宣告回應狀態碼</strong></p>
 
 <pre><code>$this-&gt;assertResponseStatus(403);
 </code></pre>
 
-<p><strong>Asserting Responses Are Redirects</strong></p>
+<p><strong>宣告回應重新導向</strong></p>
 
 <pre><code>$this-&gt;assertRedirectedTo('foo');
 
@@ -340,7 +355,7 @@ $this-&gt;assertRedirectedToRoute('route.name');
 $this-&gt;assertRedirectedToAction('Controller@method');
 </code></pre>
 
-<p><strong>Asserting A View Has Some Data</strong></p>
+<p><strong>宣告回應帶有資料的視圖</strong></p>
 
 <pre><code>public function testMethod()
 {
@@ -351,7 +366,7 @@ $this-&gt;assertRedirectedToAction('Controller@method');
 }
 </code></pre>
 
-<p><strong>Asserting The Session Has Some Data</strong></p>
+<p><strong>宣告回應 Session 中帶有資料</strong></p>
 
 <pre><code>public function testMethod()
 {
@@ -366,20 +381,26 @@ $this-&gt;assertRedirectedToAction('Controller@method');
 
 <h2>輔助方法</h2>
 
-<p>The <code>TestCase</code> class contains several helper methods to make testing your application easier.</p>
+<p>
+    <code>TestCase</code> 類別包含一些輔助方法讓你可以更容易測試你的應用程式:
+</p>
 
-<p>You may set the currently authenticated user using the <code>be</code> method:</p>
+<p>
+    你可以使用 <code>be</code> 方法去設為現在驗證登入的使用者:
+</p>
 
-<p><strong>Setting The Currently Authenticated User</strong></p>
+<p><strong>設定現在驗證登入的使用者</strong></p>
 
 <pre><code>$user = new User(array('name' =&gt; 'John'));
 
 $this-&gt;be($user);
 </code></pre>
 
-<p>You may re-seed your database from a test using the <code>seed</code> method:</p>
+<p>
+    在測試中使用 <code>seed</code> 方法重新產生資料庫的測試資料:
+</p>
 
-<p><strong>Re-Seeding Database From Tests</strong></p>
+<p><strong>在測試時重新產生資料庫的測試資料</strong></p>
 
 <pre><code>$this-&gt;seed();
 
@@ -387,7 +408,8 @@ $this-&gt;seed($connection);
 </code></pre>
 
 <p>
-    More information on creating seeds may be found in the <a href="/docs/migrations#database-seeding">migrations and seeding</a> section of the documentation.
+    更多建立測試資料的資訊可以在 
+    <a href="../../docs/migrations#database-seeding">資料庫 Seeding</a> 文件中找到。
 </p>
     </article>
     <div class="clearfix"></div>

@@ -253,8 +253,6 @@ php artisan migrate:refresh --seed
 <h2>資料庫 Seeding</h2>
 
 <p>
-    Laravel還包括一個簡單的方法你的數據庫的測試數據，使用種子類種子。所有種子類存儲在應用程序/數據庫/種子。種子類可能有任何你希望的名字，但默認情況下應該遵循一些明智的慣例，如UserTableSeeder等，為您定義一個DatabaseSeeder類。從這個類，你可以使用呼叫的方法來運行其他種子類，允許你控制播種順序。
-
     Laravel 亦提供簡單的 seed 類別方法，去產生資料庫的測試資料，所有的 seed 類別存放在 <code>app/database/seeds</code> 目錄中， seed 類別名稱可以隨意的命名，但必須遵循一些規則，像是 <code>UserTableSeeder</code> ，預設情況下會為你定義 <code>DatabaseSeeder</code> 類別，從這個類別你可以使用 <code>call</code> 方法去執行你的測試資料種子的類別方法，讓你可以控制測試資料的順序。
 </p>
 
