@@ -294,9 +294,14 @@ class UserTableSeeder extends Seeder {
 
 <pre><code>php artisan migrate:refresh --seed
 </code></pre>
+        <h1>討論</h1>
+        <div id="disqus_thread"></div>
     </article>
     <div class="clearfix"></div>
     </div>
+
+
+    
 </section>
 
 
@@ -348,5 +353,19 @@ class UserTableSeeder extends Seeder {
   ga('create', 'UA-31063691-6', 'kejyun.github.io');
   ga('send', 'pageview');
 </script>
+
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'laraveltw'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
 </body>
 </html>
