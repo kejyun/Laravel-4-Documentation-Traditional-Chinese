@@ -279,8 +279,6 @@ body{
 </code></pre>
 
 <p>
-    接下來，找到應用程序/數據庫/遷移文件夾中生成的遷移文件。此文件包含一個類有兩個方法：向上和向下。在方法，你應該作出所需的更改數據庫表，在向下的方法，你根本扭轉。 
-
     接下來到 <code>app/database/migrations</code> 目錄找到我們產生的 Migration 檔案，這個檔案會包含兩個方法:<code>up</code> 及 <code>down</code> ，在 <code>up</code> 方法中建立你想要對資料表做的異動，在 <code>down</code> 方法中則是做與 <code>up</code> 方法反向的資料表異動。
 </p>
 
