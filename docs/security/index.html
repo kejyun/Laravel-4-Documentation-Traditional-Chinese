@@ -434,12 +434,12 @@ Auth::login($user);
 </code></pre>
 
 <p>
-    接下來，必須建立資料表去儲存密碼重設標記 (token)，只要在 Artisan 執行 <code>auth:reminders</code> 就可以 migration 這個資料表:
+    接下來，必須建立資料表去儲存密碼重設標記 (token)，只要在 Artisan 執行 <code>php artisan auth:reminders-table</code> 就可以 migration 這個資料表:
 </p>
 
 <p><strong>產生忘記密碼資料表 Migration</strong></p>
 
-<pre><code>php artisan auth:reminders
+<pre><code>php artisan auth:reminders-table
 
 php artisan migrate
 </code></pre>
